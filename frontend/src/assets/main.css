@@ -17,7 +17,6 @@ body {
   line-height: 1.6;
   font-weight: 400;
   overflow-x: hidden;
-  padding-top: 80px; /* Account for fixed navbar */
 }
 
 @media (max-width: 575.98px) {

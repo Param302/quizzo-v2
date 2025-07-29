@@ -8,13 +8,23 @@ axios.defaults.baseURL = API_BASE_URL
 axios.defaults.withCredentials = true
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    user: JSON.parse(localStorage.getItem('quizzo-user') || 'null'),
-    token: localStorage.getItem('quizzo-token'),
-    isAuthenticated: !!localStorage.getItem('quizzo-token'),
-    loading: false,
-    error: null
-  }),
+  state: () => {
+    const token = localStorage.getItem('quizzo-token')
+    const user = JSON.parse(localStorage.getItem('quizzo-user') || 'null')
+    
+    // Set axios authorization header if token exists
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+    
+    return {
+      user,
+      token,
+      isAuthenticated: !!token,
+      loading: false,
+      error: null
+    }
+  },
 
   getters: {
     isAdmin: (state) => state.user?.role === 'admin',
@@ -72,9 +82,9 @@ export const useAuthStore = defineStore('auth', {
         this.clearError()
         
         const response = await axios.post('/auth/login', credentials)
-        const { user, token } = response.data
+        const { user, access_token } = response.data
         
-        this.setAuth(user, token)
+        this.setAuth(user, access_token)
         return { success: true }
       } catch (error) {
         const message = error.response?.data?.message || 'Login failed'
@@ -91,10 +101,14 @@ export const useAuthStore = defineStore('auth', {
         this.clearError()
         
         const response = await axios.post('/auth/register', userData)
-        const { user, token } = response.data
         
-        this.setAuth(user, token)
-        return { success: true }
+        // Registration successful, now login with the same credentials
+        const loginResult = await this.login({
+          email: userData.email,
+          password: userData.password
+        })
+        
+        return loginResult
       } catch (error) {
         const message = error.response?.data?.message || 'Registration failed'
         this.setError(message)
