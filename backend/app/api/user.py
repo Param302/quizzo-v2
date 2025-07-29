@@ -379,8 +379,7 @@ class UserStatsResource(Resource):
         return result
 
 
-def register_user_routes(api):
-    """Register user routes"""
+def register_user_api(api):
     api.add_resource(DashboardResource, '/user/dashboard')
     api.add_resource(QuizMetadataResource, '/user/quiz/<int:quiz_id>')
     api.add_resource(QuizSubmissionResource, '/user/quiz/<int:quiz_id>')

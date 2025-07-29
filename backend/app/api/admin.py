@@ -581,8 +581,7 @@ class AdminExportResource(Resource):
         }
 
 
-def register_admin_routes(api):
-    """Register admin routes"""
+def register_admin_api(api):
     # Course management
     api.add_resource(CourseResource, '/admin/courses')
     api.add_resource(CourseDetailResource, '/admin/courses/<int:course_id>')

@@ -6,6 +6,7 @@ from flask_restful import Api
 from app.config import Config
 from app.models import db
 from app.cache import RedisCache
+from app.rate_limiter import create_limiter, apply_rate_limits
 
 
 def create_app():
@@ -21,6 +22,11 @@ def create_app():
     redis_cache = RedisCache(app)
     app.cache = redis_cache
     app.logger.info("Using Redis cache")
+
+    # Initialize rate limiter
+    limiter = create_limiter(app)
+    app.limiter = limiter
+    app.logger.info("Rate limiting enabled")
 
     from app.api.auth import register_auth_api
     from app.api.user import register_user_api
@@ -41,6 +47,8 @@ def create_app():
     register_cache_api(api)
     register_health_api(api)
     register_error_handlers(app)
+
+    apply_rate_limits(app)
 
     with app.app_context():
         db.create_all()

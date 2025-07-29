@@ -67,6 +67,14 @@ def register_error_handlers(app):
             'status_code': 503
         }), 503
 
+    @app.errorhandler(429)
+    def ratelimit_handler(error):
+        return jsonify({
+            'error': 'Rate Limit Exceeded',
+            'message': 'Too many requests. Please try again later.',
+            'status_code': 429,
+            'retry_after': getattr(error, 'retry_after', None)
+        }), 429
 
     @app.errorhandler(Exception)
     def handle_generic_exception(error):

@@ -15,24 +15,25 @@ class UpcomingQuizzesResource(Resource):
         user = get_current_user()
         cache_key_name = f'user_{user.id}_upcoming_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
-        
+
         if cached_result:
             return cached_result
-        
+
         # Get user's subscribed chapters
-        subscriptions = Subscription.query.filter_by(user_id=user.id, is_active=True).all()
+        subscriptions = Subscription.query.filter_by(
+            user_id=user.id, is_active=True).all()
         chapter_ids = [sub.chapter_id for sub in subscriptions]
-        
+
         if not chapter_ids:
             return {'upcoming_quizzes': []}
-        
+
         # Get upcoming scheduled quizzes
         upcoming_quizzes = Quiz.query.filter(
             Quiz.chapter_id.in_(chapter_ids),
             Quiz.is_scheduled == True,
             Quiz.date_of_quiz > datetime.now()
         ).join(Chapter).join(Course).order_by(Quiz.date_of_quiz).all()
-        
+
         result = {
             'upcoming_quizzes': [
                 {
@@ -48,7 +49,7 @@ class UpcomingQuizzesResource(Resource):
                 for quiz in upcoming_quizzes
             ]
         }
-        
+
         # Cache for 5 minutes
         current_app.cache.set(cache_key_name, result, timeout=300)
         return result
@@ -62,17 +63,18 @@ class OpenQuizzesResource(Resource):
         user = get_current_user()
         cache_key_name = f'user_{user.id}_open_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
-        
+
         if cached_result:
             return cached_result
-        
+
         # Get user's subscribed chapters
-        subscriptions = Subscription.query.filter_by(user_id=user.id, is_active=True).all()
+        subscriptions = Subscription.query.filter_by(
+            user_id=user.id, is_active=True).all()
         chapter_ids = [sub.chapter_id for sub in subscriptions]
-        
+
         if not chapter_ids:
             return {'open_quizzes': []}
-        
+
         # Get quizzes that are either not scheduled or scheduled for now/past
         open_quizzes = Quiz.query.filter(
             Quiz.chapter_id.in_(chapter_ids),
@@ -84,15 +86,16 @@ class OpenQuizzesResource(Resource):
                 )
             )
         ).join(Chapter).join(Course).all()
-        
+
         # Filter out already submitted quizzes
         submitted_quiz_ids = db.session.query(Submission.quiz_id).filter_by(
             user_id=user.id
         ).distinct().all()
         submitted_quiz_ids = {q[0] for q in submitted_quiz_ids}
-        
-        available_quizzes = [quiz for quiz in open_quizzes if quiz.id not in submitted_quiz_ids]
-        
+
+        available_quizzes = [
+            quiz for quiz in open_quizzes if quiz.id not in submitted_quiz_ids]
+
         result = {
             'open_quizzes': [
                 {
@@ -109,7 +112,7 @@ class OpenQuizzesResource(Resource):
                 for quiz in available_quizzes
             ]
         }
-        
+
         # Cache for 3 minutes
         current_app.cache.set(cache_key_name, result, timeout=180)
         return result
@@ -121,30 +124,31 @@ class QuizQuestionsResource(Resource):
     def get(self, quiz_id):
         """Get questions with metadata"""
         user = get_current_user()
-        
+
         # Validate access
         can_access, message = validate_quiz_access(quiz_id, user.id)
         if not can_access:
             return {'message': message}, 403
-        
+
         # Check if already submitted
         existing_submission = Submission.query.filter_by(
             user_id=user.id,
             quiz_id=quiz_id
         ).first()
-        
+
         if existing_submission:
             return {'message': 'Quiz already submitted'}, 400
-        
+
         cache_key_name = f'quiz_{quiz_id}_questions_user'
         cached_result = current_app.cache.get(cache_key_name)
-        
+
         if cached_result:
             return cached_result
-        
+
         quiz = Quiz.query.get(quiz_id)
-        questions = Question.query.filter_by(quiz_id=quiz_id).order_by(Question.id).all()
-        
+        questions = Question.query.filter_by(
+            quiz_id=quiz_id).order_by(Question.id).all()
+
         result = {
             'quiz': {
                 'id': quiz.id,
@@ -168,7 +172,7 @@ class QuizQuestionsResource(Resource):
                 for idx, question in enumerate(questions)
             ]
         }
-        
+
         # Cache for 15 minutes
         current_app.cache.set(cache_key_name, result, timeout=900)
         return result
@@ -180,41 +184,41 @@ class QuizSubmitResource(Resource):
     def post(self, quiz_id):
         """Submit quiz answers"""
         user = get_current_user()
-        
+
         # Validate access
         can_access, message = validate_quiz_access(quiz_id, user.id)
         if not can_access:
             return {'message': message}, 403
-        
+
         # Check if already submitted
         existing_submission = Submission.query.filter_by(
             user_id=user.id,
             quiz_id=quiz_id
         ).first()
-        
+
         if existing_submission:
             return {'message': 'Quiz already submitted'}, 400
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('answers', type=list, location='json', required=True,
-                          help='List of answers: [{"question_id": 1, "answer": [0]}, ...]')
+                            help='List of answers: [{"question_id": 1, "answer": [0]}, ...]')
         args = parser.parse_args()
-        
+
         # Get all questions for this quiz
         questions = Question.query.filter_by(quiz_id=quiz_id).all()
         question_dict = {q.id: q for q in questions}
-        
+
         # Process answers
         submissions = []
         for answer_data in args['answers']:
             question_id = answer_data.get('question_id')
             answer = answer_data.get('answer')
-            
+
             if question_id not in question_dict:
                 continue
-            
+
             question = question_dict[question_id]
-            
+
             # Validate answer format based on question type
             if question.question_type in ['MCQ', 'MSQ']:
                 if not isinstance(answer, list):
@@ -224,10 +228,10 @@ class QuizSubmitResource(Resource):
                     return {'message': f'Invalid answer format for question {question_id}'}, 400
                 if not isinstance(answer, list):
                     answer = [answer]  # Convert to list for consistency
-            
+
             # Check if answer is correct
             is_correct = answer == question.correct_answer
-            
+
             submission = Submission(
                 user_id=user.id,
                 quiz_id=quiz_id,
@@ -236,17 +240,17 @@ class QuizSubmitResource(Resource):
                 is_correct=is_correct,
                 timestamp=datetime.now()
             )
-            
+
             submissions.append(submission)
-        
+
         # Save all submissions
         db.session.add_all(submissions)
         db.session.commit()
-        
+
         # Clear relevant caches
         invalidate_user_cache(user.id)
         invalidate_quiz_cache(quiz_id)
-        
+
         return {
             'message': 'Quiz submitted successfully',
             'quiz_id': quiz_id,
@@ -261,31 +265,30 @@ class QuizResultResource(Resource):
     def get(self, quiz_id):
         """Get result + analytics"""
         user = get_current_user()
-        
+
         # Check if user has submitted this quiz
         submission_exists = Submission.query.filter_by(
             user_id=user.id,
             quiz_id=quiz_id
         ).first()
-        
+
         if not submission_exists:
             return {'message': 'Quiz not submitted yet'}, 400
-        
+
         cache_key_name = f'quiz_{quiz_id}_result_{user.id}'
         cached_result = current_app.cache.get(cache_key_name)
-        
+
         if cached_result:
             return cached_result
-        
+
         result = format_quiz_result(quiz_id, user.id)
-        
+
         # Cache for 30 minutes
         current_app.cache.set(cache_key_name, result, timeout=1800)
         return result
 
 
-def register_quiz_routes(api):
-    """Register quiz participation routes"""
+def register_quiz_api(api):
     api.add_resource(UpcomingQuizzesResource, '/quiz/upcoming')
     api.add_resource(OpenQuizzesResource, '/quiz/open')
     api.add_resource(QuizQuestionsResource, '/quiz/<int:quiz_id>/questions')

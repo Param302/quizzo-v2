@@ -116,8 +116,7 @@ class MonthlyReportResource(Resource):
         }
 
 
-def register_export_routes(api):
-    """Register export and miscellaneous routes"""
+def register_export_api(api):
     api.add_resource(ExportStatusResource, '/export/status/<string:job_id>')
     api.add_resource(CertificateResource, '/quiz/<int:quiz_id>/certificate')
     api.add_resource(DailyReminderResource, '/reminders/send/daily')

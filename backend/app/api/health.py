@@ -43,6 +43,5 @@ class HealthCheckResource(Resource):
         return health_status, status_code
 
 
-def register_health_routes(api):
-    """Register health check routes"""
+def register_health_api(api):
     api.add_resource(HealthCheckResource, '/health')

@@ -59,7 +59,6 @@ class CacheClearResource(Resource):
         }
 
 
-def register_cache_routes(api):
-    """Register cache management routes"""
+def register_cache_api(api):
     api.add_resource(CacheStatsResource, '/admin/cache/stats')
     api.add_resource(CacheClearResource, '/admin/cache/clear')
