@@ -1,10 +1,43 @@
 :root {
-  --bs-primary: #f57c00;       /* Orange */
+  --bs-primary: #f57c00; /* Orange */
   --bs-primary-rgb: 245, 124, 0;
 
+  /* Override Bootstrap Blue Colors */
+  --bs-blue: #f57c00;
+  --bs-indigo: #f57c00;
+  --bs-purple: #f57c00;
+  --bs-pink: #f57c00;
+  --bs-red: #dc3545;
+  --bs-orange: #f57c00;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+
+  /* Body and text colors */
   --bs-body-bg: #ffffff;
   --bs-body-color: #212529;
 
+  /* Link colors - all orange */
   --bs-link-color: #f57c00;
   --bs-link-hover-color: #e65100;
+  --bs-link-decoration: none;
+
+  /* Button and form control colors */
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #f57c00;
+  --bs-btn-border-color: #f57c00;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #e65100;
+  --bs-btn-hover-border-color: #e65100;
+  --bs-btn-focus-shadow-rgb: 245, 124, 0;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #e65100;
+  --bs-btn-active-border-color: #e65100;
+
+  /* Form control focus */
+  --bs-form-valid-color: #198754;
+  --bs-form-valid-border-color: #198754;
+  --bs-form-invalid-color: #dc3545;
+  --bs-form-invalid-border-color: #dc3545;
 }
