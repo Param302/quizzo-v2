@@ -339,9 +339,108 @@ class QuizResultResource(Resource):
         return result
 
 
+class ChapterQuizzesResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self, course_id, chapter_id):
+        """Get categorized quizzes for a chapter with user submission status"""
+        user = get_current_user()
+        cache_key_name = f'user_{user.id}_chapter_{chapter_id}_quizzes'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        chapter = Chapter.query.filter_by(
+            id=chapter_id, course_id=course_id).first()
+        if not chapter:
+            return {'message': 'Chapter not found'}, 404
+
+        quizzes = Quiz.query.filter_by(chapter_id=chapter_id).all()
+        now = datetime.now()
+
+        # Get user submissions for this chapter
+        quiz_ids = [q.id for q in quizzes]
+        user_submissions = db.session.query(Submission.quiz_id).filter(
+            Submission.user_id == user.id,
+            Submission.quiz_id.in_(quiz_ids)
+        ).distinct().all()
+        submitted_quiz_ids = {s[0] for s in user_submissions}
+
+        categorized_quizzes = {
+            'live': [],
+            'upcoming': [],
+            'general': [],
+            'ended': [],
+            'completed': []
+        }
+
+        for quiz in quizzes:
+            quiz_data = {
+                'id': quiz.id,
+                'title': quiz.title,
+                'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
+                'time_duration': quiz.time_duration,
+                'is_scheduled': quiz.is_scheduled,
+                'remarks': quiz.remarks,
+                'question_count': len(quiz.questions),
+                'total_marks': sum(q.marks for q in quiz.questions)
+            }
+
+            # Add submission status and score if completed
+            if quiz.id in submitted_quiz_ids:
+                from app.utils import calculate_quiz_score
+                score = calculate_quiz_score(quiz.id, user.id)
+                quiz_data['user_score'] = score
+                quiz_data['is_completed'] = True
+                categorized_quizzes['completed'].append(quiz_data.copy())
+            else:
+                quiz_data['is_completed'] = False
+
+            # Categorize by schedule
+            if not quiz.is_scheduled:
+                categorized_quizzes['general'].append(quiz_data)
+            elif quiz.date_of_quiz > now:
+                # Calculate days until quiz
+                days_until = (quiz.date_of_quiz - now).days
+                quiz_data['days_until'] = days_until
+                categorized_quizzes['upcoming'].append(quiz_data)
+            elif quiz.date_of_quiz <= now:
+                # Check if it's still "live" (within reasonable time window)
+                time_diff = (
+                    now - quiz.date_of_quiz).total_seconds() / 3600  # hours
+                if time_diff <= 24 and quiz.id not in submitted_quiz_ids:  # Live for 24 hours and not submitted
+                    categorized_quizzes['live'].append(quiz_data)
+                else:
+                    # Calculate days since quiz ended
+                    days_past = (now - quiz.date_of_quiz).days
+                    quiz_data['days_past'] = days_past
+                    categorized_quizzes['ended'].append(quiz_data)
+
+        result = {
+            'course': {
+                'id': chapter.course.id,
+                'name': chapter.course.name,
+                'description': chapter.course.description
+            },
+            'chapter': {
+                'id': chapter.id,
+                'name': chapter.name,
+                'description': chapter.description
+            },
+            'quizzes': categorized_quizzes
+        }
+
+        # Cache for 5 minutes
+        current_app.cache.set(cache_key_name, result, timeout=300)
+        return result
+
+
 def register_quiz_api(api):
     api.add_resource(UpcomingQuizzesResource, '/quiz/upcoming')
     api.add_resource(OpenQuizzesResource, '/quiz/open')
     api.add_resource(QuizQuestionsResource, '/quiz/<int:quiz_id>/questions')
     api.add_resource(QuizSubmitResource, '/quiz/<int:quiz_id>/submit')
     api.add_resource(QuizResultResource, '/quiz/<int:quiz_id>/result')
+    api.add_resource(ChapterQuizzesResource,
+                     '/quiz/courses/<int:course_id>/chapters/<int:chapter_id>')

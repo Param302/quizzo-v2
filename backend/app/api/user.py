@@ -282,16 +282,20 @@ class SubscriptionsResource(Resource):
 
     @jwt_required()
     @user_required
-    def delete(self):
+    def delete(self, chapter_id=None):
+        """Unsubscribe from chapter - supports both URL parameter and request body"""
         user = get_current_user()
 
-        parser = reqparse.RequestParser()
-        parser.add_argument('chapter_id', type=int, required=True)
-        args = parser.parse_args()
+        if chapter_id is None:
+            # Legacy support: chapter_id in request body
+            parser = reqparse.RequestParser()
+            parser.add_argument('chapter_id', type=int, required=True)
+            args = parser.parse_args()
+            chapter_id = args['chapter_id']
 
         subscription = Subscription.query.filter_by(
             user_id=user.id,
-            chapter_id=args['chapter_id'],
+            chapter_id=chapter_id,
             is_active=True
         ).first()
 
@@ -380,10 +384,68 @@ class UserStatsResource(Resource):
         return result
 
 
+class CourseSubscriptionResource(Resource):
+    @jwt_required()
+    @user_required
+    def post(self):
+        """Subscribe to all chapters of a course"""
+        user = get_current_user()
+
+        parser = reqparse.RequestParser()
+        parser.add_argument('course_id', type=int, required=True)
+        args = parser.parse_args()
+
+        course = Course.query.get(args['course_id'])
+        if not course:
+            return {'message': 'Course not found'}, 404
+
+        chapters = Chapter.query.filter_by(course_id=args['course_id']).all()
+        if not chapters:
+            return {'message': 'No chapters found in this course'}, 404
+
+        subscribed_chapters = []
+        already_subscribed = []
+
+        for chapter in chapters:
+            existing_sub = Subscription.query.filter_by(
+                user_id=user.id,
+                chapter_id=chapter.id
+            ).first()
+
+            if existing_sub:
+                if existing_sub.is_active:
+                    already_subscribed.append(chapter.name)
+                else:
+                    existing_sub.is_active = True
+                    existing_sub.subscribed_on = datetime.now()
+                    subscribed_chapters.append(chapter.name)
+            else:
+                subscription = Subscription(
+                    user_id=user.id,
+                    chapter_id=chapter.id,
+                    subscribed_on=datetime.now(),
+                    is_active=True
+                )
+                db.session.add(subscription)
+                subscribed_chapters.append(chapter.name)
+
+        db.session.commit()
+        invalidate_user_cache(user.id)
+
+        return {
+            'message': f'Successfully subscribed to {len(subscribed_chapters)} chapters',
+            'course': course.name,
+            'subscribed_chapters': subscribed_chapters,
+            'already_subscribed': already_subscribed
+        }
+
+
 def register_user_api(api):
     api.add_resource(DashboardResource, '/user/dashboard')
     api.add_resource(QuizMetadataResource, '/user/quiz/<int:quiz_id>')
     api.add_resource(QuizSubmissionResource, '/user/quiz/<int:quiz_id>')
-    api.add_resource(SubscriptionsResource, '/user/subscriptions')
+    api.add_resource(SubscriptionsResource, '/user/subscriptions',
+                     '/user/subscriptions/<int:chapter_id>')
+    api.add_resource(CourseSubscriptionResource, '/user/course-subscription')
     api.add_resource(UserExportResource, '/user/export/csv')
     api.add_resource(UserStatsResource, '/user/stats')
