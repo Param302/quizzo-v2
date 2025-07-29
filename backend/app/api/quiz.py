@@ -251,12 +251,63 @@ class QuizSubmitResource(Resource):
         invalidate_user_cache(user.id)
         invalidate_quiz_cache(quiz_id)
 
-        return {
+        # Try to generate certificate information (but don't fail if it doesn't work)
+        certificate_info = None
+        try:
+            from app.certificate_generator import get_certificate_generator
+            cert_generator = get_certificate_generator()
+
+            can_generate, _ = cert_generator.can_generate_certificate(
+                user.id, quiz_id)
+            if can_generate:
+                certificate_data = cert_generator.get_certificate_data(
+                    user.id, quiz_id)
+                certificate_info = {
+                    'certificate_available': True,
+                    'certificate_id': certificate_data['certificate_id'],
+                    'download_url': f'/certificate/{quiz_id}/download'
+                }
+
+                # Try to send certificate email asynchronously
+                try:
+                    from app.email_service import get_email_service
+                    email_service = get_email_service()
+
+                    # Send email in background (don't wait for completion)
+                    import threading
+                    email_thread = threading.Thread(
+                        target=email_service.send_certificate_email,
+                        args=(user.id, quiz_id)
+                    )
+                    email_thread.daemon = True
+                    email_thread.start()
+
+                    current_app.logger.info(
+                        f"Certificate email queued for user {user.id}, quiz {quiz_id}")
+
+                except Exception as e:
+                    current_app.logger.error(
+                        f"Failed to queue certificate email: {e}")
+
+        except ImportError:
+            current_app.logger.info(
+                "Certificate generator not available - WeasyPrint not installed")
+        except Exception as e:
+            current_app.logger.error(
+                f"Certificate generation check failed: {e}")
+
+        response_data = {
             'message': 'Quiz submitted successfully',
             'quiz_id': quiz_id,
             'submitted_answers': len(submissions),
             'total_questions': len(questions)
         }
+
+        # Add certificate info if available
+        if certificate_info:
+            response_data.update(certificate_info)
+
+        return response_data
 
 
 class QuizResultResource(Resource):

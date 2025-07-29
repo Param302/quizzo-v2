@@ -25,3 +25,23 @@ class Config:
     RATELIMIT_STORAGE_URL = os.getenv("REDIS_URL", "redis://localhost:6379/2")
     RATELIMIT_DEFAULT = "100 per hour"
     RATELIMIT_ENABLED = True
+
+    # Email configuration
+    MAIL_SERVER = os.getenv("MAIL_SERVER", "localhost")
+    MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
+    MAIL_USE_TLS = os.getenv("MAIL_USE_TLS", "true").lower() == "true"
+    MAIL_USE_SSL = os.getenv("MAIL_USE_SSL", "false").lower() == "true"
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME", "")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD", "")
+    MAIL_DEFAULT_SENDER = os.getenv(
+        "MAIL_DEFAULT_SENDER", "noreply@quizzo.com")
+    MAIL_SENDER_NAME = os.getenv("MAIL_SENDER_NAME", "Quizzo Team")
+
+    # Certificate configuration
+    CERTIFICATE_OUTPUT_DIR = os.getenv(
+        "CERTIFICATE_OUTPUT_DIR", "/tmp/certificates")
+
+    # Frontend URLs
+    FRONTEND_DASHBOARD_URL = os.getenv(
+        "FRONTEND_DASHBOARD_URL", "http://localhost:3000/dashboard")
+    FRONTEND_BASE_URL = os.getenv("FRONTEND_BASE_URL", "http://localhost:3000")

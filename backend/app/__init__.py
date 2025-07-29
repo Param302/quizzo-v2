@@ -33,9 +33,10 @@ def create_app():
     from app.api.quiz import register_quiz_api
     from app.api.admin import register_admin_api
     from app.api.public import register_public_api
-    from app.api.export import register_export_api
+    from app.api.export import register_export_api, register_certificate_routes
     from app.api.health import register_health_api
     from app.api.cache_admin import register_cache_api
+    from app.api.email import register_email_api
     from app.error_handlers import register_error_handlers
 
     register_auth_api(api)
@@ -46,7 +47,11 @@ def create_app():
     register_export_api(api)
     register_cache_api(api)
     register_health_api(api)
+    register_email_api(api)
     register_error_handlers(app)
+
+    # Register certificate routes (Flask routes, not API resources)
+    register_certificate_routes(app)
 
     apply_rate_limits(app)
 

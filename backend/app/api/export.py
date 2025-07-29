@@ -1,7 +1,8 @@
-from flask import current_app
+from flask import current_app, send_file, make_response, Blueprint
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required
 from app.utils import user_required, admin_required, get_current_user
+import io
 
 
 class ExportStatusResource(Resource):
@@ -10,13 +11,13 @@ class ExportStatusResource(Resource):
         """Poll job completion status"""
         # TODO: Implement with Celery to check actual job status
         # For now, returning mock data
-        
+
         cache_key_name = f'job_status_{job_id}'
         cached_status = current_app.cache.get(cache_key_name)
-        
+
         if cached_status:
             return cached_status
-        
+
         # Mock implementation - in real scenario, check Celery job status
         if 'admin' in job_id:
             status = {
@@ -38,56 +39,60 @@ class ExportStatusResource(Resource):
                 'created_at': '2025-07-29T10:00:00Z',
                 'completed_at': '2025-07-29T10:03:00Z'
             }
-        
+
         # Cache for 1 minute
         current_app.cache.set(cache_key_name, status, timeout=60)
         return status
 
 
-class CertificateResource(Resource):
-    @jwt_required()
-    @user_required
-    def get(self, quiz_id):
-        """Get dynamically generated certificate"""
-        user = get_current_user()
-        
-        # Check if user completed the quiz
-        from app.models import Submission, Quiz
-        
-        submissions = Submission.query.filter_by(
-            user_id=user.id,
-            quiz_id=quiz_id
-        ).all()
-        
-        if not submissions:
-            return {'message': 'Quiz not completed'}, 400
-        
-        quiz = Quiz.query.get(quiz_id)
-        if not quiz:
-            return {'message': 'Quiz not found'}, 404
-        
-        # Calculate score
-        from app.utils import calculate_quiz_score
-        score = calculate_quiz_score(quiz_id, user.id)
-        
-        # Check if user passed (assuming 60% is passing)
-        if score['percentage'] < 60:
-            return {'message': 'Certificate not available. Minimum 60% score required.'}, 400
-        
-        # TODO: Generate actual certificate PDF
-        # For now, return certificate data
-        certificate_data = {
-            'certificate_id': f'CERT_{user.id}_{quiz_id}',
-            'user_name': user.name,
-            'quiz_title': quiz.title,
-            'chapter': quiz.chapter.name,
-            'course': quiz.chapter.course.name,
-            'score': score,
-            'completion_date': max([s.timestamp for s in submissions]).isoformat(),
-            'certificate_url': f'/certificates/CERT_{user.id}_{quiz_id}.pdf'
-        }
-        
-        return certificate_data
+# Create Blueprint for certificate routes
+certificate_bp = Blueprint('certificate', __name__)
+
+
+@certificate_bp.route('/certificate/<int:quiz_id>/download')
+@jwt_required()
+@user_required
+def download_certificate(quiz_id):
+    """Download certificate as PDF file"""
+    user = get_current_user()
+
+    try:
+        from app.certificate_generator import get_certificate_generator
+        cert_generator = get_certificate_generator()
+    except ImportError as e:
+        current_app.logger.error(f"Certificate generator import failed: {e}")
+        return {'message': 'Certificate generation service unavailable'}, 500
+
+    # Check if certificate can be generated
+    can_generate, message = cert_generator.can_generate_certificate(
+        user.id, quiz_id)
+    if not can_generate:
+        return {'message': message}, 400
+
+    try:
+        # Generate PDF bytes
+        pdf_bytes = cert_generator.generate_certificate_pdf(user.id, quiz_id)
+        certificate_data = cert_generator.get_certificate_data(
+            user.id, quiz_id)
+
+        # Create a file-like object from bytes
+        pdf_buffer = io.BytesIO(pdf_bytes)
+        pdf_buffer.seek(0)
+
+        # Generate filename
+        filename = f"certificate_{certificate_data['certificate_id']}.pdf"
+
+        # Return PDF file
+        return send_file(
+            pdf_buffer,
+            as_attachment=True,
+            download_name=filename,
+            mimetype='application/pdf'
+        )
+
+    except Exception as e:
+        current_app.logger.error(f"Certificate download failed: {e}")
+        return {'message': f'Failed to download certificate: {str(e)}'}, 500
 
 
 class DailyReminderResource(Resource):
@@ -118,6 +123,9 @@ class MonthlyReportResource(Resource):
 
 def register_export_api(api):
     api.add_resource(ExportStatusResource, '/export/status/<string:job_id>')
-    api.add_resource(CertificateResource, '/quiz/<int:quiz_id>/certificate')
     api.add_resource(DailyReminderResource, '/reminders/send/daily')
     api.add_resource(MonthlyReportResource, '/reports/send/monthly')
+
+
+def register_certificate_routes(app):
+    app.register_blueprint(certificate_bp)
