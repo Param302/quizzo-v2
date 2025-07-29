@@ -1,0 +1,3581 @@
+{
+  "name": "Intro to Python Programming",
+  "description": "Learn the basics of Python including syntax, control structures, and functions.",
+  "chapters": [
+    {
+      "name": "Variables & Datatypes",
+      "description": "Detailed study of Variables & Datatypes",
+      "quizzes": [
+        {
+          "title": "Variables & Datatypes Quiz 1",
+          "date_of_quiz": "2025-07-30T19:43:39.125653",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Variables & Datatypes Quiz 2",
+          "date_of_quiz": "2025-07-31T19:43:39.125685",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Variables & Datatypes Quiz 3",
+          "date_of_quiz": "2025-08-01T19:43:39.125694",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Variables & Datatypes Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Variables & Datatypes Quiz 5",
+          "date_of_quiz": "2025-07-24T19:43:39.125706",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `type(3.14)`?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which of these is immutable?",
+              "question_type": "MCQ",
+              "options": [
+                "List",
+                "Dict",
+                "Set",
+                "Tuple"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Select valid variable names in Python.",
+              "question_type": "MSQ",
+              "options": [
+                "_var",
+                "2var",
+                "var_name",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `len('Python')`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used to get user input?",
+              "question_type": "MCQ",
+              "options": [
+                "get()",
+                "input()",
+                "scanf()",
+                "read()"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Conditionals",
+      "description": "Detailed study of Conditionals",
+      "quizzes": [
+        {
+          "title": "Conditionals Quiz 1",
+          "date_of_quiz": "2025-07-30T19:43:39.125714",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Conditionals Quiz 2",
+          "date_of_quiz": "2025-07-31T19:43:39.125721",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Conditionals Quiz 3",
+          "date_of_quiz": "2025-08-01T19:43:39.125727",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Conditionals Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Conditionals Quiz 5",
+          "date_of_quiz": "2025-07-24T19:43:39.125744",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used for else-if in Python?",
+              "question_type": "MCQ",
+              "options": [
+                "elseif",
+                "elif",
+                "else if",
+                "ifelse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `if not True:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid boolean operators in Python?",
+              "question_type": "MSQ",
+              "options": [
+                "and",
+                "or",
+                "not",
+                "xor"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `5 > 3`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What will `if 0:` evaluate to?",
+              "question_type": "MCQ",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Loops",
+      "description": "Detailed study of Loops",
+      "quizzes": [
+        {
+          "title": "Loops Quiz 1",
+          "date_of_quiz": "2025-07-30T19:43:39.125756",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Loops Quiz 2",
+          "date_of_quiz": "2025-07-31T19:43:39.125765",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Loops Quiz 3",
+          "date_of_quiz": "2025-08-01T19:43:39.125771",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Loops Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Loops Quiz 5",
+          "date_of_quiz": "2025-07-24T19:43:39.125780",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which loop is entry-controlled?",
+              "question_type": "MCQ",
+              "options": [
+                "for",
+                "while",
+                "do-while",
+                "loop"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the output of `for i in range(2): print(i)`?",
+              "question_type": "MCQ",
+              "options": [
+                "0 1",
+                "1 2",
+                "0 1 2",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which can be used to exit a loop?",
+              "question_type": "MSQ",
+              "options": [
+                "break",
+                "stop",
+                "exit",
+                "continue"
+              ],
+              "correct_answer": [
+                0,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many times will `for i in range(3):` run?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `continue` do in a loop?",
+              "question_type": "MCQ",
+              "options": [
+                "Skips rest",
+                "Exits loop",
+                "Restarts program",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Built-in Functions",
+      "description": "Detailed study of Built-in Functions",
+      "quizzes": [
+        {
+          "title": "Built-in Functions Quiz 1",
+          "date_of_quiz": "2025-07-30T19:43:39.125787",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Built-in Functions Quiz 2",
+          "date_of_quiz": "2025-07-31T19:43:39.125793",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Built-in Functions Quiz 3",
+          "date_of_quiz": "2025-08-01T19:43:39.125799",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Built-in Functions Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Built-in Functions Quiz 5",
+          "date_of_quiz": "2025-07-24T19:43:39.125808",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function returns the length of a list?",
+              "question_type": "MCQ",
+              "options": [
+                "size()",
+                "count()",
+                "len()",
+                "length()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does `sum([1, 2, 3])` return?",
+              "question_type": "MCQ",
+              "options": [
+                "6",
+                "5",
+                "Error",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are built-in functions?",
+              "question_type": "MSQ",
+              "options": [
+                "max()",
+                "sqrt()",
+                "print()",
+                "map()"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is `abs(-7)`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function converts string to integer?",
+              "question_type": "MCQ",
+              "options": [
+                "int()",
+                "str()",
+                "float()",
+                "bool()"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Functions",
+      "description": "Detailed study of Functions",
+      "quizzes": [
+        {
+          "title": "Functions Quiz 1",
+          "date_of_quiz": "2025-07-30T19:43:39.125816",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Functions Quiz 2",
+          "date_of_quiz": "2025-07-31T19:43:39.125822",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Functions Quiz 3",
+          "date_of_quiz": "2025-08-01T19:43:39.125827",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Functions Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Functions Quiz 5",
+          "date_of_quiz": "2025-07-24T19:43:39.125837",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword is used to define a function?",
+              "question_type": "MCQ",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default return type of a function?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "None",
+                "str",
+                "bool"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid function calls?",
+              "question_type": "MSQ",
+              "options": [
+                "func()",
+                "call func",
+                "func(1)",
+                "def func"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many parameters in `def f(a, b=2):`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the scope of a local variable?",
+              "question_type": "MCQ",
+              "options": [
+                "Global",
+                "Outside function",
+                "Inside function",
+                "All above"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

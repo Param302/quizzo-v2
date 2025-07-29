@@ -1,0 +1,1951 @@
+{
+  "name": "Mathematics I",
+  "description": "Fundamentals of algebra and set theory.",
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Sets",
+      "description": "This chapter covers Sets.",
+      "quizzes": [
+        {
+          "id": 1,
+          "title": "Sets Quiz 1",
+          "date_of_quiz": "2025-08-01T19:48:23.438723",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Sets",
+          "questions": [
+            {
+              "id": 1,
+              "question_statement": "What is the cardinality of the set {2, 4, 6, 8}?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                4
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 2,
+              "question_statement": "Which of the following is a subset of {1, 2, 3}?",
+              "question_type": "MCQ",
+              "options": [
+                "{4}",
+                "{1, 4}",
+                "{1, 2}",
+                "{5, 6}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 3,
+              "question_statement": "If A = {1,2,3} and B = {3,4,5}, what is A \u2229 B?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{3}",
+                "{}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 4,
+              "question_statement": "Which set represents all natural numbers less than 5?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4}",
+                "{0,1,2,3,4}",
+                "{5,6,7}",
+                "{1,2,3,4,5}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 5,
+              "question_statement": "If U = {1,2,3,4,5}, A = {1,2}, then A' (complement) is?",
+              "question_type": "MCQ",
+              "options": [
+                "{3,4,5}",
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Sets Quiz 2",
+          "date_of_quiz": "2025-08-05T19:48:23.438723",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Sets",
+          "questions": [
+            {
+              "id": 6,
+              "question_statement": "What is the cardinality of the set {2, 4, 6, 8}?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                4
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 7,
+              "question_statement": "Which of the following is a subset of {1, 2, 3}?",
+              "question_type": "MCQ",
+              "options": [
+                "{4}",
+                "{1, 4}",
+                "{1, 2}",
+                "{5, 6}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 8,
+              "question_statement": "If A = {1,2,3} and B = {3,4,5}, what is A \u2229 B?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{3}",
+                "{}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 9,
+              "question_statement": "Which set represents all natural numbers less than 5?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4}",
+                "{0,1,2,3,4}",
+                "{5,6,7}",
+                "{1,2,3,4,5}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 10,
+              "question_statement": "If U = {1,2,3,4,5}, A = {1,2}, then A' (complement) is?",
+              "question_type": "MCQ",
+              "options": [
+                "{3,4,5}",
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Sets Quiz 3",
+          "date_of_quiz": "2025-08-08T19:48:23.438723",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Sets",
+          "questions": [
+            {
+              "id": 11,
+              "question_statement": "What is the cardinality of the set {2, 4, 6, 8}?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                4
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 12,
+              "question_statement": "Which of the following is a subset of {1, 2, 3}?",
+              "question_type": "MCQ",
+              "options": [
+                "{4}",
+                "{1, 4}",
+                "{1, 2}",
+                "{5, 6}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 13,
+              "question_statement": "If A = {1,2,3} and B = {3,4,5}, what is A \u2229 B?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{3}",
+                "{}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 14,
+              "question_statement": "Which set represents all natural numbers less than 5?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4}",
+                "{0,1,2,3,4}",
+                "{5,6,7}",
+                "{1,2,3,4,5}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 15,
+              "question_statement": "If U = {1,2,3,4,5}, A = {1,2}, then A' (complement) is?",
+              "question_type": "MCQ",
+              "options": [
+                "{3,4,5}",
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Sets Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:20",
+          "is_scheduled": false,
+          "remarks": "A quiz on Sets",
+          "questions": [
+            {
+              "id": 16,
+              "question_statement": "What is the cardinality of the set {2, 4, 6, 8}?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                4
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 17,
+              "question_statement": "Which of the following is a subset of {1, 2, 3}?",
+              "question_type": "MCQ",
+              "options": [
+                "{4}",
+                "{1, 4}",
+                "{1, 2}",
+                "{5, 6}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 18,
+              "question_statement": "If A = {1,2,3} and B = {3,4,5}, what is A \u2229 B?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{3}",
+                "{}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 19,
+              "question_statement": "Which set represents all natural numbers less than 5?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4}",
+                "{0,1,2,3,4}",
+                "{5,6,7}",
+                "{1,2,3,4,5}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 20,
+              "question_statement": "If U = {1,2,3,4,5}, A = {1,2}, then A' (complement) is?",
+              "question_type": "MCQ",
+              "options": [
+                "{3,4,5}",
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Sets Quiz 5",
+          "date_of_quiz": "2025-07-24T19:48:23.438723",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Sets",
+          "questions": [
+            {
+              "id": 21,
+              "question_statement": "What is the cardinality of the set {2, 4, 6, 8}?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                4
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 22,
+              "question_statement": "Which of the following is a subset of {1, 2, 3}?",
+              "question_type": "MCQ",
+              "options": [
+                "{4}",
+                "{1, 4}",
+                "{1, 2}",
+                "{5, 6}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 23,
+              "question_statement": "If A = {1,2,3} and B = {3,4,5}, what is A \u2229 B?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{3}",
+                "{}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 24,
+              "question_statement": "Which set represents all natural numbers less than 5?",
+              "question_type": "MCQ",
+              "options": [
+                "{1,2,3,4}",
+                "{0,1,2,3,4}",
+                "{5,6,7}",
+                "{1,2,3,4,5}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 25,
+              "question_statement": "If U = {1,2,3,4,5}, A = {1,2}, then A' (complement) is?",
+              "question_type": "MCQ",
+              "options": [
+                "{3,4,5}",
+                "{1,2,3,4,5}",
+                "{1,2}",
+                "{}"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Relations",
+      "description": "This chapter covers Relations.",
+      "quizzes": [
+        {
+          "id": 6,
+          "title": "Relations Quiz 1",
+          "date_of_quiz": "2025-08-01T19:48:23.438797",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Relations",
+          "questions": [
+            {
+              "id": 26,
+              "question_statement": "What type of relation is R = {(1,1), (2,2), (3,3)} on set {1,2,3}?",
+              "question_type": "MCQ",
+              "options": [
+                "Symmetric",
+                "Reflexive",
+                "Transitive",
+                "All of the above"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 27,
+              "question_statement": "A relation R is antisymmetric if:",
+              "question_type": "MCQ",
+              "options": [
+                "aRb and bRa implies a=b",
+                "a=b implies aRb",
+                "R is reflexive",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 28,
+              "question_statement": "What is the domain of R = {(1,2), (3,4)}?",
+              "question_type": "MCQ",
+              "options": [
+                "{2,4}",
+                "{1,2,3,4}",
+                "{1,3}",
+                "{1,2}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 29,
+              "question_statement": "If A = {1,2} and B = {3,4}, total number of relations from A to B is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                16
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 30,
+              "question_statement": "Which of the following is not an equivalence relation?",
+              "question_type": "MCQ",
+              "options": [
+                "Relation of equality",
+                "Relation of divisibility",
+                "Relation of similarity",
+                "Congruence modulo n"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "Relations Quiz 2",
+          "date_of_quiz": "2025-08-05T19:48:23.438797",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Relations",
+          "questions": [
+            {
+              "id": 31,
+              "question_statement": "What type of relation is R = {(1,1), (2,2), (3,3)} on set {1,2,3}?",
+              "question_type": "MCQ",
+              "options": [
+                "Symmetric",
+                "Reflexive",
+                "Transitive",
+                "All of the above"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 32,
+              "question_statement": "A relation R is antisymmetric if:",
+              "question_type": "MCQ",
+              "options": [
+                "aRb and bRa implies a=b",
+                "a=b implies aRb",
+                "R is reflexive",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 33,
+              "question_statement": "What is the domain of R = {(1,2), (3,4)}?",
+              "question_type": "MCQ",
+              "options": [
+                "{2,4}",
+                "{1,2,3,4}",
+                "{1,3}",
+                "{1,2}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 34,
+              "question_statement": "If A = {1,2} and B = {3,4}, total number of relations from A to B is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                16
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 35,
+              "question_statement": "Which of the following is not an equivalence relation?",
+              "question_type": "MCQ",
+              "options": [
+                "Relation of equality",
+                "Relation of divisibility",
+                "Relation of similarity",
+                "Congruence modulo n"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "Relations Quiz 3",
+          "date_of_quiz": "2025-08-08T19:48:23.438797",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Relations",
+          "questions": [
+            {
+              "id": 36,
+              "question_statement": "What type of relation is R = {(1,1), (2,2), (3,3)} on set {1,2,3}?",
+              "question_type": "MCQ",
+              "options": [
+                "Symmetric",
+                "Reflexive",
+                "Transitive",
+                "All of the above"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 37,
+              "question_statement": "A relation R is antisymmetric if:",
+              "question_type": "MCQ",
+              "options": [
+                "aRb and bRa implies a=b",
+                "a=b implies aRb",
+                "R is reflexive",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 38,
+              "question_statement": "What is the domain of R = {(1,2), (3,4)}?",
+              "question_type": "MCQ",
+              "options": [
+                "{2,4}",
+                "{1,2,3,4}",
+                "{1,3}",
+                "{1,2}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 39,
+              "question_statement": "If A = {1,2} and B = {3,4}, total number of relations from A to B is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                16
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 40,
+              "question_statement": "Which of the following is not an equivalence relation?",
+              "question_type": "MCQ",
+              "options": [
+                "Relation of equality",
+                "Relation of divisibility",
+                "Relation of similarity",
+                "Congruence modulo n"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Relations Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:20",
+          "is_scheduled": false,
+          "remarks": "A quiz on Relations",
+          "questions": [
+            {
+              "id": 41,
+              "question_statement": "What type of relation is R = {(1,1), (2,2), (3,3)} on set {1,2,3}?",
+              "question_type": "MCQ",
+              "options": [
+                "Symmetric",
+                "Reflexive",
+                "Transitive",
+                "All of the above"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 42,
+              "question_statement": "A relation R is antisymmetric if:",
+              "question_type": "MCQ",
+              "options": [
+                "aRb and bRa implies a=b",
+                "a=b implies aRb",
+                "R is reflexive",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 43,
+              "question_statement": "What is the domain of R = {(1,2), (3,4)}?",
+              "question_type": "MCQ",
+              "options": [
+                "{2,4}",
+                "{1,2,3,4}",
+                "{1,3}",
+                "{1,2}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 44,
+              "question_statement": "If A = {1,2} and B = {3,4}, total number of relations from A to B is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                16
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 45,
+              "question_statement": "Which of the following is not an equivalence relation?",
+              "question_type": "MCQ",
+              "options": [
+                "Relation of equality",
+                "Relation of divisibility",
+                "Relation of similarity",
+                "Congruence modulo n"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Relations Quiz 5",
+          "date_of_quiz": "2025-07-24T19:48:23.438797",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Relations",
+          "questions": [
+            {
+              "id": 46,
+              "question_statement": "What type of relation is R = {(1,1), (2,2), (3,3)} on set {1,2,3}?",
+              "question_type": "MCQ",
+              "options": [
+                "Symmetric",
+                "Reflexive",
+                "Transitive",
+                "All of the above"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 47,
+              "question_statement": "A relation R is antisymmetric if:",
+              "question_type": "MCQ",
+              "options": [
+                "aRb and bRa implies a=b",
+                "a=b implies aRb",
+                "R is reflexive",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 48,
+              "question_statement": "What is the domain of R = {(1,2), (3,4)}?",
+              "question_type": "MCQ",
+              "options": [
+                "{2,4}",
+                "{1,2,3,4}",
+                "{1,3}",
+                "{1,2}"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 49,
+              "question_statement": "If A = {1,2} and B = {3,4}, total number of relations from A to B is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                16
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 50,
+              "question_statement": "Which of the following is not an equivalence relation?",
+              "question_type": "MCQ",
+              "options": [
+                "Relation of equality",
+                "Relation of divisibility",
+                "Relation of similarity",
+                "Congruence modulo n"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Linear Equations",
+      "description": "This chapter covers Linear Equations.",
+      "quizzes": [
+        {
+          "id": 11,
+          "title": "Linear Equations Quiz 1",
+          "date_of_quiz": "2025-08-01T19:48:23.438840",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Linear Equations",
+          "questions": [
+            {
+              "id": 51,
+              "question_statement": "Solve: 3x + 4 = 10",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 52,
+              "question_statement": "Which equation represents a line parallel to y = 2x + 3?",
+              "question_type": "MCQ",
+              "options": [
+                "y = -2x + 1",
+                "y = 2x - 4",
+                "y = x + 1",
+                "y = -x + 4"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 53,
+              "question_statement": "What is the slope of line 4x - 2y = 6?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 54,
+              "question_statement": "Which of these is a solution to x + y = 5?",
+              "question_type": "MCQ",
+              "options": [
+                "(1,4)",
+                "(2,2)",
+                "(0,0)",
+                "(3,3)"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 55,
+              "question_statement": "Find x: 5x - 15 = 0",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "Linear Equations Quiz 2",
+          "date_of_quiz": "2025-08-05T19:48:23.438840",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Linear Equations",
+          "questions": [
+            {
+              "id": 56,
+              "question_statement": "Solve: 3x + 4 = 10",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 57,
+              "question_statement": "Which equation represents a line parallel to y = 2x + 3?",
+              "question_type": "MCQ",
+              "options": [
+                "y = -2x + 1",
+                "y = 2x - 4",
+                "y = x + 1",
+                "y = -x + 4"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 58,
+              "question_statement": "What is the slope of line 4x - 2y = 6?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 59,
+              "question_statement": "Which of these is a solution to x + y = 5?",
+              "question_type": "MCQ",
+              "options": [
+                "(1,4)",
+                "(2,2)",
+                "(0,0)",
+                "(3,3)"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 60,
+              "question_statement": "Find x: 5x - 15 = 0",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "title": "Linear Equations Quiz 3",
+          "date_of_quiz": "2025-08-08T19:48:23.438840",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Linear Equations",
+          "questions": [
+            {
+              "id": 61,
+              "question_statement": "Solve: 3x + 4 = 10",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 62,
+              "question_statement": "Which equation represents a line parallel to y = 2x + 3?",
+              "question_type": "MCQ",
+              "options": [
+                "y = -2x + 1",
+                "y = 2x - 4",
+                "y = x + 1",
+                "y = -x + 4"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 63,
+              "question_statement": "What is the slope of line 4x - 2y = 6?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 64,
+              "question_statement": "Which of these is a solution to x + y = 5?",
+              "question_type": "MCQ",
+              "options": [
+                "(1,4)",
+                "(2,2)",
+                "(0,0)",
+                "(3,3)"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 65,
+              "question_statement": "Find x: 5x - 15 = 0",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Linear Equations Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:20",
+          "is_scheduled": false,
+          "remarks": "A quiz on Linear Equations",
+          "questions": [
+            {
+              "id": 66,
+              "question_statement": "Solve: 3x + 4 = 10",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 67,
+              "question_statement": "Which equation represents a line parallel to y = 2x + 3?",
+              "question_type": "MCQ",
+              "options": [
+                "y = -2x + 1",
+                "y = 2x - 4",
+                "y = x + 1",
+                "y = -x + 4"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 68,
+              "question_statement": "What is the slope of line 4x - 2y = 6?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 69,
+              "question_statement": "Which of these is a solution to x + y = 5?",
+              "question_type": "MCQ",
+              "options": [
+                "(1,4)",
+                "(2,2)",
+                "(0,0)",
+                "(3,3)"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 70,
+              "question_statement": "Find x: 5x - 15 = 0",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Linear Equations Quiz 5",
+          "date_of_quiz": "2025-07-24T19:48:23.438840",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Linear Equations",
+          "questions": [
+            {
+              "id": 71,
+              "question_statement": "Solve: 3x + 4 = 10",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 72,
+              "question_statement": "Which equation represents a line parallel to y = 2x + 3?",
+              "question_type": "MCQ",
+              "options": [
+                "y = -2x + 1",
+                "y = 2x - 4",
+                "y = x + 1",
+                "y = -x + 4"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 73,
+              "question_statement": "What is the slope of line 4x - 2y = 6?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 74,
+              "question_statement": "Which of these is a solution to x + y = 5?",
+              "question_type": "MCQ",
+              "options": [
+                "(1,4)",
+                "(2,2)",
+                "(0,0)",
+                "(3,3)"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 75,
+              "question_statement": "Find x: 5x - 15 = 0",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Quadratic Equations",
+      "description": "This chapter covers Quadratic Equations.",
+      "quizzes": [
+        {
+          "id": 16,
+          "title": "Quadratic Equations Quiz 1",
+          "date_of_quiz": "2025-08-01T19:48:23.438870",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Quadratic Equations",
+          "questions": [
+            {
+              "id": 76,
+              "question_statement": "Find the roots of x\u00b2 - 5x + 6 = 0",
+              "question_type": "MSQ",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "6"
+              ],
+              "correct_answer": [
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 77,
+              "question_statement": "The graph of a quadratic function is a?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Parabola",
+                "Circle",
+                "Ellipse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 78,
+              "question_statement": "Discriminant of x\u00b2 - 4x + 4 = 0 is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 79,
+              "question_statement": "For x\u00b2 + x + 1 = 0, the nature of roots is?",
+              "question_type": "MCQ",
+              "options": [
+                "Real and equal",
+                "Real and distinct",
+                "Imaginary",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 80,
+              "question_statement": "If the roots of x\u00b2 + px + q = 0 are -2 and 3, what is p?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                -1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Quadratic Equations Quiz 2",
+          "date_of_quiz": "2025-08-05T19:48:23.438870",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Quadratic Equations",
+          "questions": [
+            {
+              "id": 81,
+              "question_statement": "Find the roots of x\u00b2 - 5x + 6 = 0",
+              "question_type": "MSQ",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "6"
+              ],
+              "correct_answer": [
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 82,
+              "question_statement": "The graph of a quadratic function is a?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Parabola",
+                "Circle",
+                "Ellipse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 83,
+              "question_statement": "Discriminant of x\u00b2 - 4x + 4 = 0 is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 84,
+              "question_statement": "For x\u00b2 + x + 1 = 0, the nature of roots is?",
+              "question_type": "MCQ",
+              "options": [
+                "Real and equal",
+                "Real and distinct",
+                "Imaginary",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 85,
+              "question_statement": "If the roots of x\u00b2 + px + q = 0 are -2 and 3, what is p?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                -1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Quadratic Equations Quiz 3",
+          "date_of_quiz": "2025-08-08T19:48:23.438870",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Quadratic Equations",
+          "questions": [
+            {
+              "id": 86,
+              "question_statement": "Find the roots of x\u00b2 - 5x + 6 = 0",
+              "question_type": "MSQ",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "6"
+              ],
+              "correct_answer": [
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 87,
+              "question_statement": "The graph of a quadratic function is a?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Parabola",
+                "Circle",
+                "Ellipse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 88,
+              "question_statement": "Discriminant of x\u00b2 - 4x + 4 = 0 is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 89,
+              "question_statement": "For x\u00b2 + x + 1 = 0, the nature of roots is?",
+              "question_type": "MCQ",
+              "options": [
+                "Real and equal",
+                "Real and distinct",
+                "Imaginary",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 90,
+              "question_statement": "If the roots of x\u00b2 + px + q = 0 are -2 and 3, what is p?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                -1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "title": "Quadratic Equations Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:20",
+          "is_scheduled": false,
+          "remarks": "A quiz on Quadratic Equations",
+          "questions": [
+            {
+              "id": 91,
+              "question_statement": "Find the roots of x\u00b2 - 5x + 6 = 0",
+              "question_type": "MSQ",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "6"
+              ],
+              "correct_answer": [
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 92,
+              "question_statement": "The graph of a quadratic function is a?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Parabola",
+                "Circle",
+                "Ellipse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 93,
+              "question_statement": "Discriminant of x\u00b2 - 4x + 4 = 0 is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 94,
+              "question_statement": "For x\u00b2 + x + 1 = 0, the nature of roots is?",
+              "question_type": "MCQ",
+              "options": [
+                "Real and equal",
+                "Real and distinct",
+                "Imaginary",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 95,
+              "question_statement": "If the roots of x\u00b2 + px + q = 0 are -2 and 3, what is p?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                -1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "title": "Quadratic Equations Quiz 5",
+          "date_of_quiz": "2025-07-24T19:48:23.438870",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Quadratic Equations",
+          "questions": [
+            {
+              "id": 96,
+              "question_statement": "Find the roots of x\u00b2 - 5x + 6 = 0",
+              "question_type": "MSQ",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "6"
+              ],
+              "correct_answer": [
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 97,
+              "question_statement": "The graph of a quadratic function is a?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Parabola",
+                "Circle",
+                "Ellipse"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 98,
+              "question_statement": "Discriminant of x\u00b2 - 4x + 4 = 0 is?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 99,
+              "question_statement": "For x\u00b2 + x + 1 = 0, the nature of roots is?",
+              "question_type": "MCQ",
+              "options": [
+                "Real and equal",
+                "Real and distinct",
+                "Imaginary",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 100,
+              "question_statement": "If the roots of x\u00b2 + px + q = 0 are -2 and 3, what is p?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                -1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Polynomials",
+      "description": "This chapter covers Polynomials.",
+      "quizzes": [
+        {
+          "id": 21,
+          "title": "Polynomials Quiz 1",
+          "date_of_quiz": "2025-08-01T19:48:23.438901",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Polynomials",
+          "questions": [
+            {
+              "id": 101,
+              "question_statement": "What is the degree of the polynomial x\u00b3 + 2x\u00b2 + x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 102,
+              "question_statement": "Which of the following is a zero of the polynomial x\u00b2 - 4?",
+              "question_type": "MSQ",
+              "options": [
+                "2",
+                "0",
+                "-2",
+                "4"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 103,
+              "question_statement": "If x - 1 is a factor of x\u00b2 - x - 6, what is the other factor?",
+              "question_type": "MCQ",
+              "options": [
+                "x + 1",
+                "x - 3",
+                "x + 2",
+                "x - 6"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 104,
+              "question_statement": "What is the remainder when x\u00b2 + 3x + 2 is divided by x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 105,
+              "question_statement": "A polynomial with degree 0 is called?",
+              "question_type": "MCQ",
+              "options": [
+                "Linear",
+                "Zero polynomial",
+                "Constant",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "title": "Polynomials Quiz 2",
+          "date_of_quiz": "2025-08-05T19:48:23.438901",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Polynomials",
+          "questions": [
+            {
+              "id": 106,
+              "question_statement": "What is the degree of the polynomial x\u00b3 + 2x\u00b2 + x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 107,
+              "question_statement": "Which of the following is a zero of the polynomial x\u00b2 - 4?",
+              "question_type": "MSQ",
+              "options": [
+                "2",
+                "0",
+                "-2",
+                "4"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 108,
+              "question_statement": "If x - 1 is a factor of x\u00b2 - x - 6, what is the other factor?",
+              "question_type": "MCQ",
+              "options": [
+                "x + 1",
+                "x - 3",
+                "x + 2",
+                "x - 6"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 109,
+              "question_statement": "What is the remainder when x\u00b2 + 3x + 2 is divided by x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 110,
+              "question_statement": "A polynomial with degree 0 is called?",
+              "question_type": "MCQ",
+              "options": [
+                "Linear",
+                "Zero polynomial",
+                "Constant",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "title": "Polynomials Quiz 3",
+          "date_of_quiz": "2025-08-08T19:48:23.438901",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Polynomials",
+          "questions": [
+            {
+              "id": 111,
+              "question_statement": "What is the degree of the polynomial x\u00b3 + 2x\u00b2 + x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 112,
+              "question_statement": "Which of the following is a zero of the polynomial x\u00b2 - 4?",
+              "question_type": "MSQ",
+              "options": [
+                "2",
+                "0",
+                "-2",
+                "4"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 113,
+              "question_statement": "If x - 1 is a factor of x\u00b2 - x - 6, what is the other factor?",
+              "question_type": "MCQ",
+              "options": [
+                "x + 1",
+                "x - 3",
+                "x + 2",
+                "x - 6"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 114,
+              "question_statement": "What is the remainder when x\u00b2 + 3x + 2 is divided by x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 115,
+              "question_statement": "A polynomial with degree 0 is called?",
+              "question_type": "MCQ",
+              "options": [
+                "Linear",
+                "Zero polynomial",
+                "Constant",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "title": "Polynomials Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:20",
+          "is_scheduled": false,
+          "remarks": "A quiz on Polynomials",
+          "questions": [
+            {
+              "id": 116,
+              "question_statement": "What is the degree of the polynomial x\u00b3 + 2x\u00b2 + x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 117,
+              "question_statement": "Which of the following is a zero of the polynomial x\u00b2 - 4?",
+              "question_type": "MSQ",
+              "options": [
+                "2",
+                "0",
+                "-2",
+                "4"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 118,
+              "question_statement": "If x - 1 is a factor of x\u00b2 - x - 6, what is the other factor?",
+              "question_type": "MCQ",
+              "options": [
+                "x + 1",
+                "x - 3",
+                "x + 2",
+                "x - 6"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 119,
+              "question_statement": "What is the remainder when x\u00b2 + 3x + 2 is divided by x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 120,
+              "question_statement": "A polynomial with degree 0 is called?",
+              "question_type": "MCQ",
+              "options": [
+                "Linear",
+                "Zero polynomial",
+                "Constant",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "title": "Polynomials Quiz 5",
+          "date_of_quiz": "2025-07-24T19:48:23.438901",
+          "time_duration": "00:20",
+          "is_scheduled": true,
+          "remarks": "A quiz on Polynomials",
+          "questions": [
+            {
+              "id": 121,
+              "question_statement": "What is the degree of the polynomial x\u00b3 + 2x\u00b2 + x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 122,
+              "question_statement": "Which of the following is a zero of the polynomial x\u00b2 - 4?",
+              "question_type": "MSQ",
+              "options": [
+                "2",
+                "0",
+                "-2",
+                "4"
+              ],
+              "correct_answer": [
+                0,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 123,
+              "question_statement": "If x - 1 is a factor of x\u00b2 - x - 6, what is the other factor?",
+              "question_type": "MCQ",
+              "options": [
+                "x + 1",
+                "x - 3",
+                "x + 2",
+                "x - 6"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 124,
+              "question_statement": "What is the remainder when x\u00b2 + 3x + 2 is divided by x + 1?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "id": 125,
+              "question_statement": "A polynomial with degree 0 is called?",
+              "question_type": "MCQ",
+              "options": [
+                "Linear",
+                "Zero polynomial",
+                "Constant",
+                "None"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

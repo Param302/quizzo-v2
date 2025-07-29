@@ -1,0 +1,1429 @@
+{
+  "courses": [
+    {
+      "name": "Statistics I",
+      "description": "An introductory course on basic statistics concepts and techniques.",
+      "chapters": [
+        {
+          "name": "Counting",
+          "description": "Chapter covering counting concepts.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-30T19:55:24.808782",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which of the following are valid combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "5C2",
+                    "4C5",
+                    "6C3",
+                    "7C0"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many ways can you arrange the letters in 'STAT'?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "12",
+                    "24",
+                    "6",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is 5 factorial (5!)?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "120",
+                    "60",
+                    "24",
+                    "720"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many permutations of 3 items from 5?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "60",
+                    "20",
+                    "10",
+                    "30"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If you flip a coin 3 times, how many possible outcomes are there?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 8,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-07-31T19:55:24.808782",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which of the following are valid combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "5C2",
+                    "4C5",
+                    "6C3",
+                    "7C0"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If you flip a coin 3 times, how many possible outcomes are there?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 8,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is 5 factorial (5!)?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "120",
+                    "60",
+                    "24",
+                    "720"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many permutations of 3 items from 5?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "60",
+                    "20",
+                    "10",
+                    "30"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many ways can you arrange the letters in 'STAT'?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "12",
+                    "24",
+                    "6",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-01T19:55:24.808782",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "What is 5 factorial (5!)?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "120",
+                    "60",
+                    "24",
+                    "720"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many ways can you arrange the letters in 'STAT'?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "12",
+                    "24",
+                    "6",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which of the following are valid combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "5C2",
+                    "4C5",
+                    "6C3",
+                    "7C0"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many permutations of 3 items from 5?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "60",
+                    "20",
+                    "10",
+                    "30"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If you flip a coin 3 times, how many possible outcomes are there?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 8,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "How many permutations of 3 items from 5?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "60",
+                    "20",
+                    "10",
+                    "30"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many ways can you arrange the letters in 'STAT'?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "12",
+                    "24",
+                    "6",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is 5 factorial (5!)?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "120",
+                    "60",
+                    "24",
+                    "720"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which of the following are valid combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "5C2",
+                    "4C5",
+                    "6C3",
+                    "7C0"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If you flip a coin 3 times, how many possible outcomes are there?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 8,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-24T19:55:24.808782",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which of the following are valid combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "5C2",
+                    "4C5",
+                    "6C3",
+                    "7C0"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If you flip a coin 3 times, how many possible outcomes are there?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 8,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many ways can you arrange the letters in 'STAT'?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "12",
+                    "24",
+                    "6",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many permutations of 3 items from 5?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "60",
+                    "20",
+                    "10",
+                    "30"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is 5 factorial (5!)?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "120",
+                    "60",
+                    "24",
+                    "720"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Measures",
+          "description": "Chapter covering measures concepts.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-30T19:55:24.808899",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Variance of [1, 2, 3, 4, 5] is",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2.5,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is not a measure of central tendency?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Mean",
+                    "Median",
+                    "Mode",
+                    "Range"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the mean of [2, 4, 6, 8, 10]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "5",
+                    "7",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the standard deviation of [2,2,2,2]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "4"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Find the median of [1, 3, 3, 6, 7, 8, 9]",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 6,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-07-31T19:55:24.808899",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which is not a measure of central tendency?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Mean",
+                    "Median",
+                    "Mode",
+                    "Range"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Variance of [1, 2, 3, 4, 5] is",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2.5,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Find the median of [1, 3, 3, 6, 7, 8, 9]",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 6,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the standard deviation of [2,2,2,2]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "4"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the mean of [2, 4, 6, 8, 10]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "5",
+                    "7",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-01T19:55:24.808899",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "What is the mean of [2, 4, 6, 8, 10]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "5",
+                    "7",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is not a measure of central tendency?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Mean",
+                    "Median",
+                    "Mode",
+                    "Range"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Find the median of [1, 3, 3, 6, 7, 8, 9]",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 6,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Variance of [1, 2, 3, 4, 5] is",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2.5,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the standard deviation of [2,2,2,2]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "4"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Variance of [1, 2, 3, 4, 5] is",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2.5,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Find the median of [1, 3, 3, 6, 7, 8, 9]",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 6,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the mean of [2, 4, 6, 8, 10]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "5",
+                    "7",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the standard deviation of [2,2,2,2]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "4"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is not a measure of central tendency?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Mean",
+                    "Median",
+                    "Mode",
+                    "Range"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-24T19:55:24.808899",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Variance of [1, 2, 3, 4, 5] is",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2.5,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the mean of [2, 4, 6, 8, 10]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "5",
+                    "7",
+                    "8"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is the standard deviation of [2,2,2,2]?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "4"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is not a measure of central tendency?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Mean",
+                    "Median",
+                    "Mode",
+                    "Range"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Find the median of [1, 3, 3, 6, 7, 8, 9]",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 6,
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "P&C",
+          "description": "Chapter covering p&c concepts.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-30T19:55:24.808940",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "How many 3-letter codes from A, B, C with repetition?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "27",
+                    "6",
+                    "9",
+                    "3"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Permutations are used when:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Order matters",
+                    "Order doesn't matter",
+                    "Only repetition allowed",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Number of ways to choose 2 out of 4?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "8",
+                    "12",
+                    "2"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If 4 people stand in a line, how many arrangements?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 24,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which formulas are used in combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "nCr",
+                    "nPr",
+                    "factorial",
+                    "binomial"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-07-31T19:55:24.808940",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Permutations are used when:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Order matters",
+                    "Order doesn't matter",
+                    "Only repetition allowed",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many 3-letter codes from A, B, C with repetition?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "27",
+                    "6",
+                    "9",
+                    "3"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Number of ways to choose 2 out of 4?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "8",
+                    "12",
+                    "2"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which formulas are used in combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "nCr",
+                    "nPr",
+                    "factorial",
+                    "binomial"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If 4 people stand in a line, how many arrangements?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 24,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-01T19:55:24.808940",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Permutations are used when:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Order matters",
+                    "Order doesn't matter",
+                    "Only repetition allowed",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many 3-letter codes from A, B, C with repetition?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "27",
+                    "6",
+                    "9",
+                    "3"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Number of ways to choose 2 out of 4?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "8",
+                    "12",
+                    "2"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which formulas are used in combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "nCr",
+                    "nPr",
+                    "factorial",
+                    "binomial"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If 4 people stand in a line, how many arrangements?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 24,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which formulas are used in combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "nCr",
+                    "nPr",
+                    "factorial",
+                    "binomial"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If 4 people stand in a line, how many arrangements?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 24,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many 3-letter codes from A, B, C with repetition?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "27",
+                    "6",
+                    "9",
+                    "3"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Number of ways to choose 2 out of 4?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "8",
+                    "12",
+                    "2"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Permutations are used when:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Order matters",
+                    "Order doesn't matter",
+                    "Only repetition allowed",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-24T19:55:24.808940",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "If 4 people stand in a line, how many arrangements?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 24,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Permutations are used when:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Order matters",
+                    "Order doesn't matter",
+                    "Only repetition allowed",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many 3-letter codes from A, B, C with repetition?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "27",
+                    "6",
+                    "9",
+                    "3"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Number of ways to choose 2 out of 4?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "6",
+                    "8",
+                    "12",
+                    "2"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which formulas are used in combinations?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "nCr",
+                    "nPr",
+                    "factorial",
+                    "binomial"
+                  ],
+                  "correct_answer": [
+                    0,
+                    2,
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Probability",
+          "description": "Chapter covering probability concepts.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-30T19:55:24.808971",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Rolling a die: P(3 or 4) =",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.3333333333333333,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of getting a head in a coin toss?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0.5",
+                    "1",
+                    "0.25",
+                    "0.75"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of drawing ace from deck of 52 cards",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.08,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If event A and B are independent, P(A and B) = ?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "P(A)*P(B)",
+                    "P(A)+P(B)",
+                    "P(A)/P(B)",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Choose valid probability values:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "1.2",
+                    "0.5",
+                    "0.9",
+                    "-0.1"
+                  ],
+                  "correct_answer": [
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-07-31T19:55:24.808971",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Rolling a die: P(3 or 4) =",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.3333333333333333,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of getting a head in a coin toss?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0.5",
+                    "1",
+                    "0.25",
+                    "0.75"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of drawing ace from deck of 52 cards",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.08,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Choose valid probability values:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "1.2",
+                    "0.5",
+                    "0.9",
+                    "-0.1"
+                  ],
+                  "correct_answer": [
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If event A and B are independent, P(A and B) = ?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "P(A)*P(B)",
+                    "P(A)+P(B)",
+                    "P(A)/P(B)",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-01T19:55:24.808971",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Choose valid probability values:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "1.2",
+                    "0.5",
+                    "0.9",
+                    "-0.1"
+                  ],
+                  "correct_answer": [
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Rolling a die: P(3 or 4) =",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.3333333333333333,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of drawing ace from deck of 52 cards",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.08,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If event A and B are independent, P(A and B) = ?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "P(A)*P(B)",
+                    "P(A)+P(B)",
+                    "P(A)/P(B)",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of getting a head in a coin toss?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0.5",
+                    "1",
+                    "0.25",
+                    "0.75"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Probability of drawing ace from deck of 52 cards",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.08,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If event A and B are independent, P(A and B) = ?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "P(A)*P(B)",
+                    "P(A)+P(B)",
+                    "P(A)/P(B)",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of getting a head in a coin toss?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0.5",
+                    "1",
+                    "0.25",
+                    "0.75"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Choose valid probability values:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "1.2",
+                    "0.5",
+                    "0.9",
+                    "-0.1"
+                  ],
+                  "correct_answer": [
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Rolling a die: P(3 or 4) =",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.3333333333333333,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-24T19:55:24.808971",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Probability of drawing ace from deck of 52 cards",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.08,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Choose valid probability values:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "1.2",
+                    "0.5",
+                    "0.9",
+                    "-0.1"
+                  ],
+                  "correct_answer": [
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Probability of getting a head in a coin toss?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "0.5",
+                    "1",
+                    "0.25",
+                    "0.75"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Rolling a die: P(3 or 4) =",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 0.3333333333333333,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If event A and B are independent, P(A and B) = ?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "P(A)*P(B)",
+                    "P(A)+P(B)",
+                    "P(A)/P(B)",
+                    "None"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

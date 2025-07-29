@@ -1,0 +1,3611 @@
+{
+  "name": "Intro to Web Dev",
+  "description": "Covers the foundational technologies of the web: HTML, CSS, and JavaScript.",
+  "chapters": [
+    {
+      "name": "HTML Basics",
+      "description": "Foundational knowledge of HTML Basics",
+      "quizzes": [
+        {
+          "title": "HTML Basics Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:13.395472",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Basics Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:13.395495",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Basics Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:13.395506",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Basics Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Basics Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:13.395523",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does HTML stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Hyper Trainer Marking Language",
+                "Hyper Text Markup Language",
+                "Hyper Text Marketing Language",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag is used for inserting an image?",
+              "question_type": "MCQ",
+              "options": [
+                "<img>",
+                "<image>",
+                "<src>",
+                "<pic>"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid HTML5 elements?",
+              "question_type": "MSQ",
+              "options": [
+                "<header>",
+                "<section>",
+                "<footer>",
+                "<blink>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many heading tags are in HTML?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                6
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute specifies the URL of a link?",
+              "question_type": "MCQ",
+              "options": [
+                "src",
+                "href",
+                "link",
+                "url"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CSS Basics",
+      "description": "Foundational knowledge of CSS Basics",
+      "quizzes": [
+        {
+          "title": "CSS Basics Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:13.395533",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Basics Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:13.395540",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Basics Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:13.395546",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Basics Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Basics Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:13.395556",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does CSS stand for?",
+              "question_type": "MCQ",
+              "options": [
+                "Cascading Style Sheets",
+                "Creative Style Sheets",
+                "Computer Style Sheets",
+                "None"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How do you select an element with id='main'?",
+              "question_type": "MCQ",
+              "options": [
+                ".main",
+                "#main",
+                "main",
+                "*main"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid CSS properties?",
+              "question_type": "MSQ",
+              "options": [
+                "color",
+                "font-size",
+                "align",
+                "background"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default position value in CSS?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "static"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which CSS property is used to change text color?",
+              "question_type": "MCQ",
+              "options": [
+                "font",
+                "color",
+                "text",
+                "background-color"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HTML Intermediate",
+      "description": "Foundational knowledge of HTML Intermediate",
+      "quizzes": [
+        {
+          "title": "HTML Intermediate Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:13.395563",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Intermediate Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:13.395569",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Intermediate Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:13.395575",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Intermediate Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "HTML Intermediate Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:13.395584",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which tag defines a table row?",
+              "question_type": "MCQ",
+              "options": [
+                "<th>",
+                "<td>",
+                "<tr>",
+                "<table>"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the purpose of the <form> tag?",
+              "question_type": "MCQ",
+              "options": [
+                "Display image",
+                "Collect input",
+                "Draw table",
+                "Style text"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which form elements can accept input?",
+              "question_type": "MSQ",
+              "options": [
+                "<input>",
+                "<textarea>",
+                "<select>",
+                "<div>"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "How many columns in <table><tr><td>1</td><td>2</td></tr></table>?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which attribute is used to group radio buttons?",
+              "question_type": "MCQ",
+              "options": [
+                "group",
+                "name",
+                "type",
+                "radio"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CSS Intermediate",
+      "description": "Foundational knowledge of CSS Intermediate",
+      "quizzes": [
+        {
+          "title": "CSS Intermediate Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:13.395591",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Intermediate Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:13.395597",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Intermediate Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:13.395604",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Intermediate Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "CSS Intermediate Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:13.395614",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the use of z-index?",
+              "question_type": "MCQ",
+              "options": [
+                "Set font",
+                "Stack elements",
+                "Set margin",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which property is used for flexbox layout?",
+              "question_type": "MCQ",
+              "options": [
+                "flex",
+                "display",
+                "flex-direction",
+                "position"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid display values?",
+              "question_type": "MSQ",
+              "options": [
+                "block",
+                "inline",
+                "flex",
+                "center"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the default z-index?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which unit is relative?",
+              "question_type": "MCQ",
+              "options": [
+                "px",
+                "em",
+                "cm",
+                "mm"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "JavaScript Basics",
+      "description": "Foundational knowledge of JavaScript Basics",
+      "quizzes": [
+        {
+          "title": "JavaScript Basics Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:13.395621",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "JavaScript Basics Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:13.395627",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "JavaScript Basics Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:13.395632",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "JavaScript Basics Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "JavaScript Basics Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:13.395642",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which keyword declares a variable?",
+              "question_type": "MCQ",
+              "options": [
+                "int",
+                "let",
+                "string",
+                "float"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which symbol is used for single-line comment?",
+              "question_type": "MCQ",
+              "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are valid JavaScript data types?",
+              "question_type": "MSQ",
+              "options": [
+                "string",
+                "number",
+                "boolean",
+                "class"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the result of `typeof '5'`?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                "string"
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which method logs to console?",
+              "question_type": "MCQ",
+              "options": [
+                "print()",
+                "log()",
+                "console.log()",
+                "write()"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

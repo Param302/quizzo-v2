@@ -1,0 +1,1890 @@
+{
+  "courses": [
+    {
+      "name": "Generative AI",
+      "description": "A beginner-friendly course introducing concepts and technologies behind Generative AI systems.",
+      "chapters": [
+        {
+          "name": "Intro to GenAI",
+          "description": "This chapter covers intro to genai in the Generative AI domain.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-31T01:28:51.699464",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Year GPT-2 was released?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2019,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Applications of Generative AI include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Image generation",
+                    "Text summarization",
+                    "Sorting",
+                    "Music composition"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which company developed DALL\u00b7E?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Google",
+                    "OpenAI",
+                    "Meta",
+                    "NVIDIA"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does Generative AI primarily focus on?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data analysis",
+                    "Data generation",
+                    "Data storage",
+                    "Data cleaning"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which model is an example of Generative AI?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "ResNet",
+                    "BERT",
+                    "GPT-3",
+                    "VGG"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-08-01T01:28:51.699464",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which company developed DALL\u00b7E?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Google",
+                    "OpenAI",
+                    "Meta",
+                    "NVIDIA"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Applications of Generative AI include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Image generation",
+                    "Text summarization",
+                    "Sorting",
+                    "Music composition"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Year GPT-2 was released?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2019,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which model is an example of Generative AI?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "ResNet",
+                    "BERT",
+                    "GPT-3",
+                    "VGG"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does Generative AI primarily focus on?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data analysis",
+                    "Data generation",
+                    "Data storage",
+                    "Data cleaning"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-02T01:28:51.699464",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which model is an example of Generative AI?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "ResNet",
+                    "BERT",
+                    "GPT-3",
+                    "VGG"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Year GPT-2 was released?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2019,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does Generative AI primarily focus on?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data analysis",
+                    "Data generation",
+                    "Data storage",
+                    "Data cleaning"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which company developed DALL\u00b7E?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Google",
+                    "OpenAI",
+                    "Meta",
+                    "NVIDIA"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Applications of Generative AI include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Image generation",
+                    "Text summarization",
+                    "Sorting",
+                    "Music composition"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "What does Generative AI primarily focus on?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data analysis",
+                    "Data generation",
+                    "Data storage",
+                    "Data cleaning"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Applications of Generative AI include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Image generation",
+                    "Text summarization",
+                    "Sorting",
+                    "Music composition"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which company developed DALL\u00b7E?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Google",
+                    "OpenAI",
+                    "Meta",
+                    "NVIDIA"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Year GPT-2 was released?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2019,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which model is an example of Generative AI?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "ResNet",
+                    "BERT",
+                    "GPT-3",
+                    "VGG"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-25T01:28:51.699464",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "What does Generative AI primarily focus on?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data analysis",
+                    "Data generation",
+                    "Data storage",
+                    "Data cleaning"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Year GPT-2 was released?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2019,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which company developed DALL\u00b7E?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Google",
+                    "OpenAI",
+                    "Meta",
+                    "NVIDIA"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Applications of Generative AI include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Image generation",
+                    "Text summarization",
+                    "Sorting",
+                    "Music composition"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which model is an example of Generative AI?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "ResNet",
+                    "BERT",
+                    "GPT-3",
+                    "VGG"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Models",
+          "description": "This chapter covers models in the Generative AI domain.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-31T01:28:51.699527",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which is NOT a generative model?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "GPT",
+                    "VAE",
+                    "GAN",
+                    "ResNet"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GAN stands for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "General AI Network",
+                    "Generative Adversarial Network",
+                    "Generative Average Net",
+                    "Gradient AI Network"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which are types of generative models?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "GAN",
+                    "VAE",
+                    "CNN",
+                    "Transformer"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many networks are involved in a GAN?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Autoencoders are primarily used for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Classification",
+                    "Data generation",
+                    "Regression",
+                    "Clustering"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-08-01T01:28:51.699527",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Autoencoders are primarily used for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Classification",
+                    "Data generation",
+                    "Regression",
+                    "Clustering"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many networks are involved in a GAN?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which are types of generative models?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "GAN",
+                    "VAE",
+                    "CNN",
+                    "Transformer"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GAN stands for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "General AI Network",
+                    "Generative Adversarial Network",
+                    "Generative Average Net",
+                    "Gradient AI Network"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is NOT a generative model?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "GPT",
+                    "VAE",
+                    "GAN",
+                    "ResNet"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-02T01:28:51.699527",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "How many networks are involved in a GAN?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GAN stands for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "General AI Network",
+                    "Generative Adversarial Network",
+                    "Generative Average Net",
+                    "Gradient AI Network"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Autoencoders are primarily used for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Classification",
+                    "Data generation",
+                    "Regression",
+                    "Clustering"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is NOT a generative model?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "GPT",
+                    "VAE",
+                    "GAN",
+                    "ResNet"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which are types of generative models?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "GAN",
+                    "VAE",
+                    "CNN",
+                    "Transformer"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which is NOT a generative model?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "GPT",
+                    "VAE",
+                    "GAN",
+                    "ResNet"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Autoencoders are primarily used for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Classification",
+                    "Data generation",
+                    "Regression",
+                    "Clustering"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which are types of generative models?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "GAN",
+                    "VAE",
+                    "CNN",
+                    "Transformer"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many networks are involved in a GAN?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GAN stands for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "General AI Network",
+                    "Generative Adversarial Network",
+                    "Generative Average Net",
+                    "Gradient AI Network"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-25T01:28:51.699527",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which are types of generative models?",
+                  "question_type": "MSQ",
+                  "options": [
+                    "GAN",
+                    "VAE",
+                    "CNN",
+                    "Transformer"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GAN stands for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "General AI Network",
+                    "Generative Adversarial Network",
+                    "Generative Average Net",
+                    "Gradient AI Network"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Autoencoders are primarily used for:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Classification",
+                    "Data generation",
+                    "Regression",
+                    "Clustering"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is NOT a generative model?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "GPT",
+                    "VAE",
+                    "GAN",
+                    "ResNet"
+                  ],
+                  "correct_answer": [
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "How many networks are involved in a GAN?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 2,
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LLMs",
+          "description": "This chapter covers llms in the Generative AI domain.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-31T01:28:51.699550",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "GPT-4 has context length up to?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 128000,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "LLM stands for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Large Learning Module",
+                    "Long Language Model",
+                    "Large Language Model",
+                    "Light Language Machine"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which transformer component is key for LLMs?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Convolution",
+                    "Attention",
+                    "Pooling",
+                    "Recurrence"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Capabilities of LLMs include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Summarization",
+                    "Translation",
+                    "Image Segmentation",
+                    "Q&A"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which of these is an LLM?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "T5",
+                    "ResNet",
+                    "YOLO",
+                    "MobileNet"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-08-01T01:28:51.699550",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "LLM stands for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Large Learning Module",
+                    "Long Language Model",
+                    "Large Language Model",
+                    "Light Language Machine"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GPT-4 has context length up to?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 128000,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which transformer component is key for LLMs?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Convolution",
+                    "Attention",
+                    "Pooling",
+                    "Recurrence"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Capabilities of LLMs include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Summarization",
+                    "Translation",
+                    "Image Segmentation",
+                    "Q&A"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which of these is an LLM?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "T5",
+                    "ResNet",
+                    "YOLO",
+                    "MobileNet"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-02T01:28:51.699550",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Which of these is an LLM?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "T5",
+                    "ResNet",
+                    "YOLO",
+                    "MobileNet"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Capabilities of LLMs include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Summarization",
+                    "Translation",
+                    "Image Segmentation",
+                    "Q&A"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "LLM stands for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Large Learning Module",
+                    "Long Language Model",
+                    "Large Language Model",
+                    "Light Language Machine"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which transformer component is key for LLMs?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Convolution",
+                    "Attention",
+                    "Pooling",
+                    "Recurrence"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GPT-4 has context length up to?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 128000,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Capabilities of LLMs include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Summarization",
+                    "Translation",
+                    "Image Segmentation",
+                    "Q&A"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which transformer component is key for LLMs?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Convolution",
+                    "Attention",
+                    "Pooling",
+                    "Recurrence"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "LLM stands for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Large Learning Module",
+                    "Long Language Model",
+                    "Large Language Model",
+                    "Light Language Machine"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which of these is an LLM?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "T5",
+                    "ResNet",
+                    "YOLO",
+                    "MobileNet"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GPT-4 has context length up to?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 128000,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-25T01:28:51.699550",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "LLM stands for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Large Learning Module",
+                    "Long Language Model",
+                    "Large Language Model",
+                    "Light Language Machine"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which of these is an LLM?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "T5",
+                    "ResNet",
+                    "YOLO",
+                    "MobileNet"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which transformer component is key for LLMs?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Convolution",
+                    "Attention",
+                    "Pooling",
+                    "Recurrence"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "GPT-4 has context length up to?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 128000,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Capabilities of LLMs include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Summarization",
+                    "Translation",
+                    "Image Segmentation",
+                    "Q&A"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MCP",
+          "description": "This chapter covers mcp in the Generative AI domain.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-31T01:28:51.699566",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Chain-of-thought prompting improves:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Response time",
+                    "Accuracy",
+                    "Multilingual output",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does MCP stand for in GenAI context?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Model Configuration Pipeline",
+                    "Multi-Component Prompting",
+                    "Multi-Choice Processor",
+                    "Massive Chatbot Protocol"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Typical token limit in GPT-3.5?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 4096,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Prompt engineering techniques include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Few-shot",
+                    "Zero-shot",
+                    "Chain-of-thought",
+                    "Reinforcement Learning"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is zero-shot prompting?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "No examples provided",
+                    "One example provided",
+                    "Multiple examples",
+                    "Requires fine-tuning"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-08-01T01:28:51.699566",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "What is zero-shot prompting?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "No examples provided",
+                    "One example provided",
+                    "Multiple examples",
+                    "Requires fine-tuning"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Chain-of-thought prompting improves:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Response time",
+                    "Accuracy",
+                    "Multilingual output",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Prompt engineering techniques include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Few-shot",
+                    "Zero-shot",
+                    "Chain-of-thought",
+                    "Reinforcement Learning"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does MCP stand for in GenAI context?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Model Configuration Pipeline",
+                    "Multi-Component Prompting",
+                    "Multi-Choice Processor",
+                    "Massive Chatbot Protocol"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Typical token limit in GPT-3.5?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 4096,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-02T01:28:51.699566",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Prompt engineering techniques include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Few-shot",
+                    "Zero-shot",
+                    "Chain-of-thought",
+                    "Reinforcement Learning"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Typical token limit in GPT-3.5?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 4096,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is zero-shot prompting?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "No examples provided",
+                    "One example provided",
+                    "Multiple examples",
+                    "Requires fine-tuning"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does MCP stand for in GenAI context?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Model Configuration Pipeline",
+                    "Multi-Component Prompting",
+                    "Multi-Choice Processor",
+                    "Massive Chatbot Protocol"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Chain-of-thought prompting improves:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Response time",
+                    "Accuracy",
+                    "Multilingual output",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Typical token limit in GPT-3.5?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 4096,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does MCP stand for in GenAI context?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Model Configuration Pipeline",
+                    "Multi-Component Prompting",
+                    "Multi-Choice Processor",
+                    "Massive Chatbot Protocol"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Prompt engineering techniques include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Few-shot",
+                    "Zero-shot",
+                    "Chain-of-thought",
+                    "Reinforcement Learning"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is zero-shot prompting?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "No examples provided",
+                    "One example provided",
+                    "Multiple examples",
+                    "Requires fine-tuning"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Chain-of-thought prompting improves:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Response time",
+                    "Accuracy",
+                    "Multilingual output",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-25T01:28:51.699566",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Chain-of-thought prompting improves:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Response time",
+                    "Accuracy",
+                    "Multilingual output",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Typical token limit in GPT-3.5?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 4096,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is zero-shot prompting?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "No examples provided",
+                    "One example provided",
+                    "Multiple examples",
+                    "Requires fine-tuning"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Prompt engineering techniques include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Few-shot",
+                    "Zero-shot",
+                    "Chain-of-thought",
+                    "Reinforcement Learning"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What does MCP stand for in GenAI context?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Model Configuration Pipeline",
+                    "Multi-Component Prompting",
+                    "Multi-Choice Processor",
+                    "Massive Chatbot Protocol"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Agents",
+          "description": "This chapter covers agents in the Generative AI domain.",
+          "quizzes": [
+            {
+              "title": "Upcoming Quiz 1",
+              "date_of_quiz": "2025-07-31T01:28:51.699584",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Agent features may include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Planning",
+                    "Tool usage",
+                    "Static response",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is LangChain used for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data storage",
+                    "Model training",
+                    "Agent orchestration",
+                    "Web scraping"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Agents in AI are systems that:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Only store data",
+                    "Act autonomously",
+                    "Only predict values",
+                    "Only visualize graphs"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If an agent solves 4 tasks with 80% accuracy, expected correct = ?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 3.2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is a popular agent framework?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "AutoGPT",
+                    "CNN",
+                    "GAN",
+                    "Pandas"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 2",
+              "date_of_quiz": "2025-08-01T01:28:51.699584",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Agents in AI are systems that:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Only store data",
+                    "Act autonomously",
+                    "Only predict values",
+                    "Only visualize graphs"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If an agent solves 4 tasks with 80% accuracy, expected correct = ?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 3.2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is a popular agent framework?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "AutoGPT",
+                    "CNN",
+                    "GAN",
+                    "Pandas"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is LangChain used for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data storage",
+                    "Model training",
+                    "Agent orchestration",
+                    "Web scraping"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Agent features may include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Planning",
+                    "Tool usage",
+                    "Static response",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Upcoming Quiz 3",
+              "date_of_quiz": "2025-08-02T01:28:51.699584",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Agents in AI are systems that:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Only store data",
+                    "Act autonomously",
+                    "Only predict values",
+                    "Only visualize graphs"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is a popular agent framework?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "AutoGPT",
+                    "CNN",
+                    "GAN",
+                    "Pandas"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Agent features may include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Planning",
+                    "Tool usage",
+                    "Static response",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is LangChain used for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data storage",
+                    "Model training",
+                    "Agent orchestration",
+                    "Web scraping"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If an agent solves 4 tasks with 80% accuracy, expected correct = ?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 3.2,
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "General Quiz",
+              "date_of_quiz": null,
+              "time_duration": "00:30",
+              "is_scheduled": false,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Agent features may include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Planning",
+                    "Tool usage",
+                    "Static response",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Agents in AI are systems that:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Only store data",
+                    "Act autonomously",
+                    "Only predict values",
+                    "Only visualize graphs"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If an agent solves 4 tasks with 80% accuracy, expected correct = ?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 3.2,
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is LangChain used for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data storage",
+                    "Model training",
+                    "Agent orchestration",
+                    "Web scraping"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is a popular agent framework?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "AutoGPT",
+                    "CNN",
+                    "GAN",
+                    "Pandas"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                }
+              ]
+            },
+            {
+              "title": "Past Quiz",
+              "date_of_quiz": "2025-07-25T01:28:51.699584",
+              "time_duration": "00:30",
+              "is_scheduled": true,
+              "remarks": "",
+              "questions": [
+                {
+                  "question_statement": "Agent features may include:",
+                  "question_type": "MSQ",
+                  "options": [
+                    "Planning",
+                    "Tool usage",
+                    "Static response",
+                    "Memory"
+                  ],
+                  "correct_answer": [
+                    0,
+                    1,
+                    3
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "What is LangChain used for?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Data storage",
+                    "Model training",
+                    "Agent orchestration",
+                    "Web scraping"
+                  ],
+                  "correct_answer": [
+                    2
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Agents in AI are systems that:",
+                  "question_type": "MCQ",
+                  "options": [
+                    "Only store data",
+                    "Act autonomously",
+                    "Only predict values",
+                    "Only visualize graphs"
+                  ],
+                  "correct_answer": [
+                    1
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "Which is a popular agent framework?",
+                  "question_type": "MCQ",
+                  "options": [
+                    "AutoGPT",
+                    "CNN",
+                    "GAN",
+                    "Pandas"
+                  ],
+                  "correct_answer": [
+                    0
+                  ],
+                  "marks": 1.0
+                },
+                {
+                  "question_statement": "If an agent solves 4 tasks with 80% accuracy, expected correct = ?",
+                  "question_type": "NAT",
+                  "options": null,
+                  "correct_answer": 3.2,
+                  "marks": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

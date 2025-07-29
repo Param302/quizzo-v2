@@ -1,0 +1,2880 @@
+{
+  "name": "Artificial Intelligence & Machine Learning",
+  "description": "Introduction to foundational AI and ML algorithms, including regression and decision trees.",
+  "chapters": [
+    {
+      "name": "Intro to AI/ML",
+      "description": "Concepts related to Intro to AI/ML",
+      "quizzes": [
+        {
+          "title": "Intro to AI/ML Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:46.912350",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Intro to AI/ML Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:46.912381",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Intro to AI/ML Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:46.912392",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Intro to AI/ML Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Intro to AI/ML Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:46.912408",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is AI?",
+              "question_type": "MCQ",
+              "options": [
+                "Automation",
+                "Simulating human intelligence",
+                "Robotics",
+                "Hardware"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which language is most used in AI?",
+              "question_type": "MCQ",
+              "options": [
+                "C",
+                "Python",
+                "Java",
+                "Ruby"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "AI applications include:",
+              "question_type": "MSQ",
+              "options": [
+                "Speech recognition",
+                "Web browsing",
+                "Autonomous vehicles",
+                "Game playing"
+              ],
+              "correct_answer": [
+                0,
+                2,
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "In what year was the term 'AI' coined?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                1956
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is ML a subset of?",
+              "question_type": "MCQ",
+              "options": [
+                "AI",
+                "Data Science",
+                "Statistics",
+                "Robotics"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Linear regression",
+      "description": "Concepts related to Linear regression",
+      "quizzes": [
+        {
+          "title": "Linear regression Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:46.912420",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Linear regression Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:46.912430",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Linear regression Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:46.912439",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Linear regression Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Linear regression Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:46.912454",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Linear regression is used for:",
+              "question_type": "MCQ",
+              "options": [
+                "Classification",
+                "Clustering",
+                "Prediction",
+                "Sorting"
+              ],
+              "correct_answer": [
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the shape of the hypothesis in simple linear regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Line",
+                "Plane",
+                "Curve",
+                "Step"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are assumptions of linear regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Linearity",
+                "Homoscedasticity",
+                "Independence",
+                "Clustering"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "If slope = 2, x = 3, intercept = 1, y = ?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                7
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the cost function used?",
+              "question_type": "MCQ",
+              "options": [
+                "MSE",
+                "Entropy",
+                "Log loss",
+                "Hinge"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Logistic regression",
+      "description": "Concepts related to Logistic regression",
+      "quizzes": [
+        {
+          "title": "Logistic regression Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:46.912465",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Logistic regression Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:46.912475",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Logistic regression Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:46.912485",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Logistic regression Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Logistic regression Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:46.912500",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is logistic regression used for?",
+              "question_type": "MCQ",
+              "options": [
+                "Regression",
+                "Classification",
+                "Clustering",
+                "Sorting"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which function is used in logistic regression?",
+              "question_type": "MCQ",
+              "options": [
+                "Sigmoid",
+                "ReLU",
+                "Linear",
+                "Tanh"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are types of logistic regression?",
+              "question_type": "MSQ",
+              "options": [
+                "Binary",
+                "Multinomial",
+                "Ordinal",
+                "Simple"
+              ],
+              "correct_answer": [
+                0,
+                1,
+                2
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the sigmoid of 0?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0.5
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Range of sigmoid function is:",
+              "question_type": "MCQ",
+              "options": [
+                "0 to 1",
+                "-1 to 1",
+                "0 to \u221e",
+                "-\u221e to \u221e"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Decision Tree",
+      "description": "Concepts related to Decision Tree",
+      "quizzes": [
+        {
+          "title": "Decision Tree Quiz 1",
+          "date_of_quiz": "2025-07-30T19:44:46.912510",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Decision Tree Quiz 2",
+          "date_of_quiz": "2025-07-31T19:44:46.912520",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Decision Tree Quiz 3",
+          "date_of_quiz": "2025-08-01T19:44:46.912530",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Decision Tree Quiz 4",
+          "date_of_quiz": null,
+          "time_duration": "00:30",
+          "is_scheduled": false,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        },
+        {
+          "title": "Decision Tree Quiz 5",
+          "date_of_quiz": "2025-07-24T19:44:46.912545",
+          "time_duration": "00:30",
+          "is_scheduled": true,
+          "remarks": "Auto-generated quiz",
+          "questions": [
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What does a decision tree split on?",
+              "question_type": "MCQ",
+              "options": [
+                "Entropy",
+                "Information Gain",
+                "Gini",
+                "All"
+              ],
+              "correct_answer": [
+                3
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which algorithm is used for splitting?",
+              "question_type": "MCQ",
+              "options": [
+                "ID3",
+                "SVM",
+                "CNN",
+                "KNN"
+              ],
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "Which are decision tree impurity metrics?",
+              "question_type": "MSQ",
+              "options": [
+                "Gini",
+                "Entropy",
+                "Variance",
+                "Euclidean"
+              ],
+              "correct_answer": [
+                0,
+                1
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is the entropy of a pure node?",
+              "question_type": "NAT",
+              "options": null,
+              "correct_answer": [
+                0
+              ],
+              "marks": 1.0
+            },
+            {
+              "question_statement": "What is overfitting in decision trees?",
+              "question_type": "MCQ",
+              "options": [
+                "Too generic",
+                "Too specific to training data",
+                "Underperforming",
+                "None"
+              ],
+              "correct_answer": [
+                1
+              ],
+              "marks": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
