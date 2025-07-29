@@ -14,9 +14,11 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-    CORS(app)
+    CORS(app, origins=['http://localhost:5173', 'http://localhost:3000'],
+         supports_credentials=True,
+         allow_headers=['Content-Type', 'Authorization'])
     jwt = JWTManager(app)
-    api = Api(app)
+    api = Api(app, prefix='/api')
 
     # Initialize Redis cache
     redis_cache = RedisCache(app)
