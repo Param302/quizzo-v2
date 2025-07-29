@@ -154,6 +154,114 @@ class EmailTestResource(Resource):
             }, 500
 
 
+class DailyReminderEmailResource(Resource):
+    @jwt_required()
+    @user_required
+    def post(self):
+        """Send daily reminder email to current user"""
+        user = get_current_user()
+
+        try:
+            from app.services.email_service import get_email_service
+            email_service = get_email_service()
+
+            success = email_service.send_daily_reminder_email(user.id)
+
+            if success:
+                return {
+                    'message': 'Daily reminder email sent successfully',
+                    'email': user.email
+                }
+            else:
+                return {
+                    'message': 'No upcoming quizzes found or failed to send email'
+                }, 404
+
+        except Exception as e:
+            current_app.logger.error(f"Failed to send daily reminder: {e}")
+            return {
+                'message': 'Failed to send daily reminder email'
+            }, 500
+
+
+class MonthlyReportEmailResource(Resource):
+    @jwt_required()
+    @user_required
+    def post(self):
+        """Send monthly report email to current user"""
+        user = get_current_user()
+
+        try:
+            from app.services.email_service import get_email_service
+            email_service = get_email_service()
+
+            success = email_service.send_monthly_report_email(user.id)
+
+            if success:
+                return {
+                    'message': 'Monthly report email sent successfully',
+                    'email': user.email
+                }
+            else:
+                return {
+                    'message': 'No recent activity found or failed to send email'
+                }, 404
+
+        except Exception as e:
+            current_app.logger.error(f"Failed to send monthly report: {e}")
+            return {
+                'message': 'Failed to send monthly report email'
+            }, 500
+
+
+class BulkDailyRemindersResource(Resource):
+    @jwt_required()
+    @admin_required
+    def post(self):
+        """Send daily reminders to all users with upcoming quizzes (Admin only)"""
+        try:
+            from app.services.email_service import get_email_service
+            email_service = get_email_service()
+
+            result = email_service.send_bulk_daily_reminders()
+
+            return {
+                'message': 'Bulk daily reminders completed',
+                'emails_sent': result['sent'],
+                'failed_emails': result['failed']
+            }
+
+        except Exception as e:
+            current_app.logger.error(f"Bulk daily reminders failed: {e}")
+            return {
+                'message': 'Failed to send bulk daily reminders'
+            }, 500
+
+
+class BulkMonthlyReportsResource(Resource):
+    @jwt_required()
+    @admin_required
+    def post(self):
+        """Send monthly reports to all active users (Admin only)"""
+        try:
+            from app.services.email_service import get_email_service
+            email_service = get_email_service()
+
+            result = email_service.send_bulk_monthly_reports()
+
+            return {
+                'message': 'Bulk monthly reports completed',
+                'emails_sent': result['sent'],
+                'failed_emails': result['failed']
+            }
+
+        except Exception as e:
+            current_app.logger.error(f"Bulk monthly reports failed: {e}")
+            return {
+                'message': 'Failed to send bulk monthly reports'
+            }, 500
+
+
 def register_email_api(api):
     """Register email-related API endpoints"""
     api.add_resource(SendCertificateEmailResource,
@@ -161,3 +269,13 @@ def register_email_api(api):
     api.add_resource(BulkCertificateEmailResource,
                      '/admin/certificates/bulk-email')
     api.add_resource(EmailTestResource, '/admin/email/test')
+
+    # Daily reminder endpoints
+    api.add_resource(DailyReminderEmailResource, '/email/daily-reminder')
+    api.add_resource(BulkDailyRemindersResource,
+                     '/admin/email/daily-reminders')
+
+    # Monthly report endpoints
+    api.add_resource(MonthlyReportEmailResource, '/email/monthly-report')
+    api.add_resource(BulkMonthlyReportsResource,
+                     '/admin/email/monthly-reports')
