@@ -1,0 +1,10 @@
+:root {
+  --bs-primary: #f57c00;       /* Orange */
+  --bs-primary-rgb: 245, 124, 0;
+
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #212529;
+
+  --bs-link-color: #f57c00;
+  --bs-link-hover-color: #e65100;
+}
