@@ -261,6 +261,26 @@ onUnmounted(() => {
 }
 
 /* Avatar Styles */
+.nav-hover {
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+}
+
+.nav-hover:hover,
+.nav-hover.active {
+    color: #f57c00 !important;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.nav-hover.active {
+    background: rgba(245, 124, 0, 0.1);
+    color: #f57c00 !important;
+}
+
 .user-avatar {
     text-decoration: none;
     transition: color 0.3s;

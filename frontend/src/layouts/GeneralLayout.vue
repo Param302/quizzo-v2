@@ -25,4 +25,8 @@ import Footer from '@/components/Footer.vue'
 .layout-content {
   flex: 1;
 }
+
+main {
+  margin-top: 5rem;
+}
 </style>

@@ -14,10 +14,10 @@
                                 Challenge yourself, track your progress, and compete with friends.
                             </p>
                             <div class="d-flex gap-3 flex-wrap mb-4">
-                                <router-link :to="authStore.isAuthenticated ? '/dashboard' : '/login'"
+                                <router-link :to="authStore.isAuthenticated ? '/courses' : '/courses'"
                                     class="btn btn-primary btn-lg animate-bounce-in modern-btn">
                                     <i class="bi bi-play-circle me-2"></i>
-                                    Attempt a Quiz
+                                    Explore Quizzes
                                 </router-link>
                                 <router-link v-if="!authStore.isAuthenticated" to="/register"
                                     class="btn btn-outline-primary btn-lg animate-bounce-in modern-btn">
@@ -221,7 +221,10 @@ const authStore = useAuthStore()
 
 .hero-bg-elements {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 0;
     pointer-events: none;
 }
@@ -330,11 +333,13 @@ const authStore = useAuthStore()
     left: 0;
     z-index: 3;
 }
+
 .card-pos-2 {
     top: 40px;
     left: 40px;
     z-index: 2;
 }
+
 .card-pos-3 {
     top: 80px;
     left: 80px;
@@ -382,8 +387,15 @@ const authStore = useAuthStore()
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px);}
-    50% { transform: translateY(-15px);}
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .features .row.g-4 {
@@ -478,12 +490,14 @@ const authStore = useAuthStore()
         width: 340px;
         height: 340px;
     }
+
     .circle-1 {
         width: 600px;
         height: 600px;
         top: -200px;
         left: -200px;
     }
+
     .circle-2 {
         width: 250px;
         height: 250px;
@@ -496,22 +510,27 @@ const authStore = useAuthStore()
     .hero-title {
         font-size: 2.2rem;
     }
+
     .hero-title-highlight {
         font-size: 3rem;
     }
+
     .floating-cards.cascade-cards {
         width: 220px;
         height: 220px;
     }
+
     .feature-card {
         padding: 2rem 1.5rem;
     }
+
     .circle-1 {
         width: 350px;
         height: 350px;
         top: -100px;
         left: -100px;
     }
+
     .circle-2 {
         width: 120px;
         height: 120px;
@@ -525,32 +544,40 @@ const authStore = useAuthStore()
         font-size: 1.5rem;
         text-align: center;
     }
+
     .hero-title-highlight {
         font-size: 2rem;
     }
+
     .hero-content {
         text-align: center;
     }
-    .hero-content > * {
+
+    .hero-content>* {
         margin-bottom: 2.5rem;
     }
-    .hero-content > *:last-child {
+
+    .hero-content>*:last-child {
         margin-bottom: 0;
     }
+
     .floating-cards.cascade-cards {
         width: 120px;
         height: 120px;
     }
+
     .feature-chip {
         font-size: 0.8rem;
         padding: 6px 12px;
     }
+
     .circle-1 {
         width: 120px;
         height: 120px;
         top: -40px;
         left: -40px;
     }
+
     .circle-2 {
         width: 60px;
         height: 60px;
@@ -563,16 +590,20 @@ const authStore = useAuthStore()
     .hero-title {
         font-size: 2rem;
     }
+
     .hero-title-highlight {
         font-size: 1.5rem;
     }
+
     .floating-cards.cascade-cards {
         width: 100px;
         height: 100px;
     }
+
     .feature-card {
         padding: 1.5rem;
     }
+
     .modern-btn {
         width: 100%;
         margin: 0.5rem 0;

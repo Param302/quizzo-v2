@@ -7,6 +7,8 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 
 // Pages
 import LandingPage from '@/pages/LandingPage.vue'
+import Courses from '@/pages/Courses.vue'
+import ChapterPage from '@/pages/ChapterPage.vue'
 import Login from '@/pages/Login.vue'
 import Register from '@/pages/Register.vue'
 import UserDashboard from '@/pages/UserDashboard.vue'
@@ -25,8 +27,18 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'home',
+          name: 'landing',
           component: LandingPage
+        },
+        {
+          path: '/courses',
+          name: 'courses',
+          component: Courses
+        },
+        {
+          path: '/course/:courseId/chapter/:chapterId',
+          name: 'chapter',
+          component: ChapterPage
         },
         {
           path: '/dashboard',
@@ -93,27 +105,27 @@ const router = createRouter({
 // Navigation guards
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
-  
+
   // Check if route requires authentication
   if (to.meta.requiresAuth) {
     if (!authStore.isAuthenticated) {
       next({ name: 'login' })
       return
     }
-    
+
     // Check role-based access
     if (to.meta.role && authStore.user?.role !== to.meta.role) {
-      next({ name: 'home' })
+      next({ name: 'courses' })
       return
     }
   }
-  
+
   // Check if route requires guest (not authenticated)
   if (to.meta.requiresGuest && authStore.isAuthenticated) {
     next({ name: 'dashboard' })
     return
   }
-  
+
   next()
 })
 
