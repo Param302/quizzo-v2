@@ -2,7 +2,8 @@ from datetime import datetime
 from flask import current_app
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
-from app.certificate_generator import get_certificate_generator
+from app.services.report_generator import ReportGenerator
+from app.services.certificate_generator import get_certificate_generator
 from app.cache import invalidate_user_cache, invalidate_quiz_cache
 from app.models import User, Quiz, Question, Submission, Subscription, Chapter, Course, db
 from app.utils import user_required, get_current_user, get_user_quiz_stats, validate_quiz_access, calculate_quiz_score
@@ -311,13 +312,19 @@ class UserExportResource(Resource):
         """Trigger user quiz export (async)"""
         user = get_current_user()
 
-        # TODO: Implement with Celery
-        return {
-            'message': 'Export job started',
-            # Would be actual Celery job ID
-            'job_id': f'user_export_{user.id}_123',
-            'status': 'pending'
-        }
+        try:
+            report_gen = ReportGenerator()
+            job_id = report_gen.export_user_data(user.id)
+
+            return {
+                'message': 'Export job started',
+                'job_id': job_id,
+                'status': 'running',
+                'download_url': f'/api/export/download/user/{job_id}'
+            }
+        except Exception as e:
+            current_app.logger.error(f"User export failed: {str(e)}")
+            return {'message': 'Failed to start export'}, 500
 
 
 class UserStatsResource(Resource):

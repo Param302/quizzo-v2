@@ -13,7 +13,7 @@ class SendCertificateEmailResource(Resource):
         user = get_current_user()
 
         try:
-            from app.email_service import get_email_service
+            from app.services.email_service import get_email_service
             email_service = get_email_service()
 
             # Send certificate email
@@ -53,7 +53,7 @@ class BulkCertificateEmailResource(Resource):
         quiz_id = args['quiz_id']
 
         try:
-            from app.email_service import get_email_service
+            from app.services.email_service import get_email_service
             email_service = get_email_service()
 
             # Get all users who completed this quiz
@@ -114,7 +114,7 @@ class EmailTestResource(Resource):
         args = parser.parse_args()
 
         try:
-            from app.email_service import get_email_service
+            from app.services.email_service import get_email_service
             email_service = get_email_service()
 
             # Send test email

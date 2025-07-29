@@ -1,48 +1,28 @@
-from flask import current_app, send_file, make_response, Blueprint
-from flask_restful import Resource, reqparse
-from flask_jwt_extended import jwt_required
-from app.utils import user_required, admin_required, get_current_user
 import io
+from flask_jwt_extended import jwt_required
+from flask_restful import Resource, reqparse
+from app.services.report_generator import ReportGenerator
+from app.services.certificate_generator import CertificateGenerator
+from flask import current_app, send_file, make_response, Blueprint
+from app.utils import user_required, admin_required, get_current_user
 
 
 class ExportStatusResource(Resource):
     @jwt_required()
     def get(self, job_id):
         """Poll job completion status"""
-        # TODO: Implement with Celery to check actual job status
-        # For now, returning mock data
-
         cache_key_name = f'job_status_{job_id}'
         cached_status = current_app.cache.get(cache_key_name)
 
         if cached_status:
             return cached_status
 
-        # Mock implementation - in real scenario, check Celery job status
-        if 'admin' in job_id:
-            status = {
-                'job_id': job_id,
-                'status': 'completed',  # pending, running, completed, failed
-                'progress': 100,
-                'message': 'Admin export completed successfully',
-                'download_url': f'/downloads/admin_export_{job_id}.csv',
-                'created_at': '2025-07-29T10:00:00Z',
-                'completed_at': '2025-07-29T10:05:00Z'
-            }
-        else:
-            status = {
-                'job_id': job_id,
-                'status': 'completed',
-                'progress': 100,
-                'message': 'User export completed successfully',
-                'download_url': f'/downloads/user_export_{job_id}.csv',
-                'created_at': '2025-07-29T10:00:00Z',
-                'completed_at': '2025-07-29T10:03:00Z'
-            }
-
-        # Cache for 1 minute
-        current_app.cache.set(cache_key_name, status, timeout=60)
-        return status
+        # If not in cache, job doesn't exist
+        return {
+            'job_id': job_id,
+            'status': 'not_found',
+            'message': 'Job not found or expired'
+        }, 404
 
 
 # Create Blueprint for certificate routes
@@ -57,7 +37,7 @@ def download_certificate(quiz_id):
     user = get_current_user()
 
     try:
-        from app.certificate_generator import get_certificate_generator
+        from app.services.certificate_generator import get_certificate_generator
         cert_generator = get_certificate_generator()
     except ImportError as e:
         current_app.logger.error(f"Certificate generator import failed: {e}")
@@ -95,34 +75,93 @@ def download_certificate(quiz_id):
         return {'message': f'Failed to download certificate: {str(e)}'}, 500
 
 
+class ExportDownloadResource(Resource):
+    @jwt_required()
+    def get(self, export_type, job_id):
+        current_user = get_current_user()
+
+        try:
+            if export_type == 'admin':
+                if not current_user.is_admin:
+                    return {'message': 'Admin access required'}, 403
+
+                report_gen = ReportGenerator()
+                file_content, filename = report_gen.download_admin_export(
+                    job_id)
+
+                if not file_content:
+                    return {'message': 'Export file not found or expired'}, 404
+
+                return send_file(
+                    io.BytesIO(file_content),
+                    as_attachment=True,
+                    download_name=filename,
+                    mimetype='text/csv'
+                )
+
+            elif export_type == 'user':
+                report_gen = ReportGenerator()
+                file_content, filename = report_gen.download_user_export(
+                    current_user.id, job_id)
+
+                if not file_content:
+                    return {'message': 'Export file not found or expired'}, 404
+
+                return send_file(
+                    io.BytesIO(file_content),
+                    as_attachment=True,
+                    download_name=filename,
+                    mimetype='text/csv'
+                )
+
+            else:
+                return {'message': 'Invalid export type'}, 400
+
+        except Exception as e:
+            current_app.logger.error(f"Download error: {str(e)}")
+            return {'message': 'Download failed'}, 500
+
+
 class DailyReminderResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Trigger daily email reminders"""
-        # TODO: Implement with Celery
-        return {
-            'message': 'Daily reminder job started',
-            'job_id': 'daily_reminder_123',
-            'status': 'pending'
-        }
+        try:
+            report_gen = ReportGenerator()
+            job_id = report_gen.send_daily_reminders()
+
+            return {
+                'message': 'Daily reminder job started',
+                'job_id': job_id,
+                'status': 'running'
+            }
+        except Exception as e:
+            current_app.logger.error(f"Daily reminder failed: {str(e)}")
+            return {'message': 'Failed to start daily reminders'}, 500
 
 
 class MonthlyReportResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Trigger monthly report for all users"""
-        # TODO: Implement with Celery
-        return {
-            'message': 'Monthly report job started',
-            'job_id': 'monthly_report_123',
-            'status': 'pending'
-        }
+        try:
+            report_gen = ReportGenerator()
+            job_id = report_gen.send_monthly_reports()
+
+            return {
+                'message': 'Monthly report job started',
+                'job_id': job_id,
+                'status': 'running'
+            }
+        except Exception as e:
+            current_app.logger.error(f"Monthly report failed: {str(e)}")
+            return {'message': 'Failed to start monthly reports'}, 500
 
 
 def register_export_api(api):
     api.add_resource(ExportStatusResource, '/export/status/<string:job_id>')
+    api.add_resource(ExportDownloadResource,
+                     '/export/download/<string:export_type>/<string:job_id>')
     api.add_resource(DailyReminderResource, '/reminders/send/daily')
     api.add_resource(MonthlyReportResource, '/reports/send/monthly')
 

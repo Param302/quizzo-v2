@@ -78,18 +78,35 @@ class EmailService:
     """Email service for sending certificates and notifications"""
 
     def __init__(self):
-        self.smtp_server = current_app.config.get('MAIL_SERVER', 'localhost')
-        self.smtp_port = current_app.config.get('MAIL_PORT', 587)
-        self.smtp_username = current_app.config.get('MAIL_USERNAME', '')
-        self.smtp_password = current_app.config.get('MAIL_PASSWORD', '')
-        self.smtp_use_tls = current_app.config.get('MAIL_USE_TLS', True)
-        self.sender_email = current_app.config.get(
-            'MAIL_DEFAULT_SENDER', 'noreply@quizzo.com')
-        self.sender_name = current_app.config.get(
-            'MAIL_SENDER_NAME', 'Quizzo Team')
+        self._initialized = False
+        self.smtp_server = None
+        self.smtp_port = None
+        self.smtp_username = None
+        self.smtp_password = None
+        self.smtp_use_tls = None
+        self.sender_email = None
+        self.sender_name = None
+
+    def _ensure_initialized(self):
+        """Initialize configuration when first needed"""
+        if not self._initialized:
+            from flask import current_app
+            self.smtp_server = current_app.config.get(
+                'MAIL_SERVER', 'localhost')
+            self.smtp_port = current_app.config.get('MAIL_PORT', 587)
+            self.smtp_username = current_app.config.get('MAIL_USERNAME', '')
+            self.smtp_password = current_app.config.get('MAIL_PASSWORD', '')
+            self.smtp_use_tls = current_app.config.get('MAIL_USE_TLS', True)
+            self.sender_email = current_app.config.get(
+                'MAIL_DEFAULT_SENDER', 'noreply@quizzo.com')
+            self.sender_name = current_app.config.get(
+                'MAIL_SENDER_NAME', 'Quizzo Team')
+            self._initialized = True
 
     def send_email(self, recipient_email: str, subject: str, html_body: str, attachments: list = None):
         """Send an email with optional attachments"""
+        self._ensure_initialized()
+
         try:
             # Create message
             msg = MIMEMultipart('alternative')
@@ -145,9 +162,11 @@ class EmailService:
 
     def send_certificate_email(self, user_id: int, quiz_id: int):
         """Send certificate email to user after quiz completion"""
+        self._ensure_initialized()
+
         try:
             # Import certificate generator
-            from app.certificate_generator import get_certificate_generator
+            from app.services.certificate_generator import get_certificate_generator
             cert_generator = get_certificate_generator()
 
             # Check if certificate can be generated
@@ -229,11 +248,13 @@ class EmailService:
 
     def send_daily_reminder_email(self, user_id: int):
         """Send daily reminder email to user"""
+        self._ensure_initialized()
         # TODO: Implement daily reminder functionality
         pass
 
     def send_monthly_report_email(self, user_id: int):
         """Send monthly report email to user"""
+        self._ensure_initialized()
         # TODO: Implement monthly report functionality
         pass
 

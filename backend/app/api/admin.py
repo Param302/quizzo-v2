@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import current_app, request
 from flask_jwt_extended import jwt_required
 from app.cache import invalidate_quiz_cache
+from app.services.report_generator import ReportGenerator
 from flask_restful import Resource, reqparse
 from app.utils import admin_required, cache_key
 from app.models import Course, Chapter, Quiz, Question, User, Submission, db
@@ -13,21 +14,22 @@ class CourseResource(Resource):
     def post(self):
         """Create new course"""
         parser = reqparse.RequestParser()
-        parser.add_argument('name', type=str, required=True, help='Course name is required')
+        parser.add_argument('name', type=str, required=True,
+                            help='Course name is required')
         parser.add_argument('description', type=str, default='')
         args = parser.parse_args()
-        
+
         course = Course(
             name=args['name'],
             description=args['description']
         )
-        
+
         db.session.add(course)
         db.session.commit()
-        
+
         # Clear courses cache
         current_app.cache.delete('admin_courses_list')
-        
+
         return {
             'message': 'Course created successfully',
             'course': {
@@ -44,10 +46,10 @@ class CourseResource(Resource):
         # Try to get from cache first
         cache_key_name = 'admin_courses_list'
         cached_result = current_app.cache.get(cache_key_name)
-        
+
         if cached_result:
             return cached_result
-        
+
         courses = Course.query.all()
         result = {
             'courses': [
@@ -60,7 +62,7 @@ class CourseResource(Resource):
                 for course in courses
             ]
         }
-        
+
         # Cache for 5 minutes
         current_app.cache.set(cache_key_name, result, timeout=300)
         return result
@@ -75,19 +77,19 @@ class CourseDetailResource(Resource):
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, default='')
         args = parser.parse_args()
-        
+
         course = Course.query.get(course_id)
         if not course:
             return {'message': 'Course not found'}, 404
-        
+
         course.name = args['name']
         course.description = args['description']
-        
+
         db.session.commit()
-        
+
         # Clear cache
         current_app.cache.delete('admin_courses_list')
-        
+
         return {
             'message': 'Course updated successfully',
             'course': {
@@ -104,13 +106,13 @@ class CourseDetailResource(Resource):
         course = Course.query.get(course_id)
         if not course:
             return {'message': 'Course not found'}, 404
-        
+
         db.session.delete(course)
         db.session.commit()
-        
+
         # Clear cache
         current_app.cache.delete('admin_courses_list')
-        
+
         return {'message': 'Course deleted successfully'}
 
 
@@ -124,24 +126,24 @@ class ChapterResource(Resource):
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, default='')
         args = parser.parse_args()
-        
+
         course = Course.query.get(args['course_id'])
         if not course:
             return {'message': 'Course not found'}, 404
-        
+
         chapter = Chapter(
             course_id=args['course_id'],
             name=args['name'],
             description=args['description']
         )
-        
+
         db.session.add(chapter)
         db.session.commit()
-        
+
         # Clear related caches
         current_app.cache.delete('admin_courses_list')
         current_app.cache.delete(f'course_{args["course_id"]}_chapters')
-        
+
         return {
             'message': 'Chapter created successfully',
             'chapter': {
@@ -162,20 +164,20 @@ class ChapterDetailResource(Resource):
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, default='')
         args = parser.parse_args()
-        
+
         chapter = Chapter.query.get(chapter_id)
         if not chapter:
             return {'message': 'Chapter not found'}, 404
-        
+
         chapter.name = args['name']
         chapter.description = args['description']
-        
+
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete('admin_courses_list')
         current_app.cache.delete(f'course_{chapter.course_id}_chapters')
-        
+
         return {
             'message': 'Chapter updated successfully',
             'chapter': {
@@ -193,15 +195,15 @@ class ChapterDetailResource(Resource):
         chapter = Chapter.query.get(chapter_id)
         if not chapter:
             return {'message': 'Chapter not found'}, 404
-        
+
         course_id = chapter.course_id
         db.session.delete(chapter)
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete('admin_courses_list')
         current_app.cache.delete(f'course_{course_id}_chapters')
-        
+
         return {'message': 'Chapter deleted successfully'}
 
 
@@ -213,24 +215,26 @@ class QuizResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('chapter_id', type=int, required=True)
         parser.add_argument('title', type=str, required=True)
-        parser.add_argument('date_of_quiz', type=str, help='Format: YYYY-MM-DD HH:MM:SS')
+        parser.add_argument('date_of_quiz', type=str,
+                            help='Format: YYYY-MM-DD HH:MM:SS')
         parser.add_argument('time_duration', type=str, help='Format: HH:MM')
         parser.add_argument('is_scheduled', type=bool, default=False)
         parser.add_argument('remarks', type=str, default='')
         args = parser.parse_args()
-        
+
         chapter = Chapter.query.get(args['chapter_id'])
         if not chapter:
             return {'message': 'Chapter not found'}, 404
-        
+
         # Parse date if provided
         date_of_quiz = None
         if args['date_of_quiz']:
             try:
-                date_of_quiz = datetime.strptime(args['date_of_quiz'], '%Y-%m-%d %H:%M:%S')
+                date_of_quiz = datetime.strptime(
+                    args['date_of_quiz'], '%Y-%m-%d %H:%M:%S')
             except ValueError:
                 return {'message': 'Invalid date format. Use YYYY-MM-DD HH:MM:SS'}, 400
-        
+
         quiz = Quiz(
             chapter_id=args['chapter_id'],
             title=args['title'],
@@ -239,15 +243,15 @@ class QuizResource(Resource):
             is_scheduled=args['is_scheduled'],
             remarks=args['remarks']
         )
-        
+
         db.session.add(quiz)
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete(f'chapter_{args["chapter_id"]}_quizzes')
         current_app.cache.delete('upcoming_quizzes')
         current_app.cache.delete('open_quizzes')
-        
+
         return {
             'message': 'Quiz created successfully',
             'quiz': {
@@ -274,31 +278,32 @@ class QuizDetailResource(Resource):
         parser.add_argument('is_scheduled', type=bool, default=False)
         parser.add_argument('remarks', type=str, default='')
         args = parser.parse_args()
-        
+
         quiz = Quiz.query.get(quiz_id)
         if not quiz:
             return {'message': 'Quiz not found'}, 404
-        
+
         # Parse date if provided
         if args['date_of_quiz']:
             try:
-                quiz.date_of_quiz = datetime.strptime(args['date_of_quiz'], '%Y-%m-%d %H:%M:%S')
+                quiz.date_of_quiz = datetime.strptime(
+                    args['date_of_quiz'], '%Y-%m-%d %H:%M:%S')
             except ValueError:
                 return {'message': 'Invalid date format. Use YYYY-MM-DD HH:MM:SS'}, 400
-        
+
         quiz.title = args['title']
         quiz.time_duration = args['time_duration']
         quiz.is_scheduled = args['is_scheduled']
         quiz.remarks = args['remarks']
-        
+
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete(f'chapter_{quiz.chapter_id}_quizzes')
         current_app.cache.delete('upcoming_quizzes')
         current_app.cache.delete('open_quizzes')
         current_app.cache.delete(f'quiz_{quiz_id}_details')
-        
+
         return {
             'message': 'Quiz updated successfully',
             'quiz': {
@@ -319,17 +324,17 @@ class QuizDetailResource(Resource):
         quiz = Quiz.query.get(quiz_id)
         if not quiz:
             return {'message': 'Quiz not found'}, 404
-        
+
         chapter_id = quiz.chapter_id
         db.session.delete(quiz)
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete(f'chapter_{chapter_id}_quizzes')
         current_app.cache.delete('upcoming_quizzes')
         current_app.cache.delete('open_quizzes')
         current_app.cache.delete(f'quiz_{quiz_id}_details')
-        
+
         return {'message': 'Quiz deleted successfully'}
 
 
@@ -341,16 +346,18 @@ class QuestionResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('quiz_id', type=int, required=True)
         parser.add_argument('question_statement', type=str, required=True)
-        parser.add_argument('question_type', type=str, required=True, choices=['MCQ', 'MSQ', 'NAT'])
+        parser.add_argument('question_type', type=str,
+                            required=True, choices=['MCQ', 'MSQ', 'NAT'])
         parser.add_argument('options', type=list, location='json')
-        parser.add_argument('correct_answer', type=list, location='json', required=True)
+        parser.add_argument('correct_answer', type=list,
+                            location='json', required=True)
         parser.add_argument('marks', type=float, default=1.0)
         args = parser.parse_args()
-        
+
         quiz = Quiz.query.get(args['quiz_id'])
         if not quiz:
             return {'message': 'Quiz not found'}, 404
-        
+
         question = Question(
             quiz_id=args['quiz_id'],
             question_statement=args['question_statement'],
@@ -359,14 +366,14 @@ class QuestionResource(Resource):
             correct_answer=args['correct_answer'],
             marks=args['marks']
         )
-        
+
         db.session.add(question)
         db.session.commit()
-        
+
         # Clear quiz cache
         current_app.cache.delete(f'quiz_{args["quiz_id"]}_questions')
         current_app.cache.delete(f'quiz_{args["quiz_id"]}_details')
-        
+
         return {
             'message': 'Question created successfully',
             'question': {
@@ -387,28 +394,30 @@ class QuestionDetailResource(Resource):
         """Edit question"""
         parser = reqparse.RequestParser()
         parser.add_argument('question_statement', type=str, required=True)
-        parser.add_argument('question_type', type=str, required=True, choices=['MCQ', 'MSQ', 'NAT'])
+        parser.add_argument('question_type', type=str,
+                            required=True, choices=['MCQ', 'MSQ', 'NAT'])
         parser.add_argument('options', type=list, location='json')
-        parser.add_argument('correct_answer', type=list, location='json', required=True)
+        parser.add_argument('correct_answer', type=list,
+                            location='json', required=True)
         parser.add_argument('marks', type=float, default=1.0)
         args = parser.parse_args()
-        
+
         question = Question.query.get(question_id)
         if not question:
             return {'message': 'Question not found'}, 404
-        
+
         question.question_statement = args['question_statement']
         question.question_type = args['question_type']
         question.options = args['options']
         question.correct_answer = args['correct_answer']
         question.marks = args['marks']
-        
+
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete(f'quiz_{question.quiz_id}_questions')
         current_app.cache.delete(f'quiz_{question.quiz_id}_details')
-        
+
         return {
             'message': 'Question updated successfully',
             'question': {
@@ -428,15 +437,15 @@ class QuestionDetailResource(Resource):
         question = Question.query.get(question_id)
         if not question:
             return {'message': 'Question not found'}, 404
-        
+
         quiz_id = question.quiz_id
         db.session.delete(question)
         db.session.commit()
-        
+
         # Clear caches
         current_app.cache.delete(f'quiz_{quiz_id}_questions')
         current_app.cache.delete(f'quiz_{quiz_id}_details')
-        
+
         return {'message': 'Question deleted successfully'}
 
 
@@ -444,13 +453,13 @@ class SearchUsersResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Search users"""        
+        """Search users"""
         query_text = request.args.get('query', '')
         role = request.args.get('role')
         limit = int(request.args.get('limit', 50))
-        
+
         query = User.query
-        
+
         if query_text:
             search = f"%{query_text}%"
             query = query.filter(
@@ -458,12 +467,12 @@ class SearchUsersResource(Resource):
                 (User.username.like(search)) |
                 (User.email.like(search))
             )
-        
+
         if role and role in ['user', 'admin']:
             query = query.filter(User.role == role)
-        
+
         users = query.limit(limit).all()
-        
+
         return {
             'users': [
                 {
@@ -484,26 +493,26 @@ class SearchQuizzesResource(Resource):
     def get(self):
         """Search quizzes"""
         from flask import request
-        
+
         query_text = request.args.get('query', '')
         chapter_id = request.args.get('chapter_id', type=int)
         is_scheduled = request.args.get('is_scheduled', type=bool)
         limit = int(request.args.get('limit', 50))
-        
+
         query = Quiz.query.join(Chapter)
-        
+
         if query_text:
             search = f"%{query_text}%"
             query = query.filter(Quiz.title.like(search))
-        
+
         if chapter_id:
             query = query.filter(Quiz.chapter_id == chapter_id)
-        
+
         if is_scheduled is not None:
             query = query.filter(Quiz.is_scheduled == is_scheduled)
-        
+
         quizzes = query.limit(limit).all()
-        
+
         return {
             'quizzes': [
                 {
@@ -526,10 +535,10 @@ class DashboardStatsResource(Resource):
         """Admin dashboard statistics"""
         cache_key_name = 'admin_dashboard_stats'
         cached_result = current_app.cache.get(cache_key_name)
-        
+
         if cached_result:
             return cached_result
-        
+
         # Get basic counts
         total_users = User.query.filter_by(role='user').count()
         total_admins = User.query.filter_by(role='admin').count()
@@ -538,12 +547,13 @@ class DashboardStatsResource(Resource):
         total_quizzes = Quiz.query.count()
         total_questions = Question.query.count()
         total_submissions = Submission.query.count()
-        
+
         # Recent activity (last 7 days)
         from datetime import datetime, timedelta
         week_ago = datetime.now() - timedelta(days=7)
-        recent_submissions = Submission.query.filter(Submission.timestamp >= week_ago).count()
-        
+        recent_submissions = Submission.query.filter(
+            Submission.timestamp >= week_ago).count()
+
         result = {
             'stats': {
                 'users': {
@@ -562,7 +572,7 @@ class DashboardStatsResource(Resource):
                 }
             }
         }
-        
+
         # Cache for 10 minutes
         current_app.cache.set(cache_key_name, result, timeout=600)
         return result
@@ -573,31 +583,39 @@ class AdminExportResource(Resource):
     @admin_required
     def post(self):
         """Trigger admin export (async)"""
-        # TODO: Implement with Celery
-        return {
-            'message': 'Export job started',
-            'job_id': 'admin_export_123',  # Would be actual Celery job ID
-            'status': 'pending'
-        }
+        try:
+            report_gen = ReportGenerator()
+            job_id = report_gen.export_admin_data()
+
+            return {
+                'message': 'Export job started',
+                'job_id': job_id,
+                'status': 'running',
+                'download_url': f'/api/export/download/admin/{job_id}'
+            }
+        except Exception as e:
+            current_app.logger.error(f"Admin export failed: {str(e)}")
+            return {'message': 'Failed to start export'}, 500
 
 
 def register_admin_api(api):
     # Course management
     api.add_resource(CourseResource, '/admin/courses')
     api.add_resource(CourseDetailResource, '/admin/courses/<int:course_id>')
-    
+
     # Chapter management
     api.add_resource(ChapterResource, '/admin/chapters')
     api.add_resource(ChapterDetailResource, '/admin/chapters/<int:chapter_id>')
-    
+
     # Quiz management
     api.add_resource(QuizResource, '/admin/quizzes')
     api.add_resource(QuizDetailResource, '/admin/quizzes/<int:quiz_id>')
-    
+
     # Question management
     api.add_resource(QuestionResource, '/admin/questions')
-    api.add_resource(QuestionDetailResource, '/admin/questions/<int:question_id>')
-    
+    api.add_resource(QuestionDetailResource,
+                     '/admin/questions/<int:question_id>')
+
     # Search and dashboard
     api.add_resource(SearchUsersResource, '/admin/search/users')
     api.add_resource(SearchQuizzesResource, '/admin/search/quizzes')

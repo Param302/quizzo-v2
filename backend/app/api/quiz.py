@@ -254,7 +254,7 @@ class QuizSubmitResource(Resource):
         # Try to generate certificate information (but don't fail if it doesn't work)
         certificate_info = None
         try:
-            from app.certificate_generator import get_certificate_generator
+            from app.services.certificate_generator import get_certificate_generator
             cert_generator = get_certificate_generator()
 
             can_generate, _ = cert_generator.can_generate_certificate(
@@ -270,7 +270,7 @@ class QuizSubmitResource(Resource):
 
                 # Try to send certificate email asynchronously
                 try:
-                    from app.email_service import get_email_service
+                    from app.services.email_service import get_email_service
                     email_service = get_email_service()
 
                     # Send email in background (don't wait for completion)
