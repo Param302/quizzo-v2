@@ -1,7 +1,7 @@
 from flask import current_app, request
 from flask_restful import Resource
 from datetime import datetime
-from app.utils import get_user_quiz_stats
+from app.utils import get_user_quiz_stats, categorize_quizzes
 from app.models import User, Submission, Quiz, Question, Course, Chapter, db
 
 
@@ -96,14 +96,14 @@ class PublicCoursesResource(Resource):
             }
 
             for chapter in course.chapters:
-                # Get quiz counts by type
+                # Get quiz counts by type using new categorization
                 all_quizzes = chapter.quizzes
-                live_quizzes = [
-                    q for q in all_quizzes if q.is_scheduled and q.date_of_quiz <= datetime.now()]
-                upcoming_quizzes = [
-                    q for q in all_quizzes if q.is_scheduled and q.date_of_quiz > datetime.now()]
-                general_quizzes = [
-                    q for q in all_quizzes if not q.is_scheduled]
+                categorized = categorize_quizzes(all_quizzes, datetime.now())
+
+                live_quizzes = categorized['live']
+                upcoming_quizzes = categorized['upcoming']
+                general_quizzes = categorized['general']
+                ended_quizzes = categorized['ended']
 
                 # Get next upcoming quiz
                 next_quiz = None
@@ -155,6 +155,9 @@ class PublicChapterQuizzesResource(Resource):
         quizzes = Quiz.query.filter_by(chapter_id=chapter_id).all()
         now = datetime.now()
 
+        # Use the new categorization function
+        categorized_quiz_objects = categorize_quizzes(quizzes, now)
+
         categorized_quizzes = {
             'live': [],
             'upcoming': [],
@@ -162,30 +165,20 @@ class PublicChapterQuizzesResource(Resource):
             'ended': []
         }
 
-        for quiz in quizzes:
-            quiz_data = {
-                'id': quiz.id,
-                'title': quiz.title,
-                'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
-                'time_duration': quiz.time_duration,
-                'is_scheduled': quiz.is_scheduled,
-                'remarks': quiz.remarks,
-                'question_count': len(quiz.questions),
-                'total_marks': sum(q.marks for q in quiz.questions)
-            }
-
-            if not quiz.is_scheduled:
-                categorized_quizzes['general'].append(quiz_data)
-            elif quiz.date_of_quiz > now:
-                categorized_quizzes['upcoming'].append(quiz_data)
-            elif quiz.date_of_quiz <= now:
-                # Check if it's still "live" (within reasonable time window)
-                time_diff = (
-                    now - quiz.date_of_quiz).total_seconds() / 3600  # hours
-                if time_diff <= 24:  # Consider live for 24 hours
-                    categorized_quizzes['live'].append(quiz_data)
-                else:
-                    categorized_quizzes['ended'].append(quiz_data)
+        # Convert quiz objects to dictionaries for each category
+        for category, quiz_list in categorized_quiz_objects.items():
+            for quiz in quiz_list:
+                quiz_data = {
+                    'id': quiz.id,
+                    'title': quiz.title,
+                    'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
+                    'time_duration': quiz.time_duration,
+                    'is_scheduled': quiz.is_scheduled,
+                    'remarks': quiz.remarks,
+                    'question_count': len(quiz.questions),
+                    'total_marks': sum(q.marks for q in quiz.questions)
+                }
+                categorized_quizzes[category].append(quiz_data)
 
         result = {
             'course': {

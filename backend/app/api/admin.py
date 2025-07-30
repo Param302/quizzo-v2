@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from app.cache import invalidate_quiz_cache
 from app.services.report_generator import ReportGenerator
 from flask_restful import Resource, reqparse
-from app.utils import admin_required, cache_key
+from app.utils import admin_required, cache_key, categorize_quizzes, get_quiz_status
 from app.models import Course, Chapter, Quiz, Question, User, Subscription, Submission, db
 from sqlalchemy import func, extract
 
@@ -145,25 +145,22 @@ class CourseResource(Resource):
                 general_quizzes = 0
 
                 for chapter in course.chapters:
+                    # Use new categorization function
+                    categorized = categorize_quizzes(
+                        chapter.quizzes, datetime.now())
+
                     chapter_quiz_counts = {
                         'total': len(chapter.quizzes),
-                        'live': 0,
-                        'upcoming': 0,
-                        'general': 0
+                        'live': len(categorized['live']),
+                        'upcoming': len(categorized['upcoming']),
+                        'general': len(categorized['general']),
+                        'ended': len(categorized['ended'])
                     }
 
-                    # Count quizzes by type
-                    for quiz in chapter.quizzes:
-                        if quiz.is_scheduled and quiz.date_of_quiz:
-                            if quiz.date_of_quiz <= datetime.now():
-                                chapter_quiz_counts['live'] += 1
-                                live_quizzes += 1
-                            else:
-                                chapter_quiz_counts['upcoming'] += 1
-                                upcoming_quizzes += 1
-                        else:
-                            chapter_quiz_counts['general'] += 1
-                            general_quizzes += 1
+                    # Update totals
+                    live_quizzes += chapter_quiz_counts['live']
+                    upcoming_quizzes += chapter_quiz_counts['upcoming']
+                    general_quizzes += chapter_quiz_counts['general']
 
                     total_quizzes += chapter_quiz_counts['total']
 
@@ -219,22 +216,16 @@ class CourseDetailResource(Resource):
         # Get chapters with detailed quiz info
         chapters_data = []
         for chapter in course.chapters:
+            # Use new categorization function
+            categorized = categorize_quizzes(chapter.quizzes, datetime.now())
+
             chapter_quiz_counts = {
                 'total': len(chapter.quizzes),
-                'live': 0,
-                'upcoming': 0,
-                'general': 0
+                'live': len(categorized['live']),
+                'upcoming': len(categorized['upcoming']),
+                'general': len(categorized['general']),
+                'ended': len(categorized['ended'])
             }
-
-            # Count quizzes by type
-            for quiz in chapter.quizzes:
-                if quiz.is_scheduled and quiz.date_of_quiz:
-                    if quiz.date_of_quiz <= datetime.now():
-                        chapter_quiz_counts['live'] += 1
-                    else:
-                        chapter_quiz_counts['upcoming'] += 1
-                else:
-                    chapter_quiz_counts['general'] += 1
 
             chapters_data.append({
                 'id': chapter.id,

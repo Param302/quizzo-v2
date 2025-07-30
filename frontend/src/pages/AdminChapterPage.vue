@@ -45,7 +45,7 @@
                                     <h3 class="chapter-name mb-2">{{ chapterData.chapter.name }}</h3>
                                     <p v-if="chapterData.chapter.description"
                                         class="lead fw-medium mb-3 chapter-description">{{
-                                        chapterData.chapter.description }}</p>
+                                            chapterData.chapter.description }}</p>
                                     <div class="course-info">
                                         <span class="badge course-badge">
                                             <i class="bi bi-book me-1"></i>
@@ -410,15 +410,19 @@ export default {
     color: #f57c00;
     text-decoration: none;
     font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
     transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
+    background: rgba(245, 124, 0, 0.1);
+    border: 1px solid rgba(245, 124, 0, 0.2);
+    display: inline-block;
 }
 
 .btn-back-link:hover {
+    background: rgba(245, 124, 0, 0.15);
     color: #e65100;
     text-decoration: none;
-    transform: translateX(-3px);
+    transform: translateX(-2px);
 }
 
 .chapter-name {
@@ -434,15 +438,22 @@ export default {
 }
 
 .quiz-count-badge {
-    background: rgba(245, 124, 0, 0.1);
-    color: #f57c00;
-    border: 1px solid rgba(245, 124, 0, 0.2);
+    background: linear-gradient(135deg, rgba(245, 124, 0, 0.1) 0%, rgba(245, 124, 0, 0.05) 100%);
+    border: 2px solid rgba(245, 124, 0, 0.2);
+    border-radius: 12px;
     padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 1rem;
-    display: inline-block;
-    box-shadow: 0 2px 10px rgba(245, 124, 0, 0.1);
+    color: #f57c00;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.quiz-count-badge:hover {
+    background: linear-gradient(135deg, rgba(245, 124, 0, 0.15) 0%, rgba(245, 124, 0, 0.08) 100%);
+    border-color: rgba(245, 124, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.2);
 }
 
 .btn-orange {

@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <!-- Time Duration -->
+                                    <!-- Time Duration for Scheduled Quiz -->
                                     <div class="mb-3">
                                         <label for="quizDuration" class="form-label fw-semibold text-dark mb-2">Duration
                                             (minutes)</label>
@@ -109,6 +109,24 @@
                                                 <i class="bi bi-clock input-icon"></i>
                                                 <input id="quizDuration" v-model="formData.time_duration" type="number"
                                                     class="form-input" placeholder="30" min="1" max="300" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Duration for General Quiz -->
+                            <div v-if="!formData.is_scheduled" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="generalQuizDuration"
+                                            class="form-label fw-semibold text-dark mb-2">Duration (minutes)</label>
+                                        <div class="input-group-modern">
+                                            <div class="input-wrapper">
+                                                <i class="bi bi-clock input-icon"></i>
+                                                <input id="generalQuizDuration" v-model="formData.time_duration"
+                                                    type="number" class="form-input" placeholder="30" min="1"
+                                                    max="300" />
                                             </div>
                                         </div>
                                     </div>
@@ -507,7 +525,7 @@ export default {
                 remarks: formData.value.remarks.trim(),
                 is_scheduled: formData.value.is_scheduled,
                 date_of_quiz: formData.value.is_scheduled ? formData.value.date_of_quiz : null,
-                time_duration: formData.value.is_scheduled ? convertMinutesToHours(formData.value.time_duration) : null,
+                time_duration: formData.value.time_duration ? convertMinutesToHours(formData.value.time_duration) : null,
                 questions: formData.value.questions.map(question => ({
                     id: question.id || null,
                     question_statement: question.question_statement.trim(),
