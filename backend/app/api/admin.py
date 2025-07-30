@@ -720,33 +720,60 @@ class UsersManagementResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Get all users with their stats"""
-        cache_key_name = 'admin_users_management'
+        """Get all users with their stats and search functionality"""
+        search_query = request.args.get('search', '').strip()
+        page = request.args.get('page', 1, type=int)
+        per_page = min(request.args.get('per_page', 20, type=int), 100)
+
+        # Build cache key based on search parameters
+        cache_key_name = f'admin_users_management_{search_query}_{page}_{per_page}'
         cached_result = current_app.cache.get(cache_key_name)
 
         if cached_result:
             return cached_result
 
-        # Get users with their stats
-        users_data = []
-        users = User.query.filter_by(role='user').all()
+        # Start with base query (exclude admin users)
+        query = User.query.filter_by(role='user')
 
+        # Apply search filter
+        if search_query:
+            search = f"%{search_query}%"
+            query = query.filter(
+                (User.name.like(search)) |
+                (User.username.like(search)) |
+                (User.email.like(search))
+            )
+
+        # Get total count
+        total_users = query.count()
+
+        # Apply pagination
+        users = query.order_by(User.created_at.desc()).paginate(
+            page=page, per_page=per_page, error_out=False
+        ).items
+
+        # Get user stats
+        users_data = []
         for user in users:
-            # Get user's submission count
-            submission_count = Submission.query.filter_by(
-                user_id=user.id).count()
+            # Get user's submission count and average score
+            submissions = Submission.query.filter_by(user_id=user.id).all()
+            submission_count = len(submissions)
+
+            if submissions:
+                total_marks = sum(s.obtained_marks for s in submissions)
+                total_possible = sum(s.total_marks for s in submissions)
+                avg_score = round(
+                    (total_marks / total_possible * 100), 2) if total_possible > 0 else 0
+            else:
+                avg_score = 0
 
             # Get user's subscription count
             subscription_count = Subscription.query.filter_by(
                 user_id=user.id).count()
 
-            # Get user's average score
-            avg_score = db.session.query(
-                func.avg(Submission.obtained_marks)).filter_by(user_id=user.id).scalar()
-            avg_score = round(avg_score, 2) if avg_score else 0
-
             users_data.append({
                 'id': user.id,
+                'name': user.name or 'N/A',
                 'username': user.username,
                 'email': user.email,
                 'created_at': user.created_at.isoformat() if user.created_at else None,
@@ -757,7 +784,14 @@ class UsersManagementResource(Resource):
                 }
             })
 
-        result = {'users': users_data}
+        result = {
+            'users': users_data,
+            'total_users': total_users,
+            'page': page,
+            'per_page': per_page,
+            'has_next': len(users) == per_page and (page * per_page) < total_users,
+            'has_prev': page > 1
+        }
 
         # Cache for 5 minutes
         current_app.cache.set(cache_key_name, result, timeout=300)
@@ -766,7 +800,7 @@ class UsersManagementResource(Resource):
     @jwt_required()
     @admin_required
     def delete(self):
-        """Delete a user"""
+        """Delete a user and all associated data"""
         parser = reqparse.RequestParser()
         parser.add_argument('user_id', type=int,
                             required=True, help='User ID is required')
@@ -777,18 +811,44 @@ class UsersManagementResource(Resource):
         if user.role == 'admin':
             return {'message': 'Cannot delete admin users'}, 400
 
-        # Delete related data
-        Subscription.query.filter_by(user_id=user.id).delete()
-        Submission.query.filter_by(user_id=user.id).delete()
+        try:
+            # Delete all user's data in correct order to avoid foreign key constraints
 
-        db.session.delete(user)
-        db.session.commit()
+            # 1. Delete user's submissions first
+            submissions_deleted = Submission.query.filter_by(
+                user_id=user.id).delete()
 
-        # Clear cache
-        current_app.cache.delete('admin_users_management')
-        current_app.cache.delete('admin_dashboard_stats')
+            # 2. Delete user's subscriptions
+            subscriptions_deleted = Subscription.query.filter_by(
+                user_id=user.id).delete()
 
-        return {'message': 'User deleted successfully'}, 200
+            # 3. Finally delete the user
+            db.session.delete(user)
+            db.session.commit()
+
+            # Clear all related caches
+            current_app.cache.delete_pattern('admin_users_management*')
+            current_app.cache.delete('admin_dashboard_stats')
+            current_app.cache.delete('admin_charts_data')
+
+            current_app.logger.info(
+                f"Admin deleted user {user.username} (ID: {user.id}). "
+                f"Removed {submissions_deleted} submissions, {subscriptions_deleted} subscriptions."
+            )
+
+            return {
+                'message': 'User and all associated data deleted successfully',
+                'deleted_items': {
+                    'submissions': submissions_deleted,
+                    'subscriptions': subscriptions_deleted
+                }
+            }, 200
+
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(
+                f"Error deleting user {user.id}: {str(e)}")
+            return {'message': 'Failed to delete user'}, 500
 
 
 class AdminExportResource(Resource):

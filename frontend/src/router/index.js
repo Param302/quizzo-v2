@@ -64,8 +64,8 @@ const router = createRouter({
           meta: { requiresAuth: true, role: 'admin' }
         },
         {
-          path: '/admin/users',
-          name: 'admin-users',
+          path: '/admin/manage/users',
+          name: 'admin-manage-users',
           component: AdminUsers,
           meta: { requiresAuth: true, role: 'admin' }
         },

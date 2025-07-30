@@ -43,7 +43,8 @@
                     <div class="col-lg-6">
                         <ActionCard icon="bi bi-people-fill" title="Manage Users"
                             description="View, edit, and manage user accounts. Monitor user activity and engagement statistics."
-                            button-text="Manage Users" button-icon="bi bi-people" @click="showUsersManagement = true" />
+                            button-text="Manage" button-icon="bi bi-people"
+                            @click="$router.push('/admin/manage/users')" />
                     </div>
                     <div class="col-lg-6">
                         <ActionCard icon="bi bi-question-circle-fill" title="Manage Quizzes"
