@@ -17,6 +17,8 @@ import PublicProfile from '@/pages/PublicProfile.vue'
 import AdminDashboard from '@/pages/AdminDashboard.vue'
 import AdminUsers from '@/pages/AdminUsers.vue'
 import AdminQuizzes from '@/pages/AdminQuizzes.vue'
+import AdminCourses from '@/pages/AdminCourses.vue'
+import AdminChapterPage from '@/pages/AdminChapterPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +69,18 @@ const router = createRouter({
           path: '/admin/manage/users',
           name: 'admin-manage-users',
           component: AdminUsers,
+          meta: { requiresAuth: true, role: 'admin' }
+        },
+        {
+          path: '/admin/manage/course',
+          name: 'admin-manage-courses',
+          component: AdminCourses,
+          meta: { requiresAuth: true, role: 'admin' }
+        },
+        {
+          path: '/admin/manage/course/:courseId/chapter/:chapterId',
+          name: 'admin-manage-chapter',
+          component: AdminChapterPage,
           meta: { requiresAuth: true, role: 'admin' }
         },
         {

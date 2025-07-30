@@ -47,10 +47,10 @@
                             @click="$router.push('/admin/manage/users')" />
                     </div>
                     <div class="col-lg-6">
-                        <ActionCard icon="bi bi-question-circle-fill" title="Manage Quizzes"
-                            description="Create, edit, and organize quizzes across different courses and chapters."
-                            button-text="Manage Quizzes" button-icon="bi bi-question-circle"
-                            @click="showQuizzesManagement = true" />
+                        <ActionCard icon="bi bi-book-fill" title="Manage Courses"
+                            description="Create, edit, and organize courses and chapters. Structure your educational content."
+                            button-text="Manage Courses" button-icon="bi bi-book"
+                            @click="$router.push('/admin/manage/course')" />
                     </div>
                 </div>
             </div>
