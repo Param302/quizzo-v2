@@ -43,26 +43,95 @@ class CourseResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """List all courses"""
+        """List all courses with detailed info"""
+        from flask import request
+
+        # Check if detailed view is requested
+        detailed = request.args.get('detailed', 'false').lower() == 'true'
+        search_query = request.args.get('search', '').lower()
+
         # Try to get from cache first
-        cache_key_name = 'admin_courses_list'
+        cache_key_name = f'admin_courses_list_{"detailed" if detailed else "simple"}_{search_query}'
         cached_result = current_app.cache.get(cache_key_name)
 
         if cached_result:
             return cached_result
 
-        courses = Course.query.all()
-        result = {
-            'courses': [
-                {
+        courses_query = Course.query
+        if search_query:
+            courses_query = courses_query.filter(
+                Course.name.ilike(f'%{search_query}%'))
+
+        courses = courses_query.all()
+
+        if detailed:
+            # Return detailed course info for management interface
+            result_courses = []
+            for course in courses:
+                # Get quiz counts by type for each chapter
+                chapters_data = []
+                total_quizzes = 0
+                live_quizzes = 0
+                upcoming_quizzes = 0
+                general_quizzes = 0
+
+                for chapter in course.chapters:
+                    chapter_quiz_counts = {
+                        'total': len(chapter.quizzes),
+                        'live': 0,
+                        'upcoming': 0,
+                        'general': 0
+                    }
+
+                    # Count quizzes by type
+                    for quiz in chapter.quizzes:
+                        if quiz.is_scheduled and quiz.date_of_quiz:
+                            if quiz.date_of_quiz <= datetime.now():
+                                chapter_quiz_counts['live'] += 1
+                                live_quizzes += 1
+                            else:
+                                chapter_quiz_counts['upcoming'] += 1
+                                upcoming_quizzes += 1
+                        else:
+                            chapter_quiz_counts['general'] += 1
+                            general_quizzes += 1
+
+                    total_quizzes += chapter_quiz_counts['total']
+
+                    chapters_data.append({
+                        'id': chapter.id,
+                        'name': chapter.name,
+                        'description': chapter.description,
+                        'quiz_counts': chapter_quiz_counts
+                    })
+
+                course_data = {
                     'id': course.id,
                     'name': course.name,
                     'description': course.description,
-                    'chapters_count': len(course.chapters)
+                    'chapters_count': len(course.chapters),
+                    'total_quizzes': total_quizzes,
+                    'live_quizzes': live_quizzes,
+                    'upcoming_quizzes': upcoming_quizzes,
+                    'general_quizzes': general_quizzes,
+                    'chapters': chapters_data
                 }
-                for course in courses
-            ]
-        }
+                result_courses.append(course_data)
+
+            result = {'courses': result_courses}
+        else:
+            # Return simple course info
+            result = {
+                'courses': [
+                    {
+                        'id': course.id,
+                        'name': course.name,
+                        'description': course.description,
+                        'chapters_count': len(course.chapters)
+                    }
+                    for course in courses
+                ]
+            }
 
         # Cache for 5 minutes
         current_app.cache.set(cache_key_name, result, timeout=300)
@@ -72,7 +141,118 @@ class CourseResource(Resource):
 class CourseDetailResource(Resource):
     @jwt_required()
     @admin_required
+    def get(self, course_id):
+        """Get detailed course info with chapters"""
+        course = Course.query.get(course_id)
+        if not course:
+            return {'message': 'Course not found'}, 404
+
+        # Get chapters with detailed quiz info
+        chapters_data = []
+        for chapter in course.chapters:
+            chapter_quiz_counts = {
+                'total': len(chapter.quizzes),
+                'live': 0,
+                'upcoming': 0,
+                'general': 0
+            }
+
+            # Count quizzes by type
+            for quiz in chapter.quizzes:
+                if quiz.is_scheduled and quiz.date_of_quiz:
+                    if quiz.date_of_quiz <= datetime.now():
+                        chapter_quiz_counts['live'] += 1
+                    else:
+                        chapter_quiz_counts['upcoming'] += 1
+                else:
+                    chapter_quiz_counts['general'] += 1
+
+            chapters_data.append({
+                'id': chapter.id,
+                'name': chapter.name,
+                'description': chapter.description,
+                'quiz_counts': chapter_quiz_counts
+            })
+
+        return {
+            'course': {
+                'id': course.id,
+                'name': course.name,
+                'description': course.description,
+                'chapters_count': len(course.chapters),
+                'chapters': chapters_data
+            }
+        }
+
+    @jwt_required()
+    @admin_required
     def put(self, course_id):
+        """Update course and chapters"""
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', type=str, required=True)
+        parser.add_argument('description', type=str, default='')
+        parser.add_argument('chapters', type=list, location='json', default=[])
+        args = parser.parse_args()
+
+        course = Course.query.get(course_id)
+        if not course:
+            return {'message': 'Course not found'}, 404
+
+        # Update course details
+        course.name = args['name']
+        course.description = args['description']
+
+        # Process chapters
+        existing_chapter_ids = {ch.id for ch in course.chapters}
+        new_chapter_ids = set()
+
+        for chapter_data in args['chapters']:
+            chapter_id = chapter_data.get('id')
+            if chapter_id and chapter_id in existing_chapter_ids:
+                # Update existing chapter
+                chapter = Chapter.query.get(chapter_id)
+                if chapter:
+                    chapter.name = chapter_data.get('name', chapter.name)
+                    chapter.description = chapter_data.get(
+                        'description', chapter.description)
+                    new_chapter_ids.add(chapter_id)
+            elif not chapter_id:
+                # Create new chapter
+                new_chapter = Chapter(
+                    course_id=course_id,
+                    name=chapter_data.get('name', ''),
+                    description=chapter_data.get('description', '')
+                )
+                db.session.add(new_chapter)
+                db.session.flush()  # Get the ID
+                new_chapter_ids.add(new_chapter.id)
+
+        # Delete chapters that were removed
+        chapters_to_delete = existing_chapter_ids - new_chapter_ids
+        for chapter_id in chapters_to_delete:
+            chapter = Chapter.query.get(chapter_id)
+            if chapter:
+                db.session.delete(chapter)
+
+        db.session.commit()
+
+        # Clear caches
+        current_app.cache.delete('admin_courses_list_detailed_')
+        current_app.cache.delete('admin_courses_list_simple_')
+        current_app.cache.delete(f'course_{course_id}_chapters')
+
+        return {
+            'message': 'Course updated successfully',
+            'course': {
+                'id': course.id,
+                'name': course.name,
+                'description': course.description
+            }
+        }
+
+    @jwt_required()
+    @admin_required
+    def put_old(self, course_id):
         """Update course"""
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True)
