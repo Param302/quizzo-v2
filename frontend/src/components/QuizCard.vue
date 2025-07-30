@@ -31,14 +31,14 @@
                         <div v-if="quiz.time_duration" class="col-12">
                             <div class="detail-item">
                                 <i class="bi bi-clock"></i>
-                                <span class="ms-1">{{ quiz.time_duration }} Duration</span>
+                                <span class="ms-1">{{ formatDuration(quiz.time_duration) }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Date/Time Information -->
-                <div v-if="quiz.date_of_quiz" class="quiz-datetime mb-3">
+                <div v-if="quiz.date_of_quiz && tabType !== 'live'" class="quiz-datetime mb-3">
                     <div class="datetime-card">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
@@ -76,7 +76,7 @@
                     <div class="quiz-actions">
                         <!-- Live Quiz Actions -->
                         <template v-if="tabType === 'live'">
-                            <button class="btn btn-success w-100" @click="$emit('start-quiz', quiz.id)"
+                            <button class="btn btn-primary w-100" @click="$emit('start-quiz', quiz.id)"
                                 :disabled="quiz.is_completed">
                                 <i class="bi bi-play-circle me-2"></i>
                                 {{ quiz.is_completed ? 'Already Completed' : 'Start Quiz' }}
@@ -111,11 +111,13 @@
                         <!-- Completed Quiz Actions -->
                         <template v-else-if="tabType === 'completed'">
                             <div class="d-flex gap-2">
-                                <button class="btn btn-outline-primary flex-fill" @click="$emit('view-details', quiz.id)">
+                                <button class="btn btn-outline-primary flex-fill"
+                                    @click="$emit('view-details', quiz.id)">
                                     <i class="bi bi-eye me-1"></i>
                                     View Details
                                 </button>
-                                <button class="btn btn-warning flex-fill" @click="$emit('download-certificate', quiz.id)">
+                                <button class="btn btn-warning flex-fill"
+                                    @click="$emit('download-certificate', quiz.id)">
                                     <i class="bi bi-download me-1"></i>
                                     Certificate
                                 </button>
@@ -152,6 +154,30 @@ export default {
                 hour: '2-digit',
                 minute: '2-digit'
             })
+        },
+
+        formatDuration(duration) {
+            if (!duration) return ''
+
+            try {
+                // Parse duration in HH:MM format
+                const [hours, minutes] = duration.split(':').map(Number)
+                const totalMinutes = hours * 60 + minutes
+
+                if (totalMinutes < 60) {
+                    return `${totalMinutes} mins`
+                } else {
+                    const hrs = Math.floor(totalMinutes / 60)
+                    const mins = totalMinutes % 60
+                    if (mins === 0) {
+                        return `${hrs} ${hrs === 1 ? 'hr' : 'hrs'}`
+                    } else {
+                        return `${hrs}h ${mins}m`
+                    }
+                }
+            } catch (error) {
+                return duration // Return original if parsing fails
+            }
         },
 
         getTimeInfo() {
@@ -399,15 +425,15 @@ export default {
     .detail-item {
         font-size: 0.8rem;
     }
-    
+
     .datetime-card {
         padding: 0.5rem;
     }
-    
+
     .quiz-details .col-12 {
         margin-top: 0.5rem;
     }
-    
+
     .circular-progress::before {
         width: 25px;
         height: 25px;

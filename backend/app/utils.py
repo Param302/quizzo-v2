@@ -246,12 +246,11 @@ def get_quiz_status(quiz, current_time=None):
         # Default duration if not specified
         quiz_end_time = quiz_start_time + timedelta(hours=2)
 
-    # Check quiz status based on current time
     if current_time < quiz_start_time:
         return 'upcoming'
-    elif current_time >= quiz_start_time and current_time <= quiz_end_time:
+    elif current_time >= quiz_start_time and current_time < quiz_end_time:
         return 'live'
-    else:  # current_time > quiz_end_time
+    else:  # current_time >= quiz_end_time
         return 'ended'
 
 
