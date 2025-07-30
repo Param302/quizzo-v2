@@ -26,9 +26,19 @@
                             Dashboard
                         </router-link>
                     </li>
-                    <li class="nav-item" v-else>
-                        <router-link :to="authStore.isAdmin ? '/admin' : '/dashboard'"
-                            class="btn btn-primary rounded-pill px-4">
+
+                    <!-- Admin Navigation -->
+                    <template v-if="authStore.isAuthenticated && authStore.isAdmin">
+                        <li class="nav-item">
+                            <router-link to="/admin" class="btn btn-primary rounded-pill px-4">
+                                Admin Dashboard
+                            </router-link>
+                        </li>
+                    </template>
+
+                    <!-- Regular User Navigation -->
+                    <li class="nav-item" v-else-if="authStore.isAuthenticated">
+                        <router-link to="/dashboard" class="btn btn-primary rounded-pill px-4">
                             Dashboard
                         </router-link>
                     </li>
@@ -40,19 +50,24 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
-                            <li>
+                            <!-- Profile only for regular users -->
+                            <li v-if="!authStore.isAdmin">
                                 <router-link :to="`/u/@${authStore.user?.username || ''}`" class="dropdown-item">
                                     <i class="bi bi-person me-2"></i>
                                     Profile
                                 </router-link>
                             </li>
+                            <!-- Admin specific items -->
                             <li v-if="authStore.isAdmin">
-                                <hr class="dropdown-divider" />
+                                <router-link to="/admin/manage/course" class="dropdown-item">
+                                    <i class="bi bi-book me-2"></i>
+                                    Manage Courses
+                                </router-link>
                             </li>
                             <li v-if="authStore.isAdmin">
-                                <router-link to="/admin" class="dropdown-item">
-                                    <i class="bi bi-speedometer2 me-2"></i>
-                                    Admin Panel
+                                <router-link to="/admin/manage/users" class="dropdown-item">
+                                    <i class="bi bi-people me-2"></i>
+                                    Manage Users
                                 </router-link>
                             </li>
                             <li>
@@ -76,13 +91,21 @@
                                 <span class="text-white">{{ authStore.userName }}</span>
                             </div>
                             <div class="mobile-menu-items">
-                                <router-link :to="`/u/@${authStore.user?.username || ''}`" class="mobile-menu-item">
+                                <!-- Profile only for regular users -->
+                                <router-link v-if="!authStore.isAdmin" :to="`/u/@${authStore.user?.username || ''}`"
+                                    class="mobile-menu-item">
                                     <i class="bi bi-person me-2"></i>
                                     Profile
                                 </router-link>
-                                <router-link v-if="authStore.isAdmin" to="/admin" class="mobile-menu-item">
-                                    <i class="bi bi-speedometer2 me-2"></i>
-                                    Admin Panel
+                                <!-- Admin specific items -->
+                                <router-link v-if="authStore.isAdmin" to="/admin/manage/course"
+                                    class="mobile-menu-item">
+                                    <i class="bi bi-book me-2"></i>
+                                    Manage Courses
+                                </router-link>
+                                <router-link v-if="authStore.isAdmin" to="/admin/manage/users" class="mobile-menu-item">
+                                    <i class="bi bi-people me-2"></i>
+                                    Manage Users
                                 </router-link>
                                 <button @click="handleLogout"
                                     class="mobile-menu-item text-danger border-0 bg-transparent" type="button">
@@ -475,7 +498,43 @@ onUnmounted(() => {
         width: 28px;
         height: 22px;
     }
+}
 
+/* Admin Navigation Styles */
+.nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.router-link-active {
+    color: var(--primary) !important;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.modern-navbar.scrolled .nav-link {
+    color: rgba(108, 117, 125, 0.9);
+}
+
+.modern-navbar.scrolled .nav-link:hover {
+    color: var(--primary);
+    background: rgba(245, 124, 0, 0.1);
+}
+
+.modern-navbar.scrolled .nav-link.router-link-active {
+    color: var(--primary) !important;
+    background: rgba(245, 124, 0, 0.15);
+}
+
+@media (max-width: 991.98px) {
     .custom-toggler span {
         width: 20px;
         height: 2px;

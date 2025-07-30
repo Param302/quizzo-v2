@@ -222,6 +222,7 @@ class SubscriptionsResource(Resource):
                     'id': sub.id,
                     'chapter_id': sub.chapter_id,
                     'chapter_name': sub.chapter.name,
+                    'course_id': sub.chapter.course.id,
                     'course_name': sub.chapter.course.name,
                     'subscribed_on': sub.subscribed_on.isoformat(),
                     'quiz_count': len(sub.chapter.quizzes)
@@ -440,6 +441,215 @@ class CourseSubscriptionResource(Resource):
         }
 
 
+class UserUpcomingQuizzesResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self):
+        """Get upcoming quizzes from subscribed chapters"""
+        user = get_current_user()
+        cache_key_name = f'user_{user.id}_upcoming_quizzes'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        # Get user's subscribed chapters
+        subscriptions = Subscription.query.filter_by(
+            user_id=user.id, is_active=True).all()
+        chapter_ids = [sub.chapter_id for sub in subscriptions]
+
+        if not chapter_ids:
+            return {'quizzes': []}
+
+        # Get upcoming quizzes from subscribed chapters
+        from datetime import datetime, timedelta
+        now = datetime.now()
+        today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        today_end = today_start + timedelta(days=1)
+
+        # Get quizzes happening today or in the future
+        upcoming_quizzes = Quiz.query.filter(
+            Quiz.chapter_id.in_(chapter_ids),
+            Quiz.is_scheduled == True,
+            Quiz.date_of_quiz >= today_start
+        ).join(Chapter).join(Course).order_by(Quiz.date_of_quiz).all()
+
+        quiz_list = []
+        for quiz in upcoming_quizzes:
+            quiz_data = {
+                'id': quiz.id,
+                'title': quiz.title,
+                'chapter': quiz.chapter.name,
+                'chapter_id': quiz.chapter_id,
+                'course': quiz.chapter.course.name,
+                'course_id': quiz.chapter.course.id,
+                'date_of_quiz': quiz.date_of_quiz.isoformat(),
+                'time_duration': quiz.time_duration
+            }
+            quiz_list.append(quiz_data)
+
+        result = {'quizzes': quiz_list}
+        # Cache for 5 minutes
+        current_app.cache.set(cache_key_name, result, timeout=300)
+        return result
+
+
+class UserAnalyticsResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self):
+        """Get user analytics data for charts"""
+        user = get_current_user()
+        cache_key_name = f'user_{user.id}_analytics'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        stats = get_user_quiz_stats(user.id)
+        quiz_scores = stats.get('quiz_scores', [])
+
+        # Get course attempts data
+        course_attempts = {}
+        for quiz_score in quiz_scores:
+            quiz = Quiz.query.get(quiz_score['quiz_id'])
+            if quiz and quiz.chapter and quiz.chapter.course:
+                course_name = quiz.chapter.course.name
+                if course_name not in course_attempts:
+                    course_attempts[course_name] = 0
+                course_attempts[course_name] += 1
+
+        course_attempts_list = [
+            {'course_name': course, 'attempts': count}
+            for course, count in course_attempts.items()
+        ]
+
+        result = {
+            'quiz_scores': quiz_scores,
+            'course_attempts': course_attempts_list
+        }
+
+        # Cache for 10 minutes
+        current_app.cache.set(cache_key_name, result, timeout=600)
+        return result
+
+
+class UserSubmissionsResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self):
+        """Get user's quiz submissions with details"""
+        user = get_current_user()
+        cache_key_name = f'user_{user.id}_detailed_submissions'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        # Get all quizzes user has participated in
+        quiz_ids = db.session.query(Submission.quiz_id).filter_by(
+            user_id=user.id).distinct().all()
+        quiz_ids = [q[0] for q in quiz_ids]
+
+        submissions_data = []
+        total_time_spent = 0
+
+        cert_generator = get_certificate_generator()
+
+        for quiz_id in quiz_ids:
+            quiz = Quiz.query.get(quiz_id)
+            if not quiz:
+                continue
+
+            # Get submissions for this quiz
+            user_submissions = Submission.query.filter_by(
+                quiz_id=quiz_id,
+                user_id=user.id
+            ).all()
+
+            if not user_submissions:
+                continue
+
+            # Calculate score and stats
+            total_questions = len(user_submissions)
+            correct_answers = sum(1 for s in user_submissions if s.is_correct)
+            score = (correct_answers / total_questions) * \
+                100 if total_questions > 0 else 0
+
+            # Get the latest submission timestamp
+            latest_submission = max(
+                user_submissions, key=lambda s: s.timestamp)
+
+            # Calculate time spent (duration in minutes)
+            if quiz.time_duration:
+                duration_parts = quiz.time_duration.split(':')
+                duration_minutes = int(
+                    duration_parts[0]) * 60 + int(duration_parts[1])
+                total_time_spent += duration_minutes
+
+            # Check if certificate is available
+            can_generate, _ = cert_generator.can_generate_certificate(
+                user.id, quiz_id)
+
+            submission_data = {
+                'quiz_id': quiz.id,
+                'quiz_title': quiz.title,
+                'chapter_name': quiz.chapter.name,
+                'course_name': quiz.chapter.course.name,
+                'total_questions': total_questions,
+                'correct_answers': correct_answers,
+                'score': score,
+                'attempted_on': latest_submission.timestamp.isoformat(),
+                'time_duration': quiz.time_duration or '00:00',
+                'certificate_available': can_generate
+            }
+            submissions_data.append(submission_data)
+
+        # Sort by attempted date (newest first)
+        submissions_data.sort(key=lambda x: x['attempted_on'], reverse=True)
+
+        result = {
+            'submissions': submissions_data,
+            'total_time_spent': total_time_spent
+        }
+
+        # Cache for 5 minutes
+        current_app.cache.set(cache_key_name, result, timeout=300)
+        return result
+
+
+class UnsubscribeResource(Resource):
+    @jwt_required()
+    @user_required
+    def delete(self, subscription_id):
+        """Unsubscribe from a chapter"""
+        user = get_current_user()
+
+        try:
+            # Find the subscription
+            subscription = Subscription.query.filter_by(
+                id=subscription_id,
+                user_id=user.id
+            ).first()
+
+            if not subscription:
+                return {'message': 'Subscription not found'}, 404
+
+            # Delete the subscription
+            db.session.delete(subscription)
+            db.session.commit()
+
+            # Clear cache
+            cache_key_name = f'user_{user.id}_subscriptions'
+            current_app.cache.delete(cache_key_name)
+
+            return {'message': 'Successfully unsubscribed from chapter'}, 200
+
+        except Exception as e:
+            db.session.rollback()
+            return {'message': f'Error unsubscribing: {str(e)}'}, 500
+
+
 def register_user_api(api):
     api.add_resource(DashboardResource, '/user/dashboard')
     api.add_resource(QuizMetadataResource, '/user/quiz/<int:quiz_id>')
@@ -449,3 +659,8 @@ def register_user_api(api):
     api.add_resource(CourseSubscriptionResource, '/user/course-subscription')
     api.add_resource(UserExportResource, '/user/export/csv')
     api.add_resource(UserStatsResource, '/user/stats')
+    api.add_resource(UserUpcomingQuizzesResource, '/user/upcoming-quizzes')
+    api.add_resource(UserAnalyticsResource, '/user/analytics')
+    api.add_resource(UserSubmissionsResource, '/user/submissions')
+    api.add_resource(UnsubscribeResource,
+                     '/user/unsubscribe/<int:subscription_id>')

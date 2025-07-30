@@ -11,12 +11,12 @@ export const useAuthStore = defineStore('auth', {
   state: () => {
     const token = localStorage.getItem('quizzo-token')
     const user = JSON.parse(localStorage.getItem('quizzo-user') || 'null')
-    
+
     // Set axios authorization header if token exists
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     }
-    
+
     return {
       user,
       token,
@@ -29,7 +29,8 @@ export const useAuthStore = defineStore('auth', {
   getters: {
     isAdmin: (state) => state.user?.role === 'admin',
     isUser: (state) => state.user?.role === 'user',
-    userName: (state) => state.user?.name || '',
+    userName: (state) => state.user?.username || '',
+    userFullName: (state) => state.user?.name || '',
     userEmail: (state) => state.user?.email || ''
   },
 
@@ -51,11 +52,11 @@ export const useAuthStore = defineStore('auth', {
       this.token = token
       this.isAuthenticated = true
       this.error = null
-      
+
       // Persist to localStorage
       localStorage.setItem('quizzo-user', JSON.stringify(user))
       localStorage.setItem('quizzo-token', token)
-      
+
       // Set axios authorization header
       if (token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
@@ -67,11 +68,11 @@ export const useAuthStore = defineStore('auth', {
       this.token = null
       this.isAuthenticated = false
       this.error = null
-      
+
       // Clear localStorage
       localStorage.removeItem('quizzo-user')
       localStorage.removeItem('quizzo-token')
-      
+
       // Clear axios authorization header
       delete axios.defaults.headers.common['Authorization']
     },
@@ -80,10 +81,10 @@ export const useAuthStore = defineStore('auth', {
       try {
         this.setLoading(true)
         this.clearError()
-        
+
         const response = await axios.post('/auth/login', credentials)
         const { user, access_token } = response.data
-        
+
         this.setAuth(user, access_token)
         return { success: true }
       } catch (error) {
@@ -99,15 +100,15 @@ export const useAuthStore = defineStore('auth', {
       try {
         this.setLoading(true)
         this.clearError()
-        
+
         const response = await axios.post('/auth/register', userData)
-        
+
         // Registration successful, now login with the same credentials
         const loginResult = await this.login({
           email: userData.email,
           password: userData.password
         })
-        
+
         return loginResult
       } catch (error) {
         const message = error.response?.data?.message || 'Registration failed'
@@ -132,7 +133,7 @@ export const useAuthStore = defineStore('auth', {
       try {
         const response = await axios.get('/auth/me')
         const { user } = response.data
-        
+
         this.setAuth(user, this.token)
         return true
       } catch (error) {
@@ -145,7 +146,7 @@ export const useAuthStore = defineStore('auth', {
       try {
         const response = await axios.post('/auth/refresh')
         const { token } = response.data
-        
+
         this.token = token
         localStorage.setItem('quizzo-token', token)
         if (token) {
