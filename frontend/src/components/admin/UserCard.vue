@@ -44,11 +44,7 @@
                     </small>
                 </div>
 
-                <button 
-                    class="btn btn-danger w-100" 
-                    @click="$emit('delete-user', user.id)"
-                    :disabled="deleting"
-                >
+                <button class="btn btn-danger w-100" @click="$emit('delete-user', user.id)" :disabled="deleting">
                     <i class="bi bi-trash me-2"></i>
                     {{ deleting ? 'Deleting...' : 'Delete User' }}
                 </button>
@@ -165,7 +161,7 @@ export default {
     .stat-number {
         font-size: 1rem;
     }
-    
+
     .stat-label {
         font-size: 0.6rem;
     }

@@ -675,31 +675,24 @@ class CourseAnalyticsResource(Resource):
             Chapter.course_id == course_id
         ).group_by(Chapter.id, Chapter.name).all()
 
-        # Today's live quizzes for this course (expanded to include recent quizzes)
-        from datetime import date, timedelta
-        today = date.today()
-        yesterday = today - timedelta(days=1)
-        current_app.logger.info(
-            f"Looking for live quizzes for course {course_id} from {yesterday} to {today}")
+        # Today's live quizzes for this course - SIMPLIFIED
+        from datetime import date
 
+        today = date.today()
+        print(f"Looking for quizzes on {today} for course {course_id}")
+
+        # Simple query: quizzes with date_of_quiz = today's date
         live_quizzes = Quiz.query.join(Chapter).filter(
             Chapter.course_id == course_id,
-            Quiz.date_of_quiz >= yesterday,
-            Quiz.date_of_quiz <= today,
-            Quiz.is_scheduled == True
+            func.date(Quiz.date_of_quiz) == today,
+            Quiz.date_of_quiz.isnot(None)  # Must have a time set
         ).all()
 
-        current_app.logger.info(
-            f"Found {len(live_quizzes)} live quizzes for course {course_id}")
+        print(f"Found {len(live_quizzes)} live quizzes for course {course_id}")
 
-        # Also get all quizzes for today regardless of course for debugging
-        all_recent_quizzes = Quiz.query.filter(
-            Quiz.date_of_quiz >= yesterday,
-            Quiz.date_of_quiz <= today,
-            Quiz.is_scheduled == True
-        ).all()
-        current_app.logger.info(
-            f"Total recent quizzes across all courses: {len(all_recent_quizzes)}")
+        # Debug: Show what we found
+        for quiz in live_quizzes:
+            print(f"Quiz: {quiz.title}, Date: {quiz.date_of_quiz}")
 
         result = {
             'course_name': course.name,

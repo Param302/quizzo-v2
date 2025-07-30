@@ -55,7 +55,8 @@
             </div>
         </section>
 
-        <section class="py-4">
+        <!-- Charts Section -->
+        <section class="charts-section py-4">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-12">
@@ -71,7 +72,7 @@
                 <div class="row g-4 mb-5">
                     <div class="col-lg-6">
                         <div class="chart-card">
-                            <h5 class="fw-bold text-center text-dark mb-4">User Signups (Last 30 Days)</h5>
+                            <h5 class="chart-title">User Signups (Last 30 Days)</h5>
                             <div class="chart-container">
                                 <canvas ref="userSignupsChart"></canvas>
                             </div>
@@ -79,7 +80,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="chart-card">
-                            <h5 class="fw-bold text-center text-dark mb-4">User Engagement</h5>
+                            <h5 class="chart-title">User Engagement</h5>
                             <div class="chart-container">
                                 <canvas ref="userEngagementChart"></canvas>
                             </div>
@@ -116,12 +117,12 @@
                         <div class="live-quizzes-card">
                             <h5 class="fw-bold mb-3">
                                 <i class="bi bi-broadcast text-danger me-2"></i>
-                                Recent Live Quizzes - {{ courseAnalytics.course_name }}
+                                Available Quizzes - {{ courseAnalytics.course_name }}
                             </h5>
                             <div v-if="courseAnalytics.live_quizzes_today.length === 0"
                                 class="text-muted text-center py-3">
                                 <i class="bi bi-calendar-x fs-2 mb-2 d-block"></i>
-                                No recent live quizzes found
+                                No quizzes available
                             </div>
                             <div v-else class="row g-3">
                                 <div v-for="quiz in courseAnalytics.live_quizzes_today" :key="quiz.id" class="col-md-4">
@@ -768,29 +769,105 @@ export default {
 }
 
 .dashboard-header {
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(245, 124, 0, 0.1);
 }
 
-.course-select {
+.text-orange {
+    color: #f57c00;
+}
+
+.date-badge {
+    background: rgba(245, 124, 0, 0.1);
+    color: #f57c00;
+    border: 1px solid rgba(245, 124, 0, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+}
+
+.chart-header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(245, 124, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.course-selector {
+    position: relative;
+}
+
+.course-selector .form-select {
+    border-radius: 12px;
     border: 2px solid rgba(245, 124, 0, 0.3);
     background: linear-gradient(135deg, rgba(245, 124, 0, 0.1) 0%, rgba(255, 152, 0, 0.1) 100%);
+    backdrop-filter: blur(10px);
     color: #f57c00;
     font-weight: 600;
+    padding: 0.75rem 1rem;
     min-width: 200px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.1);
     transition: all 0.3s ease;
 }
 
-.course-select:focus {
+.course-selector .form-select:focus {
     border-color: #f57c00;
     box-shadow: 0 0 0 0.25rem rgba(245, 124, 0, 0.25);
     background: linear-gradient(135deg, rgba(245, 124, 0, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
 }
 
-.course-select:hover {
+.course-selector .form-select:hover {
     border-color: #f57c00;
     box-shadow: 0 6px 20px rgba(245, 124, 0, 0.2);
+}
+
+.live-quizzes-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(245, 124, 0, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(245, 124, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.live-quiz-card {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.live-quiz-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+}
+
+.chart-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(245, 124, 0, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(245, 124, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+    box-shadow: 0 12px 40px rgba(245, 124, 0, 0.15);
+    border-color: rgba(245, 124, 0, 0.2);
+}
+
+.chart-title {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .chart-container {
@@ -798,7 +875,36 @@ export default {
     height: 300px;
 }
 
-.quiz-tab {
+.modal-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(245, 124, 0, 0.1);
+    padding: 1.5rem 2rem;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.quiz-tabs-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 20px rgba(245, 124, 0, 0.1);
+}
+
+.quiz-tabs-nav .nav-link {
     border-radius: 15px;
     border: none;
     background: transparent;
@@ -806,35 +912,59 @@ export default {
     font-weight: 600;
     padding: 1rem 1.5rem;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.quiz-tab:hover {
+.quiz-tabs-nav .nav-link:hover {
     background: rgba(245, 124, 0, 0.1);
     color: #f57c00;
     transform: translateY(-1px);
 }
 
-.quiz-tab.active {
+.quiz-tabs-nav .nav-link.active {
     background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
     color: white !important;
     box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
 }
 
-.quiz-tab.active i {
+.quiz-tabs-nav .nav-link.active i {
     color: white !important;
 }
 
-.modal-backdrop.show {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+.spinner-border.text-orange {
+    color: #f57c00 !important;
 }
 
+.bg-blur {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .dashboard-header .display-6 {
+        font-size: 1.75rem;
+    }
+
+    .chart-card {
+        padding: 1rem;
+    }
+
     .chart-container {
         height: 250px;
     }
 
-    .quiz-tab {
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .live-quizzes-card {
+        padding: 1rem;
+    }
+
+    .quiz-tabs-nav .nav-link {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
     }
@@ -843,6 +973,15 @@ export default {
 @media (max-width: 576px) {
     .chart-container {
         height: 200px;
+    }
+
+    .date-badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .modal-dialog {
+        margin: 0.5rem;
     }
 }
 </style>
