@@ -1,5 +1,5 @@
 from flask import current_app
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 from app.cache import invalidate_user_cache, invalidate_quiz_cache
@@ -436,6 +436,105 @@ class ChapterQuizzesResource(Resource):
         return result
 
 
+class CourseQuizzesResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self, course_id):
+        """Get categorized quizzes for all chapters in a course"""
+        user = get_current_user()
+        cache_key_name = f'user_{user.id}_course_{course_id}_quizzes'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        course = Course.query.get(course_id)
+        if not course:
+            return {'message': 'Course not found'}, 404
+
+        # Get all quizzes for this course through chapters
+        chapters = Chapter.query.filter_by(course_id=course_id).all()
+        chapter_ids = [ch.id for ch in chapters]
+
+        if not chapter_ids:
+            return {'quizzes': {'live': [], 'upcoming': [], 'general': [], 'ended': []}}
+
+        quizzes = Quiz.query.filter(Quiz.chapter_id.in_(chapter_ids)).all()
+        now = datetime.now()
+
+        # Get user submissions for this course
+        quiz_ids = [q.id for q in quizzes]
+        user_submissions = db.session.query(Submission.quiz_id).filter(
+            Submission.user_id == user.id,
+            Submission.quiz_id.in_(quiz_ids)
+        ).distinct().all()
+        submitted_quiz_ids = {s[0] for s in user_submissions}
+
+        categorized_quizzes = {
+            'live': [],
+            'upcoming': [],
+            'general': [],
+            'ended': []
+        }
+
+        for quiz in quizzes:
+            quiz_data = {
+                'id': quiz.id,
+                'title': quiz.title,
+                'chapter': quiz.chapter.name,
+                'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
+                'time_duration': quiz.time_duration,
+                'is_scheduled': quiz.is_scheduled,
+                'remarks': quiz.remarks,
+                'question_count': len(quiz.questions),
+                'total_marks': sum(q.marks for q in quiz.questions),
+                'is_completed': quiz.id in submitted_quiz_ids
+            }
+
+            # Add submission status and score if completed
+            if quiz.id in submitted_quiz_ids:
+                from app.utils import calculate_quiz_score
+                score = calculate_quiz_score(quiz.id, user.id)
+                quiz_data['user_score'] = score
+
+            # Categorize by schedule
+            if not quiz.is_scheduled:
+                categorized_quizzes['general'].append(quiz_data)
+            elif quiz.date_of_quiz:
+                if quiz.date_of_quiz.date() == now.date():
+                    # Check if quiz is currently live
+                    if quiz.time_duration:
+                        # For scheduled quizzes with duration, check if within time window
+                        quiz_datetime = quiz.date_of_quiz
+                        duration_parts = quiz.time_duration.split(':')
+                        duration_minutes = int(
+                            duration_parts[0]) * 60 + int(duration_parts[1])
+
+                        quiz_end = quiz_datetime + \
+                            timedelta(minutes=duration_minutes)
+
+                        if quiz_datetime <= now <= quiz_end:
+                            categorized_quizzes['live'].append(quiz_data)
+                        elif now > quiz_end:
+                            categorized_quizzes['ended'].append(quiz_data)
+                        else:
+                            categorized_quizzes['upcoming'].append(quiz_data)
+                    else:
+                        categorized_quizzes['live'].append(quiz_data)
+                elif quiz.date_of_quiz > now:
+                    categorized_quizzes['upcoming'].append(quiz_data)
+                else:
+                    categorized_quizzes['ended'].append(quiz_data)
+
+        result = {
+            'quizzes': categorized_quizzes
+        }
+
+        # Cache for 3 minutes
+        current_app.cache.set(cache_key_name, result, timeout=180)
+        return result
+
+
 def register_quiz_api(api):
     api.add_resource(UpcomingQuizzesResource, '/quiz/upcoming')
     api.add_resource(OpenQuizzesResource, '/quiz/open')
@@ -444,3 +543,5 @@ def register_quiz_api(api):
     api.add_resource(QuizResultResource, '/quiz/<int:quiz_id>/result')
     api.add_resource(ChapterQuizzesResource,
                      '/quiz/courses/<int:course_id>/chapters/<int:chapter_id>')
+    api.add_resource(CourseQuizzesResource,
+                     '/quiz/courses/<int:course_id>/quizzes')

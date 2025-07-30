@@ -23,7 +23,8 @@ class Config:
 
     # Rate Limiting configuration
     RATELIMIT_STORAGE_URL = os.getenv("REDIS_URL", "redis://localhost:6379/2")
-    RATELIMIT_DEFAULT = "100 per hour"
+    # Increased default limit for better admin experience
+    RATELIMIT_DEFAULT = "1000 per hour"
     RATELIMIT_ENABLED = True
 
     # Email configuration

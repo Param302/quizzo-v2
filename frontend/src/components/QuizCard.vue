@@ -143,57 +143,6 @@ export default {
     },
     emits: ['start-quiz', 'view-details', 'download-certificate'],
     methods: {
-        getStatusBadgeClass() {
-            switch (this.tabType) {
-                case 'live':
-                    return 'bg-success'
-                case 'upcoming':
-                    return 'bg-info'
-                case 'general':
-                    return 'bg-warning'
-                case 'ended':
-                    return 'bg-danger'
-                case 'completed':
-                    return 'bg-primary'
-                default:
-                    return 'bg-secondary'
-            }
-        },
-
-        getStatusIcon() {
-            switch (this.tabType) {
-                case 'live':
-                    return 'bi-broadcast'
-                case 'upcoming':
-                    return 'bi-clock'
-                case 'general':
-                    return 'bi-infinity'
-                case 'ended':
-                    return 'bi-calendar-x'
-                case 'completed':
-                    return 'bi-check-circle'
-                default:
-                    return 'bi-question-circle'
-            }
-        },
-
-        getStatusText() {
-            switch (this.tabType) {
-                case 'live':
-                    return 'Live Now'
-                case 'upcoming':
-                    return 'Upcoming'
-                case 'general':
-                    return 'Available'
-                case 'ended':
-                    return 'Ended'
-                case 'completed':
-                    return 'Completed'
-                default:
-                    return 'Unknown'
-            }
-        },
-
         formatDate(dateString) {
             const date = new Date(dateString)
             return date.toLocaleDateString('en-US', {

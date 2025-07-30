@@ -8,6 +8,11 @@ def get_rate_limit_key():
     try:
         user_id = get_jwt_identity()
         if user_id:
+            # Check if user is admin for higher limits
+            from app.models import User
+            user = User.query.get(user_id)
+            if user and user.role == 'admin':
+                return f"admin:{user_id}"
             return f"user:{user_id}"
     except:
         pass
@@ -52,8 +57,9 @@ RATE_LIMITS = {
         'quiz_access': '20 per minute'  # quiz access operations
     },
     'admin': {
-        'default': '100 per minute',    # admin operations
-        'bulk_operations': '20 per minute'  # bulk operations
+        'default': '500 per minute',    # admin operations - much higher
+        'dashboard': '1000 per minute',  # dashboard operations - very high
+        'bulk_operations': '50 per minute'  # bulk operations
     }
 }
 
@@ -64,10 +70,23 @@ def apply_rate_limits(app):
 
     from app.api.auth import RegisterResource, LoginResource, MeResource
     from app.api.public import PublicProfileResource
+    from app.api.admin import (DashboardStatsResource, DashboardChartsResource,
+                               CourseAnalyticsResource, UsersManagementResource,
+                               SearchUsersResource, SearchQuizzesResource)
+
+    # Auth rate limits
     app.limiter.limit("5 per minute")(RegisterResource.post)
     app.limiter.limit("5 per minute")(LoginResource.post)
     app.limiter.limit("60 per minute")(MeResource.get)
     app.limiter.limit("30 per minute")(PublicProfileResource.get)
+
+    # Admin rate limits - much higher for dashboard functionality
+    app.limiter.limit("200 per minute")(DashboardStatsResource.get)
+    app.limiter.limit("200 per minute")(DashboardChartsResource.get)
+    app.limiter.limit("200 per minute")(CourseAnalyticsResource.get)
+    app.limiter.limit("100 per minute")(UsersManagementResource.get)
+    app.limiter.limit("100 per minute")(SearchUsersResource.get)
+    app.limiter.limit("100 per minute")(SearchQuizzesResource.get)
 
 
 def get_rate_limit_for_endpoint(endpoint_type, operation='default'):

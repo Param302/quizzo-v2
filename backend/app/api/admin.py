@@ -5,7 +5,8 @@ from app.cache import invalidate_quiz_cache
 from app.services.report_generator import ReportGenerator
 from flask_restful import Resource, reqparse
 from app.utils import admin_required, cache_key
-from app.models import Course, Chapter, Quiz, Question, User, Submission, db
+from app.models import Course, Chapter, Quiz, Question, User, Subscription, Submission, db
+from sqlalchemy import func, extract
 
 
 class CourseResource(Resource):
@@ -554,11 +555,19 @@ class DashboardStatsResource(Resource):
         recent_submissions = Submission.query.filter(
             Submission.timestamp >= week_ago).count()
 
+        # User engagement stats
+        subscribed_users = db.session.query(
+            User.id).join(Subscription).distinct().count()
+        subscription_rate = (subscribed_users /
+                             total_users * 100) if total_users > 0 else 0
+
         result = {
             'stats': {
                 'users': {
                     'total': total_users,
-                    'admins': total_admins
+                    'admins': total_admins,
+                    'subscribed': subscribed_users,
+                    'subscription_rate': round(subscription_rate, 2)
                 },
                 'content': {
                     'courses': total_courses,
@@ -576,6 +585,217 @@ class DashboardStatsResource(Resource):
         # Cache for 10 minutes
         current_app.cache.set(cache_key_name, result, timeout=600)
         return result
+
+
+class DashboardChartsResource(Resource):
+    @jwt_required()
+    @admin_required
+    def get(self):
+        """Dashboard charts data"""
+        cache_key_name = 'admin_dashboard_charts'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        from datetime import datetime, timedelta
+
+        # User signups over time (last 30 days)
+        thirty_days_ago = datetime.now() - timedelta(days=30)
+        user_signups = db.session.query(
+            func.date(User.created_at).label('date'),
+            func.count(User.id).label('count')
+        ).filter(
+            User.created_at >= thirty_days_ago,
+            User.role == 'user'
+        ).group_by(func.date(User.created_at)).all()
+
+        # Quiz submission volume by day (last 30 days)
+        submission_volume = db.session.query(
+            func.date(Submission.timestamp).label('date'),
+            func.count(Submission.id).label('count')
+        ).filter(
+            Submission.timestamp >= thirty_days_ago
+        ).group_by(func.date(Submission.timestamp)).all()
+
+        # Course popularity (submission counts)
+        course_popularity = db.session.query(
+            Course.name,
+            func.count(Submission.id).label('submissions')
+        ).select_from(Course).join(Chapter).join(Quiz).join(Submission).group_by(Course.id, Course.name).all()
+
+        # User engagement data
+        total_users = User.query.filter_by(role='user').count()
+        subscribed_users = db.session.query(
+            User.id).join(Subscription).distinct().count()
+        unsubscribed_users = total_users - subscribed_users
+
+        result = {
+            'user_signups': [
+                {'date': str(item.date), 'count': item.count}
+                for item in user_signups
+            ],
+            'submission_volume': [
+                {'date': str(item.date), 'count': item.count}
+                for item in submission_volume
+            ],
+            'course_popularity': [
+                {'course': item.name, 'submissions': item.submissions}
+                for item in course_popularity
+            ],
+            'user_engagement': {
+                'subscribed': subscribed_users,
+                'unsubscribed': unsubscribed_users
+            }
+        }
+
+        # Cache for 15 minutes
+        current_app.cache.set(cache_key_name, result, timeout=900)
+        return result
+
+
+class CourseAnalyticsResource(Resource):
+    @jwt_required()
+    @admin_required
+    def get(self, course_id):
+        """Course-specific analytics"""
+        cache_key_name = f'admin_course_analytics_{course_id}'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        course = Course.query.get_or_404(course_id)
+
+        # Chapter quiz attempt rates
+        chapter_analytics = db.session.query(
+            Chapter.name,
+            func.count(Submission.id).label('attempts')
+        ).select_from(Chapter).outerjoin(Quiz).outerjoin(Submission).filter(
+            Chapter.course_id == course_id
+        ).group_by(Chapter.id, Chapter.name).all()
+
+        # Today's live quizzes for this course (expanded to include recent quizzes)
+        from datetime import date, timedelta
+        today = date.today()
+        yesterday = today - timedelta(days=1)
+        current_app.logger.info(
+            f"Looking for live quizzes for course {course_id} from {yesterday} to {today}")
+
+        live_quizzes = Quiz.query.join(Chapter).filter(
+            Chapter.course_id == course_id,
+            Quiz.date_of_quiz >= yesterday,
+            Quiz.date_of_quiz <= today,
+            Quiz.is_scheduled == True
+        ).all()
+
+        current_app.logger.info(
+            f"Found {len(live_quizzes)} live quizzes for course {course_id}")
+
+        # Also get all quizzes for today regardless of course for debugging
+        all_recent_quizzes = Quiz.query.filter(
+            Quiz.date_of_quiz >= yesterday,
+            Quiz.date_of_quiz <= today,
+            Quiz.is_scheduled == True
+        ).all()
+        current_app.logger.info(
+            f"Total recent quizzes across all courses: {len(all_recent_quizzes)}")
+
+        result = {
+            'course_name': course.name,
+            'chapter_analytics': [
+                {'chapter': item.name, 'attempts': item.attempts}
+                for item in chapter_analytics
+            ],
+            'live_quizzes_today': [
+                {
+                    'id': quiz.id,
+                    'title': quiz.title,
+                    'chapter': quiz.chapter.name,
+                    'time': quiz.date_of_quiz.strftime('%H:%M') if quiz.date_of_quiz else None
+                }
+                for quiz in live_quizzes
+            ]
+        }
+
+        # Cache for 30 minutes
+        current_app.cache.set(cache_key_name, result, timeout=1800)
+        return result
+
+
+class UsersManagementResource(Resource):
+    @jwt_required()
+    @admin_required
+    def get(self):
+        """Get all users with their stats"""
+        cache_key_name = 'admin_users_management'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        # Get users with their stats
+        users_data = []
+        users = User.query.filter_by(role='user').all()
+
+        for user in users:
+            # Get user's submission count
+            submission_count = Submission.query.filter_by(
+                user_id=user.id).count()
+
+            # Get user's subscription count
+            subscription_count = Subscription.query.filter_by(
+                user_id=user.id).count()
+
+            # Get user's average score
+            avg_score = db.session.query(
+                func.avg(Submission.obtained_marks)).filter_by(user_id=user.id).scalar()
+            avg_score = round(avg_score, 2) if avg_score else 0
+
+            users_data.append({
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'created_at': user.created_at.isoformat() if user.created_at else None,
+                'stats': {
+                    'quiz_attempts': submission_count,
+                    'subscriptions': subscription_count,
+                    'average_score': avg_score
+                }
+            })
+
+        result = {'users': users_data}
+
+        # Cache for 5 minutes
+        current_app.cache.set(cache_key_name, result, timeout=300)
+        return result
+
+    @jwt_required()
+    @admin_required
+    def delete(self):
+        """Delete a user"""
+        parser = reqparse.RequestParser()
+        parser.add_argument('user_id', type=int,
+                            required=True, help='User ID is required')
+        args = parser.parse_args()
+
+        user = User.query.get_or_404(args['user_id'])
+
+        if user.role == 'admin':
+            return {'message': 'Cannot delete admin users'}, 400
+
+        # Delete related data
+        Subscription.query.filter_by(user_id=user.id).delete()
+        Submission.query.filter_by(user_id=user.id).delete()
+
+        db.session.delete(user)
+        db.session.commit()
+
+        # Clear cache
+        current_app.cache.delete('admin_users_management')
+        current_app.cache.delete('admin_dashboard_stats')
+
+        return {'message': 'User deleted successfully'}, 200
 
 
 class AdminExportResource(Resource):
@@ -620,4 +840,8 @@ def register_admin_api(api):
     api.add_resource(SearchUsersResource, '/admin/search/users')
     api.add_resource(SearchQuizzesResource, '/admin/search/quizzes')
     api.add_resource(DashboardStatsResource, '/admin/dashboard/stats')
+    api.add_resource(DashboardChartsResource, '/admin/dashboard/charts')
+    api.add_resource(CourseAnalyticsResource,
+                     '/admin/courses/<int:course_id>/analytics')
+    api.add_resource(UsersManagementResource, '/admin/users')
     api.add_resource(AdminExportResource, '/admin/export/csv')

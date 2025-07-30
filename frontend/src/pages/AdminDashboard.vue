@@ -1,203 +1,848 @@
 <template>
     <div class="admin-dashboard">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div>
-                            <h1 class="fw-bold">Admin Dashboard</h1>
-                            <p class="text-muted mb-0">Welcome back, {{ authStore.userName }}</p>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary">
-                                <i class="bi bi-plus-circle me-2"></i>
-                                Create Quiz
-                            </button>
+        <!-- Header Section -->
+        <section class="dashboard-header py-4 bg-blur">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="display-6 fw-bold mb-2 text-orange">Admin Dashboard</h1>
+                        <p class="lead fw-medium mb-0">Welcome back, {{ authStore.userName }}</p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <div class="dashboard-date">
+                            <span class="badge date-badge">
+                                <i class="bi bi-calendar-event me-2"></i>
+                                {{ currentDate }}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Overview Stats -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-3">
-                    <div class="card bg-primary text-white">
-                        <div class="card-body text-center">
-                            <i class="bi bi-people-fill fs-2 mb-2"></i>
-                            <h4 class="fw-bold">1,234</h4>
-                            <small>Total Users</small>
-                        </div>
+        <!-- Stats Overview -->
+        <section class="stats-section py-4">
+            <div class="container">
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-4 col-md-6">
+                        <StatsCard icon="bi bi-people-fill" :value="dashboardStats.users?.total || 0"
+                            label="Total Users" :trend="getUserTrend()" />
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <StatsCard icon="bi bi-question-circle-fill" :value="dashboardStats.content?.quizzes || 0"
+                            label="Total Quizzes" />
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <StatsCard icon="bi bi-clipboard-check-fill"
+                            :value="dashboardStats.activity?.total_submissions || 0" label="Quiz Attempts"
+                            :trend="getSubmissionTrend()" />
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card bg-success text-white">
-                        <div class="card-body text-center">
-                            <i class="bi bi-question-circle-fill fs-2 mb-2"></i>
-                            <h4 class="fw-bold">89</h4>
-                            <small>Total Quizzes</small>
-                        </div>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-6">
+                        <ActionCard icon="bi bi-people-fill" title="Manage Users"
+                            description="View, edit, and manage user accounts. Monitor user activity and engagement statistics."
+                            button-text="Manage Users" button-icon="bi bi-people" @click="showUsersManagement = true" />
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card bg-warning text-white">
-                        <div class="card-body text-center">
-                            <i class="bi bi-clipboard-check-fill fs-2 mb-2"></i>
-                            <h4 class="fw-bold">5,678</h4>
-                            <small>Quiz Attempts</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card bg-info text-white">
-                        <div class="card-body text-center">
-                            <i class="bi bi-graph-up fs-2 mb-2"></i>
-                            <h4 class="fw-bold">82%</h4>
-                            <small>Avg Score</small>
-                        </div>
+                    <div class="col-lg-6">
+                        <ActionCard icon="bi bi-question-circle-fill" title="Manage Quizzes"
+                            description="Create, edit, and organize quizzes across different courses and chapters."
+                            button-text="Manage Quizzes" button-icon="bi bi-question-circle"
+                            @click="showQuizzesManagement = true" />
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="row">
-                <!-- Recent Activity -->
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Recent Activity</h5>
-                            <router-link to="/admin/users" class="btn btn-sm btn-outline-primary">
-                                View All Users
-                            </router-link>
+        <section class="py-4">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="chart-header mb-4">
+                            <h3 class="fw-bold mb-0">
+                                <i class="bi bi-people me-2 text-orange"></i>
+                                User Analytics
+                            </h3>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>User</th>
-                                            <th>Action</th>
-                                            <th>Quiz</th>
-                                            <th>Score</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2"
-                                                        style="width: 30px; height: 30px; font-size: 12px;">
-                                                        JD
-                                                    </div>
-                                                    John Doe
-                                                </div>
-                                            </td>
-                                            <td><span class="badge bg-success">Completed</span></td>
-                                            <td>JavaScript Basics</td>
-                                            <td>92%</td>
-                                            <td>2 min ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2"
-                                                        style="width: 30px; height: 30px; font-size: 12px;">
-                                                        AS
-                                                    </div>
-                                                    Alice Smith
-                                                </div>
-                                            </td>
-                                            <td><span class="badge bg-info">Started</span></td>
-                                            <td>Python Fundamentals</td>
-                                            <td>-</td>
-                                            <td>5 min ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2"
-                                                        style="width: 30px; height: 30px; font-size: 12px;">
-                                                        BJ
-                                                    </div>
-                                                    Bob Johnson
-                                                </div>
-                                            </td>
-                                            <td><span class="badge bg-success">Completed</span></td>
-                                            <td>Web Development</td>
-                                            <td>78%</td>
-                                            <td>10 min ago</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <h5 class="fw-bold text-center text-dark mb-4">User Signups (Last 30 Days)</h5>
+                            <div class="chart-container">
+                                <canvas ref="userSignupsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <h5 class="fw-bold text-center text-dark mb-4">User Engagement</h5>
+                            <div class="chart-container">
+                                <canvas ref="userEngagementChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Quick Actions</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-grid gap-2">
-                                <router-link to="/admin/users" class="btn btn-outline-primary">
-                                    <i class="bi bi-people me-2"></i>
-                                    Manage Users
-                                </router-link>
-                                <router-link to="/admin/quizzes" class="btn btn-outline-primary">
-                                    <i class="bi bi-question-circle me-2"></i>
-                                    Manage Quizzes
-                                </router-link>
-                                <button class="btn btn-outline-primary">
-                                    <i class="bi bi-graph-up me-2"></i>
-                                    View Reports
-                                </button>
-                                <button class="btn btn-outline-primary">
-                                    <i class="bi bi-gear me-2"></i>
-                                    System Settings
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mt-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">System Status</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small>Server Status</small>
-                                <span class="badge bg-success">Online</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small>Database</small>
-                                <span class="badge bg-success">Connected</span>
-                            </div>
+                <!-- Course Analytics Section -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="chart-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <small>Cache</small>
-                                <span class="badge bg-success">Active</span>
+                                <h3 class="fw-bold mb-0">
+                                    <i class="bi bi-graph-up me-2 text-orange"></i>
+                                    Course Analytics
+                                </h3>
+                                <div class="course-selector">
+                                    <select v-model="selectedCourseId" @change="loadCourseAnalytics"
+                                        class="form-select">
+                                        <option value="">Select Course</option>
+                                        <option v-for="course in courses" :key="course.id" :value="course.id">
+                                            {{ course.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Quizzes for Selected Course -->
+                <div v-if="selectedCourseId && courseAnalytics" class="row mb-4">
+                    <div class="col-12">
+                        <div class="live-quizzes-card">
+                            <h5 class="fw-bold mb-3">
+                                <i class="bi bi-broadcast text-danger me-2"></i>
+                                Recent Live Quizzes - {{ courseAnalytics.course_name }}
+                            </h5>
+                            <div v-if="courseAnalytics.live_quizzes_today.length === 0"
+                                class="text-muted text-center py-3">
+                                <i class="bi bi-calendar-x fs-2 mb-2 d-block"></i>
+                                No recent live quizzes found
+                            </div>
+                            <div v-else class="row g-3">
+                                <div v-for="quiz in courseAnalytics.live_quizzes_today" :key="quiz.id" class="col-md-4">
+                                    <div class="live-quiz-card">
+                                        <h6 class="fw-bold mb-1">{{ quiz.title }}</h6>
+                                        <p class="text-muted mb-1">{{ quiz.chapter }}</p>
+                                        <small class="text-success">
+                                            <i class="bi bi-clock me-1"></i>
+                                            {{ formatTimeIST(quiz.time) }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Selection Prompt -->
+                <div v-if="!selectedCourseId" class="row mb-4">
+                    <div class="col-12">
+                        <div class="live-quizzes-card text-center">
+                            <i class="bi bi-graph-up fs-1 text-orange mb-3"></i>
+                            <h5 class="fw-bold mb-2">Select a Course</h5>
+                            <p class="text-muted">Choose a course from the dropdown above to view live quizzes and
+                                analytics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Performance Charts Grid -->
+                <div class="row g-4">
+                    <!-- Course Popularity Chart -->
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <h5 class="chart-title">Course Popularity</h5>
+                            <div class="chart-container">
+                                <canvas ref="coursePopularityChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter Analytics (if course selected) -->
+                    <div v-if="selectedCourseId && courseAnalytics" class="col-lg-6">
+                        <div class="chart-card">
+                            <h5 class="chart-title">{{ courseAnalytics.course_name }} - Chapter Performance</h5>
+                            <div class="chart-container">
+                                <canvas ref="chapterAnalyticsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submission Volume Heatmap -->
+                    <div class="col-12">
+                        <div class="chart-card">
+                            <h5 class="chart-title">Quiz Submission Volume (Last 30 Days)</h5>
+                            <div class="chart-container">
+                                <canvas ref="submissionHeatmapChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Management Modal -->
+        <div v-if="showUsersManagement" class="modal fade show modal-backdrop" style="display: block;"
+            @click.self="showUsersManagement = false">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">
+                            <i class="bi bi-people me-2 text-orange"></i>
+                            Users Management
+                        </h5>
+                        <button type="button" class="btn-close" @click="showUsersManagement = false"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if="loadingUsers" class="text-center py-5">
+                            <div class="spinner-border text-orange" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div v-else class="row g-3">
+                            <div v-for="user in users" :key="user.id" class="col-lg-4 col-md-6">
+                                <UserCard :user="user" :deleting="deletingUserId === user.id"
+                                    @delete-user="confirmDeleteUser" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Quizzes Management Modal -->
+        <div v-if="showQuizzesManagement" class="modal fade show modal-backdrop" style="display: block;"
+            @click.self="showQuizzesManagement = false">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">
+                            <i class="bi bi-question-circle me-2 text-orange"></i>
+                            Quizzes Management
+                        </h5>
+                        <button type="button" class="btn-close" @click="showQuizzesManagement = false"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Course Selector -->
+                        <div class="mb-4">
+                            <select v-model="selectedQuizCourseId" @change="loadQuizzes" class="form-select">
+                                <option value="">Select Course</option>
+                                <option v-for="course in courses" :key="course.id" :value="course.id">
+                                    {{ course.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div v-if="selectedQuizCourseId">
+                            <!-- Quiz Tabs -->
+                            <div class="quiz-tabs-nav mb-4">
+                                <ul class="nav nav-pills nav-fill">
+                                    <li class="nav-item">
+                                        <button class="nav-link" :class="{ active: activeQuizTab === 'live' }"
+                                            @click="activeQuizTab = 'live'">
+                                            <i class="bi bi-broadcast me-2 text-danger"></i>
+                                            Live
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link" :class="{ active: activeQuizTab === 'upcoming' }"
+                                            @click="activeQuizTab = 'upcoming'">
+                                            <i class="bi bi-clock me-2 text-warning"></i>
+                                            Upcoming
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link" :class="{ active: activeQuizTab === 'general' }"
+                                            @click="activeQuizTab = 'general'">
+                                            <i class="bi bi-infinity me-2 text-success"></i>
+                                            Available
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link" :class="{ active: activeQuizTab === 'ended' }"
+                                            @click="activeQuizTab = 'ended'">
+                                            <i class="bi bi-calendar-x me-2 text-secondary"></i>
+                                            Ended
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Quiz Cards -->
+                            <div v-if="activeQuizzes.length === 0" class="text-center py-5">
+                                <i class="bi bi-inbox text-muted fs-1 mb-3 d-block"></i>
+                                <h5 class="text-muted">No {{ activeQuizTab }} quizzes</h5>
+                            </div>
+                            <div v-else class="row g-3">
+                                <div v-for="quiz in activeQuizzes" :key="quiz.id" class="col-lg-4 col-md-6">
+                                    <QuizCard :quiz="quiz" :tab-type="activeQuizTab" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <Toast v-if="toast.show" :message="toast.message" :variant="toast.type" @close="toast.show = false" />
     </div>
 </template>
 
-<script setup>
+<script>
+import { ref, computed, onMounted, watch } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { Chart, registerables } from 'chart.js'
+import StatsCard from '@/components/admin/StatsCard.vue'
+import ActionCard from '@/components/admin/ActionCard.vue'
+import UserCard from '@/components/admin/UserCard.vue'
+import QuizCard from '@/components/QuizCard.vue'
+import Toast from '@/components/Toast.vue'
+import axios from 'axios'
 
-const authStore = useAuthStore()
+Chart.register(...registerables)
+
+export default {
+    name: 'AdminDashboard',
+    components: {
+        StatsCard,
+        ActionCard,
+        UserCard,
+        QuizCard,
+        Toast
+    },
+    setup() {
+        const authStore = useAuthStore()
+
+        const dashboardStats = ref({})
+        const chartsData = ref({})
+        const courses = ref([])
+        const selectedCourseId = ref('')
+        const selectedQuizCourseId = ref('')
+        const courseAnalytics = ref(null)
+        const users = ref([])
+        const quizzes = ref({})
+        const activeQuizTab = ref('live')
+
+        const showUsersManagement = ref(false)
+        const showQuizzesManagement = ref(false)
+        const loadingUsers = ref(false)
+        const deletingUserId = ref(null)
+
+        const toast = ref({
+            show: false,
+            message: '',
+            type: 'success'
+        })
+
+        const userSignupsChart = ref(null)
+        const userEngagementChart = ref(null)
+        const coursePopularityChart = ref(null)
+        const chapterAnalyticsChart = ref(null)
+        const submissionHeatmapChart = ref(null)
+
+        let chartInstances = {}
+
+        const currentDate = computed(() => {
+            return new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+        })
+
+        const getUserTrend = () => {
+            if (dashboardStats.value.activity?.recent_submissions > 10) {
+                return '+12% this week'
+            }
+            return null
+        }
+
+        const getSubmissionTrend = () => {
+            if (dashboardStats.value.activity?.recent_submissions) {
+                return `${dashboardStats.value.activity.recent_submissions} this week`
+            }
+            return null
+        }
+
+        const activeQuizzes = computed(() => {
+            if (!quizzes.value || !activeQuizTab.value) return []
+            return quizzes.value[activeQuizTab.value] || []
+        })
+
+        const loadDashboardStats = async () => {
+            try {
+                const response = await axios.get('/admin/dashboard/stats')
+                dashboardStats.value = response.data.stats
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error)
+                showToast('Failed to load dashboard statistics', 'error')
+            }
+        }
+
+        const loadChartsData = async () => {
+            try {
+                const response = await axios.get('/admin/dashboard/charts')
+                chartsData.value = response.data
+                renderCharts()
+            } catch (error) {
+                console.error('Error loading charts data:', error)
+                showToast('Failed to load charts data', 'error')
+            }
+        }
+
+        const loadCourses = async () => {
+            try {
+                const response = await axios.get('/admin/courses')
+                courses.value = response.data.courses
+                if (courses.value.length > 0) {
+                    selectedQuizCourseId.value = courses.value[0].id
+                }
+            } catch (error) {
+                console.error('Error loading courses:', error)
+            }
+        }
+
+        const loadCourseAnalytics = async () => {
+            if (!selectedCourseId.value) return
+
+            try {
+                const response = await axios.get(`/admin/courses/${selectedCourseId.value}/analytics`)
+                courseAnalytics.value = response.data
+                renderChapterAnalyticsChart()
+            } catch (error) {
+                console.error('Error loading course analytics:', error)
+            }
+        }
+
+        const loadUsers = async () => {
+            loadingUsers.value = true
+            try {
+                const response = await axios.get('/admin/users')
+                users.value = response.data.users
+            } catch (error) {
+                console.error('Error loading users:', error)
+                showToast('Failed to load users', 'error')
+            } finally {
+                loadingUsers.value = false
+            }
+        }
+
+        const loadQuizzes = async () => {
+            if (!selectedQuizCourseId.value) return
+
+            try {
+                const response = await axios.get(`/quiz/courses/${selectedQuizCourseId.value}/quizzes`)
+                quizzes.value = response.data.quizzes
+            } catch (error) {
+                console.error('Error loading quizzes:', error)
+                showToast('Failed to load quizzes', 'error')
+            }
+        }
+
+        const confirmDeleteUser = async (userId) => {
+            if (!confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+                return
+            }
+
+            deletingUserId.value = userId
+            try {
+                await axios.delete('/admin/users', { data: { user_id: userId } })
+                users.value = users.value.filter(user => user.id !== userId)
+                showToast('User deleted successfully', 'success')
+                await loadDashboardStats()
+            } catch (error) {
+                console.error('Error deleting user:', error)
+                showToast('Failed to delete user', 'error')
+            } finally {
+                deletingUserId.value = null
+            }
+        }
+
+        const renderCharts = () => {
+            renderUserSignupsChart()
+            renderUserEngagementChart()
+            renderCoursePopularityChart()
+            renderSubmissionHeatmapChart()
+        }
+
+        const renderUserSignupsChart = () => {
+            if (!userSignupsChart.value || !chartsData.value.user_signups) return
+
+            const ctx = userSignupsChart.value.getContext('2d')
+
+            if (chartInstances.userSignups) {
+                chartInstances.userSignups.destroy()
+            }
+
+            const labels = chartsData.value.user_signups.map(item =>
+                new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+            )
+            const data = chartsData.value.user_signups.map(item => item.count)
+
+            chartInstances.userSignups = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'New Users',
+                        data,
+                        borderColor: '#f57c00',
+                        backgroundColor: 'rgba(245, 124, 0, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
+        }
+
+        const renderUserEngagementChart = () => {
+            if (!userEngagementChart.value || !chartsData.value.user_engagement) return
+
+            const ctx = userEngagementChart.value.getContext('2d')
+
+            if (chartInstances.userEngagement) {
+                chartInstances.userEngagement.destroy()
+            }
+
+            const engagement = chartsData.value.user_engagement
+
+            chartInstances.userEngagement = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Subscribed Users', 'Unsubscribed Users'],
+                    datasets: [{
+                        data: [engagement.subscribed, engagement.unsubscribed],
+                        backgroundColor: ['#f57c00', '#e0e0e0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            })
+        }
+
+        const renderCoursePopularityChart = () => {
+            if (!coursePopularityChart.value || !chartsData.value.course_popularity) return
+
+            const ctx = coursePopularityChart.value.getContext('2d')
+
+            if (chartInstances.coursePopularity) {
+                chartInstances.coursePopularity.destroy()
+            }
+
+            const labels = chartsData.value.course_popularity.map(item => item.course)
+            const data = chartsData.value.course_popularity.map(item => item.submissions)
+
+            chartInstances.coursePopularity = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Submissions',
+                        data,
+                        backgroundColor: 'rgba(245, 124, 0, 0.8)',
+                        borderColor: '#f57c00',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
+        }
+
+        const renderChapterAnalyticsChart = () => {
+            if (!chapterAnalyticsChart.value || !courseAnalytics.value?.chapter_analytics) return
+
+            const ctx = chapterAnalyticsChart.value.getContext('2d')
+
+            if (chartInstances.chapterAnalytics) {
+                chartInstances.chapterAnalytics.destroy()
+            }
+
+            const data = courseAnalytics.value.chapter_analytics
+
+            chartInstances.chapterAnalytics = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.map(item => item.chapter),
+                    datasets: [{
+                        data: data.map(item => item.attempts),
+                        backgroundColor: [
+                            '#f57c00',
+                            '#ff9800',
+                            '#ffb74d',
+                            '#ffcc80',
+                            '#ffe0b2',
+                            '#fff3e0'
+                        ].slice(0, data.length)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            })
+        }
+
+        const renderSubmissionHeatmapChart = () => {
+            if (!submissionHeatmapChart.value || !chartsData.value.submission_volume) return
+
+            const ctx = submissionHeatmapChart.value.getContext('2d')
+
+            if (chartInstances.submissionHeatmap) {
+                chartInstances.submissionHeatmap.destroy()
+            }
+
+            const labels = chartsData.value.submission_volume.map(item =>
+                new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+            )
+            const data = chartsData.value.submission_volume.map(item => item.count)
+
+            chartInstances.submissionHeatmap = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Submissions',
+                        data,
+                        backgroundColor: data.map(value => {
+                            const intensity = Math.min(value / Math.max(...data), 1)
+                            return `rgba(245, 124, 0, ${0.3 + intensity * 0.7})`
+                        }),
+                        borderColor: '#f57c00',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
+        }
+
+        const showToast = (message, type = 'success') => {
+            toast.value = { show: true, message, type }
+            setTimeout(() => {
+                toast.value.show = false
+            }, 5000)
+        }
+
+        const formatTimeIST = (timeString) => {
+            if (!timeString) return 'All day'
+
+            try {
+                const today = new Date()
+                const [hours, minutes] = timeString.split(':').map(Number)
+                const dateTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hours, minutes)
+
+                return dateTime.toLocaleString('en-IN', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Kolkata'
+                })
+            } catch (error) {
+                return timeString || 'All day'
+            }
+        }
+
+        watch(showUsersManagement, (newVal) => {
+            if (newVal) {
+                loadUsers()
+            }
+        })
+
+        watch(showQuizzesManagement, (newVal) => {
+            if (newVal && selectedQuizCourseId.value) {
+                loadQuizzes()
+            }
+        })
+
+        watch(selectedCourseId, () => {
+            if (selectedCourseId.value) {
+                loadCourseAnalytics()
+            }
+        })
+
+        watch(selectedQuizCourseId, () => {
+            if (selectedQuizCourseId.value) {
+                loadQuizzes()
+            }
+        })
+
+        onMounted(async () => {
+            await Promise.all([
+                loadDashboardStats(),
+                loadChartsData(),
+                loadCourses()
+            ])
+        })
+
+        return {
+            authStore,
+            dashboardStats,
+            courses,
+            selectedCourseId,
+            selectedQuizCourseId,
+            courseAnalytics,
+            users,
+            quizzes,
+            activeQuizTab,
+            activeQuizzes,
+            showUsersManagement,
+            showQuizzesManagement,
+            loadingUsers,
+            deletingUserId,
+            currentDate,
+            toast,
+            userSignupsChart,
+            userEngagementChart,
+            coursePopularityChart,
+            chapterAnalyticsChart,
+            submissionHeatmapChart,
+            getUserTrend,
+            getSubmissionTrend,
+            loadCourseAnalytics,
+            loadQuizzes,
+            confirmDeleteUser,
+            formatTimeIST
+        }
+    }
+}
 </script>
 
 <style scoped>
-.card {
-    transition: transform 0.2s ease;
+.admin-dashboard {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(245, 124, 0, 0.05) 0%, rgba(245, 124, 0, 0.02) 100%);
 }
 
-.card:hover {
-    transform: translateY(-2px);
+.dashboard-header {
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(245, 124, 0, 0.1);
+}
+
+.course-select {
+    border: 2px solid rgba(245, 124, 0, 0.3);
+    background: linear-gradient(135deg, rgba(245, 124, 0, 0.1) 0%, rgba(255, 152, 0, 0.1) 100%);
+    color: #f57c00;
+    font-weight: 600;
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.course-select:focus {
+    border-color: #f57c00;
+    box-shadow: 0 0 0 0.25rem rgba(245, 124, 0, 0.25);
+    background: linear-gradient(135deg, rgba(245, 124, 0, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+}
+
+.course-select:hover {
+    border-color: #f57c00;
+    box-shadow: 0 6px 20px rgba(245, 124, 0, 0.2);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+
+.quiz-tab {
+    border-radius: 15px;
+    border: none;
+    background: transparent;
+    color: #6c757d;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.quiz-tab:hover {
+    background: rgba(245, 124, 0, 0.1);
+    color: #f57c00;
+    transform: translateY(-1px);
+}
+
+.quiz-tab.active {
+    background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
+}
+
+.quiz-tab.active i {
+    color: white !important;
+}
+
+.modal-backdrop.show {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+
+    .quiz-tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .chart-container {
+        height: 200px;
+    }
 }
 </style>
