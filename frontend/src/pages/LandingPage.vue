@@ -14,7 +14,7 @@
                                 Challenge yourself, track your progress, and compete with friends.
                             </p>
                             <div class="d-flex gap-3 flex-wrap mb-4">
-                                <router-link :to="authStore.isAuthenticated ? '/courses' : '/courses'"
+                                <router-link :to="'/courses'"
                                     class="btn btn-primary btn-lg animate-bounce-in modern-btn">
                                     <i class="bi bi-play-circle me-2"></i>
                                     Explore Quizzes

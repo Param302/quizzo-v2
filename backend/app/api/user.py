@@ -650,6 +650,80 @@ class UnsubscribeResource(Resource):
             return {'message': f'Error unsubscribing: {str(e)}'}, 500
 
 
+class UserProfileResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self, username=None):
+        """Get user profile - own profile includes email, others don't"""
+        current_user = get_current_user()
+
+        # If no username provided, get current user's profile
+        if not username:
+            username = current_user.username
+
+        # Remove @ from username if present
+        if username.startswith('@'):
+            username = username[1:]
+
+        cache_key_name = f'user_profile_{username}_{current_user.id}'
+        cached_result = current_app.cache.get(cache_key_name)
+
+        if cached_result:
+            return cached_result
+
+        # Find target user by username
+        target_user = User.query.filter_by(username=username).first()
+        if not target_user:
+            return {'message': 'User not found'}, 404
+
+        # Get user stats
+        stats = get_user_quiz_stats(target_user.id)
+
+        # Calculate total time spent
+        submissions = Submission.query.filter_by(user_id=target_user.id).all()
+        total_time_spent = 0
+        for submission in submissions:
+            if submission.time_duration:
+                try:
+                    time_parts = submission.time_duration.split(':')
+                    if len(time_parts) == 3:  # HH:MM:SS format
+                        hours = int(time_parts[0])
+                        minutes = int(time_parts[1])
+                        duration_minutes = hours * 60 + minutes
+                        total_time_spent += duration_minutes
+                    elif len(time_parts) == 2:  # MM:SS format
+                        minutes = int(time_parts[0])
+                        total_time_spent += minutes
+                except (ValueError, IndexError):
+                    continue
+
+        # Prepare user data
+        user_data = {
+            'username': target_user.username,
+            'name': target_user.name,
+            'created_at': target_user.created_at.isoformat()
+        }
+
+        # Include email only if viewing own profile
+        if current_user.id == target_user.id:
+            user_data['email'] = target_user.email
+
+        result = {
+            'user': user_data,
+            'stats': {
+                'total_quizzes_taken': stats['total_quizzes'],
+                'total_questions_answered': stats['total_questions'],
+                'overall_accuracy': stats['overall_accuracy'],
+                'total_time_spent': total_time_spent
+            },
+            'is_own_profile': current_user.id == target_user.id
+        }
+
+        # Cache for 10 minutes
+        current_app.cache.set(cache_key_name, result, timeout=600)
+        return result
+
+
 def register_user_api(api):
     api.add_resource(DashboardResource, '/user/dashboard')
     api.add_resource(QuizMetadataResource, '/user/quiz/<int:quiz_id>')
@@ -664,3 +738,5 @@ def register_user_api(api):
     api.add_resource(UserSubmissionsResource, '/user/submissions')
     api.add_resource(UnsubscribeResource,
                      '/user/unsubscribe/<int:subscription_id>')
+    api.add_resource(UserProfileResource, '/user/profile',
+                     '/user/profile/<string:username>')

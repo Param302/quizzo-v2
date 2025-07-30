@@ -247,7 +247,8 @@
 												<div class="course-chip mb-2">
 													<span class="course-badge">{{ subscription.course_name }}</span>
 												</div>
-												<div class="small mb-1 text-warning fw-semibold">{{ subscription.quiz_count }} quizzes
+												<div class="small mb-1 text-warning fw-semibold">{{
+													subscription.quiz_count }} quizzes
 												</div>
 											</div>
 											<div class="d-flex align-items-center gap-2">
@@ -1200,9 +1201,50 @@ onMounted(async () => {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+	.hero-title {
+		font-size: 2.5rem;
+	}
+
+	.quiz-tabs-nav .nav-link {
+		padding: 0.9rem 1.3rem;
+		font-size: 0.95rem;
+	}
+}
+
+@media (max-width: 992px) {
+	.hero-title {
+		font-size: 2.2rem;
+	}
+
+	.stats-number {
+		font-size: 2.2rem;
+	}
+
+	.quiz-tabs-nav .nav-link {
+		padding: 0.8rem 1.1rem;
+		font-size: 0.9rem;
+	}
+
+	.chart-container {
+		height: 300px;
+	}
+
+	/* Make dashboard header responsive */
+	.dashboard-header .col-lg-8,
+	.dashboard-header .col-lg-4 {
+		text-align: center;
+	}
+
+	.text-lg-end {
+		text-align: center !important;
+	}
+}
+
 @media (max-width: 768px) {
 	.hero-title {
-		font-size: 2rem;
+		font-size: 1.8rem;
+		text-align: center;
 	}
 
 	.stats-number {
@@ -1211,7 +1253,7 @@ onMounted(async () => {
 
 	.quiz-tabs-nav .nav-link {
 		padding: 0.75rem 1rem;
-		font-size: 0.9rem;
+		font-size: 0.85rem;
 	}
 
 	.chart-container {
@@ -1232,6 +1274,62 @@ onMounted(async () => {
 	.col-xl-4.col-md-6 {
 		flex: 0 0 100%;
 		max-width: 100%;
+	}
+
+	/* Make username link responsive */
+	.username-link h3 {
+		font-size: 1.5rem;
+	}
+
+	/* Stack dashboard header vertically */
+	.dashboard-header .row {
+		text-align: center;
+	}
+
+	.dashboard-header .col-lg-4 {
+		margin-top: 1rem;
+	}
+}
+
+@media (max-width: 576px) {
+	.hero-title {
+		font-size: 1.5rem;
+	}
+
+	.stats-number {
+		font-size: 1.8rem;
+	}
+
+	.username-link h3 {
+		font-size: 1.3rem;
+	}
+
+	.quiz-tabs-nav .nav-link {
+		padding: 0.6rem 0.8rem;
+		font-size: 0.8rem;
+	}
+
+	.quiz-tabs-nav .nav-link i {
+		font-size: 0.9rem;
+	}
+
+	.modern-btn {
+		padding: 10px 24px;
+		font-size: 0.9rem;
+	}
+
+	.chart-container {
+		height: 200px;
+		padding: 0.5rem;
+	}
+
+	/* Reduce padding for small screens */
+	.stats-section {
+		padding-top: 2rem !important;
+	}
+
+	.main-content {
+		padding-bottom: 2rem !important;
 	}
 }
 

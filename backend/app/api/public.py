@@ -40,17 +40,37 @@ class PublicProfileResource(Resource):
         total_marks_possible = sum(
             score['score']['total_marks'] for score in quiz_scores)
 
+        # Calculate total time spent
+        submissions = Submission.query.filter_by(user_id=user.id).all()
+        total_time_spent = 0
+        for submission in submissions:
+            if submission.time_duration:
+                try:
+                    time_parts = submission.time_duration.split(':')
+                    if len(time_parts) == 3:  # HH:MM:SS format
+                        hours = int(time_parts[0])
+                        minutes = int(time_parts[1])
+                        duration_minutes = hours * 60 + minutes
+                        total_time_spent += duration_minutes
+                    elif len(time_parts) == 2:  # MM:SS format
+                        minutes = int(time_parts[0])
+                        total_time_spent += minutes
+                except (ValueError, IndexError):
+                    continue
+
         result = {
             'user': {
                 'username': user.username,
-                'name': user.name
+                'name': user.name,
+                'created_at': user.created_at.isoformat()
             },
             'public_stats': {
                 'total_quizzes_taken': stats['total_quizzes'],
                 'total_questions_answered': stats['total_questions'],
                 'overall_accuracy': stats['overall_accuracy'],
                 'total_marks_obtained': total_marks_obtained,
-                'total_marks_possible': total_marks_possible
+                'total_marks_possible': total_marks_possible,
+                'total_time_spent': total_time_spent
             },
             'top_performances': [
                 {
