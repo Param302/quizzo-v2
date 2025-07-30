@@ -43,10 +43,10 @@
                             </div>
                         </div>
                         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                            <button class="btn btn-primary btn-lg" @click="subscribeToChapter"
-                                v-if="authStore.isAuthenticated">
-                                <i class="bi bi-plus-circle me-2"></i>
-                                Subscribe to Chapter
+                            <button class="btn subscription-btn" :class="isSubscribed ? 'btn-danger' : 'btn-warning'"
+                                @click="toggleSubscription" v-if="authStore.isAuthenticated">
+                                <i :class="isSubscribed ? 'bi bi-dash-circle me-1' : 'bi bi-plus-circle me-1'"></i>
+                                {{ isSubscribed ? 'Unsubscribe' : 'Subscribe' }}
                             </button>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="quiz-tabs-nav mb-4">
                         <ul class="nav nav-pills nav-fill quiz-nav">
                             <li class="nav-item">
-                                <button class="nav-link" :class="{ active: activeTab === 'live' }"
+                                <button class="nav-link live-tab" :class="{ active: activeTab === 'live' }"
                                     @click="activeTab = 'live'">
                                     <i class="bi bi-broadcast me-2"></i>
                                     <span>Live</span>
@@ -70,7 +70,7 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" :class="{ active: activeTab === 'upcoming' }"
+                                <button class="nav-link upcoming-tab" :class="{ active: activeTab === 'upcoming' }"
                                     @click="activeTab = 'upcoming'">
                                     <i class="bi bi-clock me-2"></i>
                                     <span>Upcoming</span>
@@ -80,7 +80,7 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" :class="{ active: activeTab === 'general' }"
+                                <button class="nav-link general-tab" :class="{ active: activeTab === 'general' }"
                                     @click="activeTab = 'general'">
                                     <i class="bi bi-infinity me-2"></i>
                                     <span>Available</span>
@@ -90,7 +90,7 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" :class="{ active: activeTab === 'ended' }"
+                                <button class="nav-link ended-tab" :class="{ active: activeTab === 'ended' }"
                                     @click="activeTab = 'ended'">
                                     <i class="bi bi-calendar-x me-2"></i>
                                     <span>Ended</span>
@@ -100,7 +100,7 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" :class="{ active: activeTab === 'completed' }"
+                                <button class="nav-link completed-tab" :class="{ active: activeTab === 'completed' }"
                                     @click="activeTab = 'completed'">
                                     <i class="bi bi-check-circle me-2"></i>
                                     <span>Completed</span>
@@ -123,7 +123,7 @@
                         <div v-else class="row g-4">
                             <div v-for="quiz in activeQuizzes" :key="quiz.id" class="col-lg-6 col-xl-4">
                                 <QuizCard :quiz="quiz" :tab-type="activeTab" @start-quiz="startQuiz"
-                                    @view-details="viewQuizDetails" />
+                                    @view-details="viewQuizDetails" @download-certificate="downloadCertificate" />
                             </div>
                         </div>
                     </div>
@@ -160,6 +160,7 @@ export default {
         const loading = ref(true)
         const error = ref(null)
         const activeTab = ref('live')
+        const userSubscriptions = ref([])
 
         const toast = ref({
             show: false,
@@ -182,6 +183,10 @@ export default {
             return chapterData.value.quizzes[activeTab.value] || []
         })
 
+        const isSubscribed = computed(() => {
+            return userSubscriptions.value.some(sub => sub.chapter_id === chapterId.value)
+        })
+
         const fetchChapterData = async () => {
             try {
                 loading.value = true
@@ -196,6 +201,11 @@ export default {
 
                 const response = await axios.get(endpoint)
                 chapterData.value = response.data
+
+                // Fetch user subscriptions if authenticated
+                if (authStore.isAuthenticated) {
+                    await fetchUserSubscriptions()
+                }
             } catch (err) {
                 console.error('Error fetching chapter data:', err)
                 error.value = err.response?.data?.message || 'Failed to load chapter data'
@@ -204,19 +214,37 @@ export default {
             }
         }
 
-        const subscribeToChapter = async () => {
+        const fetchUserSubscriptions = async () => {
+            try {
+                const response = await axios.get('/user/subscriptions')
+                userSubscriptions.value = response.data.subscriptions
+            } catch (error) {
+                console.error('Error fetching subscriptions:', error)
+            }
+        }
+
+        const toggleSubscription = async () => {
             if (!authStore.isAuthenticated) {
                 router.push('/login')
                 return
             }
 
             try {
-                await axios.post('/user/subscriptions', { chapter_id: chapterId.value })
-                showToast('Successfully subscribed to chapter!', 'success')
+                if (isSubscribed.value) {
+                    // Unsubscribe
+                    await axios.delete(`/user/subscriptions/${chapterId.value}`)
+                    showToast('Successfully unsubscribed from chapter!', 'success')
+                } else {
+                    // Subscribe
+                    await axios.post('/user/subscriptions', { chapter_id: chapterId.value })
+                    showToast('Successfully subscribed to chapter!', 'success')
+                }
+
+                await fetchUserSubscriptions()
                 // Refresh data to show updated quiz access
                 fetchChapterData()
             } catch (error) {
-                const message = error.response?.data?.message || 'Failed to subscribe to chapter'
+                const message = error.response?.data?.message || 'Failed to update subscription'
                 showToast(message, 'error')
             }
         }
@@ -235,6 +263,33 @@ export default {
                 return
             }
             router.push(`/quiz/${quizId}/result`)
+        }
+
+        const downloadCertificate = async (quizId) => {
+            if (!authStore.isAuthenticated) {
+                router.push('/login')
+                return
+            }
+
+            try {
+                const response = await axios.get(`/user/quiz/${quizId}/certificate`, {
+                    responseType: 'blob'
+                })
+
+                const url = window.URL.createObjectURL(new Blob([response.data]))
+                const link = document.createElement('a')
+                link.href = url
+                link.setAttribute('download', `quiz-${quizId}-certificate.pdf`)
+                document.body.appendChild(link)
+                link.click()
+                link.remove()
+                window.URL.revokeObjectURL(url)
+
+                showToast('Certificate downloaded successfully!', 'success')
+            } catch (error) {
+                const message = error.response?.data?.message || 'Failed to download certificate'
+                showToast(message, 'error')
+            }
         }
 
         const getEmptyMessage = () => {
@@ -277,11 +332,13 @@ export default {
             activeTab,
             totalQuizzes,
             activeQuizzes,
+            isSubscribed,
             toast,
             authStore,
-            subscribeToChapter,
+            toggleSubscription,
             startQuiz,
             viewQuizDetails,
+            downloadCertificate,
             getEmptyMessage
         }
     }
@@ -362,8 +419,34 @@ export default {
 
 .quiz-nav .nav-link.active {
     background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
-    color: white;
+    color: white !important;
     box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
+}
+
+/* Tab-specific icon colors */
+.live-tab i {
+    color: #dc3545;
+}
+
+.upcoming-tab i {
+    color: #f57c00;
+}
+
+.general-tab i {
+    color: #28a745;
+}
+
+.ended-tab i {
+    color: #6c757d;
+}
+
+.completed-tab i {
+    color: #28a745;
+}
+
+/* Active tab icons should be white */
+.quiz-nav .nav-link.active i {
+    color: white !important;
 }
 
 .quiz-tab-badge {
@@ -390,6 +473,31 @@ export default {
 .empty-icon {
     font-size: 3rem;
     color: #dee2e6;
+}
+
+.subscription-btn {
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+}
+
+.subscription-btn.btn-warning {
+    background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+    border: none;
+    color: white;
+}
+
+.subscription-btn.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+    color: white;
+}
+
+.subscription-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary {

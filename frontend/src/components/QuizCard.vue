@@ -6,12 +6,6 @@
                 <div class="quiz-header mb-3">
                     <div class="d-flex align-items-start justify-content-between mb-2">
                         <h6 class="quiz-title mb-0">{{ quiz.title }}</h6>
-                        <div class="quiz-status-badge">
-                            <span class="badge" :class="getStatusBadgeClass()">
-                                <i :class="getStatusIcon()" class="me-1"></i>
-                                {{ getStatusText() }}
-                            </span>
-                        </div>
                     </div>
 
                     <div v-if="quiz.remarks" class="quiz-remarks">
@@ -24,19 +18,19 @@
                     <div class="row g-2">
                         <div class="col-6">
                             <div class="detail-item">
-                                <i class="bi bi-question-circle text-primary"></i>
+                                <i class="bi bi-question-circle"></i>
                                 <span class="ms-1">{{ quiz.question_count }} Questions</span>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="detail-item">
-                                <i class="bi bi-award text-success"></i>
+                                <i class="bi bi-award"></i>
                                 <span class="ms-1">{{ quiz.total_marks }} Marks</span>
                             </div>
                         </div>
                         <div v-if="quiz.time_duration" class="col-12">
                             <div class="detail-item">
-                                <i class="bi bi-clock text-info"></i>
+                                <i class="bi bi-clock"></i>
                                 <span class="ms-1">{{ quiz.time_duration }} Duration</span>
                             </div>
                         </div>
@@ -46,11 +40,13 @@
                 <!-- Date/Time Information -->
                 <div v-if="quiz.date_of_quiz" class="quiz-datetime mb-3">
                     <div class="datetime-card">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-calendar-event text-primary me-2"></i>
-                            <div>
-                                <div class="fw-semibold">{{ formatDate(quiz.date_of_quiz) }}</div>
-                                <div class="text-muted small">{{ getTimeInfo() }}</div>
+                        <div class="d-flex align-items-start">
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold mb-1">{{ formatDate(quiz.date_of_quiz) }}</div>
+                                <div class="d-flex align-items-center text-muted small">
+                                    <i class="bi bi-calendar-event me-2"></i>
+                                    <span>{{ getTimeInfo() }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,10 +110,16 @@
 
                         <!-- Completed Quiz Actions -->
                         <template v-else-if="tabType === 'completed'">
-                            <button class="btn btn-outline-primary w-100" @click="$emit('view-details', quiz.id)">
-                                <i class="bi bi-eye me-2"></i>
-                                View Details
-                            </button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary flex-fill" @click="$emit('view-details', quiz.id)">
+                                    <i class="bi bi-eye me-1"></i>
+                                    View Details
+                                </button>
+                                <button class="btn btn-warning flex-fill" @click="$emit('download-certificate', quiz.id)">
+                                    <i class="bi bi-download me-1"></i>
+                                    Certificate
+                                </button>
+                            </div>
                         </template>
                     </div>
                 </div>
@@ -139,7 +141,7 @@ export default {
             required: true
         }
     },
-    emits: ['start-quiz', 'view-details'],
+    emits: ['start-quiz', 'view-details', 'download-certificate'],
     methods: {
         getStatusBadgeClass() {
             switch (this.tabType) {
@@ -251,6 +253,10 @@ export default {
     transform: translateY(-3px);
 }
 
+.quiz-card:hover .quiz-title {
+    color: #f57c00;
+}
+
 .glass-card {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
@@ -270,6 +276,7 @@ export default {
     font-weight: 600;
     color: #2c3e50;
     line-height: 1.3;
+    transition: color 0.3s ease;
 }
 
 .quiz-remarks {
@@ -286,13 +293,15 @@ export default {
 
 .detail-item i {
     font-size: 1rem;
+    color: #f57c00;
 }
 
 .datetime-card {
-    background: rgba(13, 110, 253, 0.05);
-    border: 1px solid rgba(13, 110, 253, 0.15);
+    background: rgba(245, 124, 0, 0.1);
+    border: 1px solid rgba(245, 124, 0, 0.2);
     border-radius: 12px;
     padding: 0.75rem;
+    color: #f57c00;
 }
 
 .score-card {
@@ -400,6 +409,18 @@ export default {
     font-weight: 600;
 }
 
+.btn-warning {
+    background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #e65100 0%, #f57c00 100%);
+    transform: translateY(-1px);
+}
+
 @media (max-width: 768px) {
     .quiz-title {
         font-size: 1rem;
@@ -415,6 +436,29 @@ export default {
         height: 35px;
     }
 
+    .d-flex.gap-2 {
+        flex-direction: column;
+        gap: 0.5rem !important;
+    }
+
+    .d-flex.gap-2 .btn {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .detail-item {
+        font-size: 0.8rem;
+    }
+    
+    .datetime-card {
+        padding: 0.5rem;
+    }
+    
+    .quiz-details .col-12 {
+        margin-top: 0.5rem;
+    }
+    
     .circular-progress::before {
         width: 25px;
         height: 25px;
