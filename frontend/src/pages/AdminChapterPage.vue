@@ -30,44 +30,41 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <!-- Breadcrumb -->
-                            <nav aria-label="breadcrumb" class="mb-3">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <router-link to="/admin">Dashboard</router-link>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <router-link to="/admin/manage/course">Courses</router-link>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <a href="#" @click="goBackToCourse">{{ chapterData.course.name }}</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">{{ chapterData.chapter.name
-                                        }}</li>
-                                </ol>
-                            </nav>
+                            <!-- Back to Course Link -->
+                            <div class="mb-3">
+                                <a href="#" class="btn-back-link" @click.prevent="goBackToCourse">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                    Back to Course
+                                </a>
+                            </div>
 
                             <!-- Header Content -->
                             <div class="row align-items-center">
-                                <div class="col-lg-8">
-                                    <h1 class="display-6 fw-bold mb-2">{{ chapterData.chapter.name }}</h1>
-                                    <p class="lead text-muted mb-3">{{ chapterData.chapter.description }}</p>
+                                <div class="col-md-8">
+                                    <h1 class="display-6 fw-bold mb-2 text-orange">Quiz Management</h1>
+                                    <h3 class="chapter-name mb-2">{{ chapterData.chapter.name }}</h3>
+                                    <p v-if="chapterData.chapter.description"
+                                        class="lead fw-medium mb-3 chapter-description">{{
+                                        chapterData.chapter.description }}</p>
                                     <div class="course-info">
-                                        <span class="badge course-badge me-2">
+                                        <span class="badge course-badge">
                                             <i class="bi bi-book me-1"></i>
                                             {{ chapterData.course.name }}
                                         </span>
-                                        <span class="badge quiz-count-badge">
-                                            <i class="bi bi-question-circle me-1"></i>
-                                            {{ totalQuizzes }} Quizzes
-                                        </span>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                                    <button class="btn btn-orange" @click="showAddQuizModal = true">
-                                        <i class="bi bi-plus-circle me-2"></i>
-                                        Add Quiz
-                                    </button>
+                                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                    <div class="quiz-count-badge mb-3">
+                                        <i class="bi bi-patch-question me-2"></i>
+                                        <span class="fw-bold">{{ totalQuizzes }}</span>
+                                        <span> Quiz{{ totalQuizzes !== 1 ? 'zes' : '' }}</span>
+                                    </div>
+                                    <div class="text-center text-md-end">
+                                        <button class="btn btn-orange" @click="showAddQuizModal = true">
+                                            <i class="bi bi-plus-circle me-2"></i>
+                                            Add New Quiz
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,9 +77,9 @@
                 <div class="container">
                     <!-- Quiz Tabs -->
                     <div class="quiz-tabs-container mb-4">
-                        <ul class="nav nav-pills quiz-tabs justify-content-center">
-                            <li class="nav-item">
-                                <button class="nav-link live-tab" :class="{ active: activeTab === 'live' }"
+                        <ul class="nav nav-pills quiz-tabs w-100">
+                            <li class="nav-item flex-fill">
+                                <button class="nav-link live-tab w-100" :class="{ active: activeTab === 'live' }"
                                     @click="activeTab = 'live'">
                                     <i class="bi bi-broadcast me-2"></i>
                                     <span>Live</span>
@@ -91,9 +88,9 @@
                                     </span>
                                 </button>
                             </li>
-                            <li class="nav-item">
-                                <button class="nav-link upcoming-tab" :class="{ active: activeTab === 'upcoming' }"
-                                    @click="activeTab = 'upcoming'">
+                            <li class="nav-item flex-fill">
+                                <button class="nav-link upcoming-tab w-100"
+                                    :class="{ active: activeTab === 'upcoming' }" @click="activeTab = 'upcoming'">
                                     <i class="bi bi-clock me-2"></i>
                                     <span>Upcoming</span>
                                     <span v-if="chapterData.quizzes.upcoming.length" class="badge quiz-tab-badge ms-2">
@@ -101,8 +98,8 @@
                                     </span>
                                 </button>
                             </li>
-                            <li class="nav-item">
-                                <button class="nav-link general-tab" :class="{ active: activeTab === 'general' }"
+                            <li class="nav-item flex-fill">
+                                <button class="nav-link general-tab w-100" :class="{ active: activeTab === 'general' }"
                                     @click="activeTab = 'general'">
                                     <i class="bi bi-infinity me-2"></i>
                                     <span>General</span>
@@ -111,8 +108,8 @@
                                     </span>
                                 </button>
                             </li>
-                            <li class="nav-item">
-                                <button class="nav-link ended-tab" :class="{ active: activeTab === 'ended' }"
+                            <li class="nav-item flex-fill">
+                                <button class="nav-link ended-tab w-100" :class="{ active: activeTab === 'ended' }"
                                     @click="activeTab = 'ended'">
                                     <i class="bi bi-calendar-x me-2"></i>
                                     <span>Ended</span>
@@ -138,7 +135,8 @@
 
                         <div v-else class="row g-4">
                             <div v-for="quiz in activeQuizzes" :key="quiz.id" class="col-lg-4 col-md-6">
-                                <AdminQuizCard :quiz="quiz" @edit-quiz="editQuiz" @delete-quiz="confirmDeleteQuiz" />
+                                <AdminQuizCard :quiz="quiz" :activeTab="activeTab" @edit-quiz="editQuiz"
+                                    @delete-quiz="confirmDeleteQuiz" @preview-quiz="previewQuiz" />
                             </div>
                         </div>
                     </div>
@@ -146,26 +144,9 @@
             </section>
         </div>
 
-        <!-- Add Quiz Modal (placeholder for now) -->
-        <div v-if="showAddQuizModal" class="modal modal-backdrop" style="display: block;"
-            @click.self="showAddQuizModal = false">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Quiz</h5>
-                        <button type="button" class="btn-close" @click="showAddQuizModal = false"></button>
-                    </div>
-                    <div class="modal-body text-center py-5">
-                        <i class="bi bi-tools text-muted mb-3" style="font-size: 3rem;"></i>
-                        <h5 class="text-muted">Quiz Creation Coming Soon</h5>
-                        <p class="text-muted">Quiz creation functionality will be implemented in the next phase.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" @click="showAddQuizModal = false">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Quiz Modal -->
+        <AdminQuizModal :show="showAddQuizModal || showEditQuizModal" :quiz="currentQuiz" :chapterId="chapterId"
+            :loading="savingQuiz" @close="closeQuizModal" @save="saveQuiz" />
 
         <!-- Delete Confirmation Modal -->
         <DeleteConfirmationModal :show="showDeleteModal" title="Delete Quiz"
@@ -182,6 +163,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import AdminQuizCard from '@/components/admin/AdminQuizCard.vue'
+import AdminQuizModal from '@/components/admin/AdminQuizModal.vue'
 import DeleteConfirmationModal from '@/components/DeleteConfirmationModal.vue'
 import Toast from '@/components/Toast.vue'
 import axios from 'axios'
@@ -190,6 +172,7 @@ export default {
     name: 'AdminChapterPage',
     components: {
         AdminQuizCard,
+        AdminQuizModal,
         DeleteConfirmationModal,
         Toast
     },
@@ -202,9 +185,12 @@ export default {
         const error = ref(null)
         const activeTab = ref('live')
         const showAddQuizModal = ref(false)
+        const showEditQuizModal = ref(false)
         const showDeleteModal = ref(false)
         const quizToDelete = ref(null)
         const deletingQuizId = ref(null)
+        const currentQuiz = ref({})
+        const savingQuiz = ref(false)
 
         const toast = ref({
             show: false,
@@ -217,9 +203,10 @@ export default {
 
         const totalQuizzes = computed(() => {
             if (!chapterData.value) return 0
-            return Object.values(chapterData.value.quizzes).reduce((total, quizArray) => {
-                return total + quizArray.length
-            }, 0)
+            return chapterData.value.quizzes.live.length +
+                chapterData.value.quizzes.upcoming.length +
+                chapterData.value.quizzes.general.length +
+                chapterData.value.quizzes.ended.length
         })
 
         const activeQuizzes = computed(() => {
@@ -244,9 +231,54 @@ export default {
             }
         }
 
-        const editQuiz = (quizId) => {
-            // TODO: Implement quiz editing
-            showToast('Quiz editing functionality coming soon', 'info')
+        const editQuiz = async (quizId) => {
+            try {
+                // Fetch quiz details with questions
+                const response = await axios.get(`/admin/quizzes/${quizId}`)
+                currentQuiz.value = response.data.quiz
+                showEditQuizModal.value = true
+            } catch (error) {
+                console.error('Error fetching quiz details:', error)
+                showToast(error.response?.data?.message || 'Failed to load quiz details', 'error')
+            }
+        }
+
+        const previewQuiz = (quizId) => {
+            router.push(`/quiz/${quizId}`)
+        }
+
+        const closeQuizModal = () => {
+            showAddQuizModal.value = false
+            showEditQuizModal.value = false
+            currentQuiz.value = {}
+        }
+
+        const saveQuiz = async (quizData) => {
+            try {
+                savingQuiz.value = true
+
+                if (showEditQuizModal.value) {
+                    // Update existing quiz
+                    const response = await axios.put(`/admin/quizzes/${currentQuiz.value.id}`, quizData)
+                    showToast('Quiz updated successfully', 'success')
+                } else {
+                    // Create new quiz
+                    const response = await axios.post('/admin/quizzes', {
+                        ...quizData,
+                        chapter_id: chapterId.value
+                    })
+                    showToast('Quiz created successfully', 'success')
+                }
+
+                // Refresh chapter data
+                await fetchChapterData()
+                closeQuizModal()
+            } catch (error) {
+                console.error('Error saving quiz:', error)
+                showToast(error.response?.data?.message || 'Failed to save quiz', 'error')
+            } finally {
+                savingQuiz.value = false
+            }
         }
 
         const confirmDeleteQuiz = (quizId) => {
@@ -324,14 +356,20 @@ export default {
             error,
             activeTab,
             showAddQuizModal,
+            showEditQuizModal,
             showDeleteModal,
             quizToDelete,
             deletingQuizId,
+            currentQuiz,
+            savingQuiz,
             totalQuizzes,
             activeQuizzes,
             toast,
             fetchChapterData,
             editQuiz,
+            previewQuiz,
+            closeQuizModal,
+            saveQuiz,
             confirmDeleteQuiz,
             deleteQuiz,
             goBackToCourse,
@@ -354,24 +392,6 @@ export default {
     border-bottom: 1px solid rgba(245, 124, 0, 0.1);
 }
 
-.breadcrumb {
-    background: transparent;
-    margin-bottom: 0;
-}
-
-.breadcrumb-item a {
-    color: #f57c00;
-    text-decoration: none;
-}
-
-.breadcrumb-item a:hover {
-    text-decoration: underline;
-}
-
-.breadcrumb-item.active {
-    color: #6c757d;
-}
-
 .course-badge {
     background: rgba(245, 124, 0, 0.1);
     color: #f57c00;
@@ -382,14 +402,47 @@ export default {
     font-size: 0.9rem;
 }
 
+.text-orange {
+    color: #f57c00 !important;
+}
+
+.btn-back-link {
+    color: #f57c00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-back-link:hover {
+    color: #e65100;
+    text-decoration: none;
+    transform: translateX(-3px);
+}
+
+.chapter-name {
+    font-size: 1.5rem;
+    color: #495057;
+    font-weight: 600;
+}
+
+.chapter-description {
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
 .quiz-count-badge {
-    background: rgba(13, 110, 253, 0.1);
-    color: #0d6efd;
-    border: 1px solid rgba(13, 110, 253, 0.2);
-    padding: 0.5rem 1rem;
+    background: rgba(245, 124, 0, 0.1);
+    color: #f57c00;
+    border: 1px solid rgba(245, 124, 0, 0.2);
+    padding: 0.75rem 1.5rem;
     border-radius: 25px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(245, 124, 0, 0.1);
 }
 
 .btn-orange {
@@ -406,6 +459,23 @@ export default {
     background: linear-gradient(135deg, #e65100 0%, #f57c00 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(245, 124, 0, 0.4);
+}
+
+.btn-outline-orange {
+    border: 2px solid #f57c00;
+    color: #f57c00;
+    background: transparent;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn-outline-orange:hover {
+    background: #f57c00;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
 }
 
 .quiz-tabs-container {
@@ -439,7 +509,7 @@ export default {
 
 .quiz-tabs .nav-link.active {
     background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
-    color: white;
+    color: white !important;
     box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3);
 }
 
@@ -500,19 +570,42 @@ export default {
         font-size: 1.75rem;
     }
 
+    .chapter-name {
+        font-size: 1.25rem;
+    }
+
     .quiz-tabs .nav-link {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
 
-    .course-badge,
-    .quiz-count-badge {
+    .course-badge {
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
+    }
+
+    .btn-outline-orange {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 576px) {
+    .chapter-header .d-flex {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .chapter-header .text-center {
+        text-align: left !important;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .chapter-name {
+        font-size: 1.1rem;
+    }
+
     .quiz-tabs {
         flex-direction: column;
         gap: 0.5rem;

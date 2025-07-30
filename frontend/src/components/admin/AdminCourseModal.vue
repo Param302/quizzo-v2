@@ -131,7 +131,7 @@
                                                     <i class="bi bi-pencil me-1"></i>
                                                     Modify
                                                 </router-link>
-                                                <button class="btn btn-sm btn-danger"
+                                                <button class="btn btn-md btn-danger"
                                                     @click="confirmRemoveChapter(index)" title="Delete Chapter">
                                                     <i class="bi bi-trash"></i>
                                                 </button>

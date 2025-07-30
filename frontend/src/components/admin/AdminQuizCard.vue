@@ -5,14 +5,10 @@
                 <!-- Quiz Header -->
                 <div class="quiz-header mb-3">
                     <div class="d-flex justify-content-between align-items-start mb-2">
-                        <div class="quiz-status">
-                            <span class="badge" :class="getStatusBadgeClass()">
-                                {{ getStatusText() }}
-                            </span>
-                        </div>
+                        <h5 class="quiz-title fw-bold mb-0 flex-grow-1">{{ quiz.title }}</h5>
                         <div class="quiz-actions">
-                            <button class="btn btn-sm btn-primary-icon me-1" @click="$emit('edit-quiz', quiz.id)"
-                                title="Edit Quiz">
+                            <button v-if="canEdit" class="btn btn-sm btn-primary-icon me-1"
+                                @click="$emit('edit-quiz', quiz.id)" title="Edit Quiz">
                                 <i class="bi bi-pencil"></i>
                             </button>
                             <button class="btn btn-sm btn-danger-icon" @click="$emit('delete-quiz', quiz.id)"
@@ -21,7 +17,6 @@
                             </button>
                         </div>
                     </div>
-                    <h5 class="quiz-title fw-bold mb-2">{{ quiz.title }}</h5>
                     <p class="quiz-remarks text-muted mb-0" v-if="quiz.remarks">{{ quiz.remarks }}</p>
                 </div>
 
@@ -36,7 +31,7 @@
                         </div>
                         <div class="col-4">
                             <div class="stat-item text-center">
-                                <div class="stat-number">{{ quiz.time_duration || 'N/A' }}</div>
+                                <div class="stat-number">{{ formatDuration(quiz.time_duration) }}</div>
                                 <div class="stat-label">Duration</div>
                             </div>
                         </div>
@@ -79,19 +74,10 @@
 
                 <!-- Action Buttons -->
                 <div class="quiz-actions-bottom mt-auto">
-                    <div class="row g-2">
-                        <div class="col-8">
-                            <button class="btn btn-primary-orange w-100" @click="$emit('edit-quiz', quiz.id)">
-                                <i class="bi bi-pencil me-2"></i>
-                                Edit Quiz
-                            </button>
-                        </div>
-                        <div class="col-4">
-                            <button class="btn btn-outline-secondary w-100" @click="viewQuizDetails" title="View Details">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </div>
-                    </div>
+                    <button class="btn btn-primary-orange w-100" @click="$emit('preview-quiz', quiz.id)">
+                        <i class="bi bi-eye me-2"></i>
+                        Preview Quiz
+                    </button>
                 </div>
             </div>
         </div>
@@ -105,18 +91,28 @@ export default {
         quiz: {
             type: Object,
             required: true
+        },
+        activeTab: {
+            type: String,
+            default: ''
         }
     },
-    emits: ['edit-quiz', 'delete-quiz'],
+    emits: ['edit-quiz', 'delete-quiz', 'preview-quiz'],
+    computed: {
+        canEdit() {
+            // Only allow editing for upcoming and general quizzes
+            return this.activeTab === 'upcoming' || this.activeTab === 'general'
+        }
+    },
     methods: {
         getStatusBadgeClass() {
             if (!this.quiz.is_scheduled) {
                 return 'bg-success'
             }
-            
+
             const now = new Date()
             const quizDate = new Date(this.quiz.date_of_quiz)
-            
+
             if (quizDate > now) {
                 return 'bg-warning'
             } else if (quizDate <= now) {
@@ -125,14 +121,14 @@ export default {
                     const [hours, minutes] = this.quiz.time_duration.split(':').map(Number)
                     const durationMs = (hours * 60 + minutes) * 60 * 1000
                     const endTime = new Date(quizDate.getTime() + durationMs)
-                    
+
                     if (now <= endTime) {
                         return 'bg-danger' // Live
                     }
                 }
                 return 'bg-secondary' // Ended
             }
-            
+
             return 'bg-secondary'
         },
 
@@ -140,10 +136,10 @@ export default {
             if (!this.quiz.is_scheduled) {
                 return 'General'
             }
-            
+
             const now = new Date()
             const quizDate = new Date(this.quiz.date_of_quiz)
-            
+
             if (quizDate > now) {
                 return 'Upcoming'
             } else if (quizDate <= now) {
@@ -152,14 +148,14 @@ export default {
                     const [hours, minutes] = this.quiz.time_duration.split(':').map(Number)
                     const durationMs = (hours * 60 + minutes) * 60 * 1000
                     const endTime = new Date(quizDate.getTime() + durationMs)
-                    
+
                     if (now <= endTime) {
                         return 'Live'
                     }
                 }
                 return 'Ended'
             }
-            
+
             return 'Unknown'
         },
 
@@ -186,6 +182,24 @@ export default {
                 hour: '2-digit',
                 minute: '2-digit'
             })
+        },
+
+        formatDuration(timeString) {
+            if (!timeString) return 'N/A'
+            const [hours, minutes] = timeString.split(':').map(Number)
+            const totalMinutes = hours * 60 + minutes
+            if (totalMinutes === 0) return 'N/A'
+            if (totalMinutes < 60) {
+                return `${totalMinutes} min${totalMinutes !== 1 ? 's' : ''}`
+            } else {
+                const hrs = Math.floor(totalMinutes / 60)
+                const mins = totalMinutes % 60
+                if (mins === 0) {
+                    return `${hrs} hour${hrs !== 1 ? 's' : ''}`
+                } else {
+                    return `${hrs}h ${mins}m`
+                }
+            }
         },
 
         viewQuizDetails() {

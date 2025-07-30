@@ -77,7 +77,8 @@
                             {{ searchQuery ? 'No users found' : 'No users yet' }}
                         </h4>
                         <p class="text-muted">
-                            {{ searchQuery ? 'Try adjusting your search criteria' : 'Users will appear here once they register' }}
+                            {{ searchQuery ? 'Try adjusting your search criteria' :
+                                'Users will appear here once they register' }}
                         </p>
                         <button v-if="searchQuery" class="btn btn-orange mt-3" @click="clearSearch">
                             <i class="bi bi-arrow-counterclockwise me-2"></i>
@@ -128,8 +129,8 @@
         <!-- Delete Confirmation Modal -->
         <DeleteConfirmationModal :show="showDeleteModal" title="Delete User Account"
             message="You are about to permanently delete this user account. This will remove all associated data including quiz attempts, subscriptions, and account information."
-            :itemDetails="userToDelete"
-            :loading="deletingUserId" @close="showDeleteModal = false" @confirm="deleteUser" />
+            :itemDetails="userToDelete" :loading="deletingUserId" @close="showDeleteModal = false"
+            @confirm="deleteUser" />
 
         <!-- Toast Notifications -->
         <Toast v-if="toast.show" :message="toast.message" :variant="toast.type" @close="toast.show = false" />
@@ -331,6 +332,25 @@ export default {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(245, 124, 0, 0.1);
+}
+
+.btn-back-link {
+    color: #f57c00;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(245, 124, 0, 0.1);
+    border: 1px solid rgba(245, 124, 0, 0.2);
+    display: inline-block;
+}
+
+.btn-back-link:hover {
+    background: rgba(245, 124, 0, 0.15);
+    color: #e65100;
+    text-decoration: none;
+    transform: translateX(-2px);
 }
 
 .text-orange {

@@ -27,7 +27,8 @@
                         </router-link>
                     </li>
                     <li class="nav-item" v-else>
-                        <router-link to="/dashboard" class="btn btn-primary rounded-pill px-4">
+                        <router-link :to="authStore.isAdmin ? '/admin' : '/dashboard'"
+                            class="btn btn-primary rounded-pill px-4">
                             Dashboard
                         </router-link>
                     </li>

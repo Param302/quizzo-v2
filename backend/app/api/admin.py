@@ -9,6 +9,75 @@ from app.models import Course, Chapter, Quiz, Question, User, Subscription, Subm
 from sqlalchemy import func, extract
 
 
+def revaluate_quiz_submissions(quiz_id):
+    """Revaluate all submissions for a quiz after questions have been updated"""
+
+    # Get all questions for the quiz
+    questions = Question.query.filter_by(quiz_id=quiz_id).all()
+
+    # Get all unique users who submitted this quiz
+    user_submissions = db.session.query(Submission.user_id).filter_by(
+        quiz_id=quiz_id).distinct().all()
+
+    for (user_id,) in user_submissions:
+        # Get all submissions for this user and quiz
+        user_quiz_submissions = Submission.query.filter_by(
+            user_id=user_id,
+            quiz_id=quiz_id
+        ).all()
+
+        # Create a mapping of question_id to submission
+        submission_map = {
+            sub.question_id: sub for sub in user_quiz_submissions}
+
+        # Revaluate each question
+        for question in questions:
+            if question.id in submission_map:
+                submission = submission_map[question.id]
+
+                # Revaluate the answer
+                is_correct = False
+                user_answer = submission.answer
+                correct_answer = question.correct_answer
+
+                if question.question_type == 'MCQ':
+                    # For MCQ, check if selected option matches correct option
+                    if isinstance(user_answer, list) and len(user_answer) > 0:
+                        is_correct = user_answer[0] == correct_answer[0]
+
+                elif question.question_type == 'MSQ':
+                    # For MSQ, check if all selected options match correct options
+                    if isinstance(user_answer, list) and isinstance(correct_answer, list):
+                        user_set = set(user_answer)
+                        correct_set = set(correct_answer)
+                        is_correct = user_set == correct_set
+
+                elif question.question_type == 'NAT':
+                    # For NAT, check if numeric answer matches
+                    if isinstance(user_answer, list) and len(user_answer) > 0 and len(correct_answer) > 0:
+                        try:
+                            user_num = float(user_answer[0])
+                            correct_num = float(correct_answer[0])
+                            # Allow small floating point differences
+                            is_correct = abs(user_num - correct_num) < 0.01
+                        except (ValueError, TypeError):
+                            is_correct = False
+
+                # Update the submission
+                submission.is_correct = is_correct
+
+        db.session.commit()
+
+    # Clear relevant caches
+    current_app.cache.delete(f'quiz_{quiz_id}_results')
+    current_app.cache.delete(f'quiz_{quiz_id}_stats')
+
+    # Clear user-specific caches for all affected users
+    for (user_id,) in user_submissions:
+        current_app.cache.delete(f'user_{user_id}_quiz_stats')
+        current_app.cache.delete(f'user_{user_id}_submissions')
+
+
 class CourseResource(Resource):
     @jwt_required()
     @admin_required
@@ -392,44 +461,76 @@ class QuizResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Create quiz"""
-        parser = reqparse.RequestParser()
-        parser.add_argument('chapter_id', type=int, required=True)
-        parser.add_argument('title', type=str, required=True)
-        parser.add_argument('date_of_quiz', type=str,
-                            help='Format: YYYY-MM-DD HH:MM:SS')
-        parser.add_argument('time_duration', type=str, help='Format: HH:MM')
-        parser.add_argument('is_scheduled', type=bool, default=False)
-        parser.add_argument('remarks', type=str, default='')
-        args = parser.parse_args()
+        """Create quiz with questions"""
+        data = request.get_json()
 
-        chapter = Chapter.query.get(args['chapter_id'])
+        if not data:
+            return {'message': 'No data provided'}, 400
+
+        # Validate required fields
+        required_fields = ['chapter_id', 'title']
+        for field in required_fields:
+            if field not in data:
+                return {'message': f'{field} is required'}, 400
+
+        chapter = Chapter.query.get(data['chapter_id'])
         if not chapter:
             return {'message': 'Chapter not found'}, 404
 
         # Parse date if provided
         date_of_quiz = None
-        if args['date_of_quiz']:
+        if data.get('date_of_quiz') and data.get('is_scheduled'):
             try:
-                date_of_quiz = datetime.strptime(
-                    args['date_of_quiz'], '%Y-%m-%d %H:%M:%S')
+                # Handle ISO format from frontend
+                date_str = data['date_of_quiz']
+                if 'T' in date_str:
+                    date_of_quiz = datetime.fromisoformat(
+                        date_str.replace('Z', '+00:00'))
+                else:
+                    date_of_quiz = datetime.strptime(
+                        date_str, '%Y-%m-%d %H:%M:%S')
             except ValueError:
-                return {'message': 'Invalid date format. Use YYYY-MM-DD HH:MM:SS'}, 400
+                return {'message': 'Invalid date format'}, 400
 
+        # Create quiz
         quiz = Quiz(
-            chapter_id=args['chapter_id'],
-            title=args['title'],
+            chapter_id=data['chapter_id'],
+            title=data['title'],
             date_of_quiz=date_of_quiz,
-            time_duration=args['time_duration'],
-            is_scheduled=args['is_scheduled'],
-            remarks=args['remarks']
+            time_duration=data.get('time_duration'),
+            is_scheduled=data.get('is_scheduled', False),
+            remarks=data.get('remarks', '')
         )
 
         db.session.add(quiz)
+        db.session.flush()  # Get quiz ID
+
+        # Create questions if provided
+        questions_data = data.get('questions', [])
+        created_questions = []
+
+        for question_data in questions_data:
+            if not question_data.get('question_statement') or not question_data.get('question_type'):
+                continue
+
+            question = Question(
+                quiz_id=quiz.id,
+                question_statement=question_data['question_statement'],
+                question_type=question_data['question_type'],
+                options=question_data.get('options'),
+                correct_answer=question_data.get('correct_answer', []),
+                marks=question_data.get('marks', 1.0)
+            )
+
+            db.session.add(question)
+            created_questions.append(question)
+
         db.session.commit()
 
         # Clear caches
-        current_app.cache.delete(f'chapter_{args["chapter_id"]}_quizzes')
+        current_app.cache.delete(f'chapter_{data["chapter_id"]}_quizzes')
+        current_app.cache.delete(
+            f'public_chapter_{data["chapter_id"]}_quizzes')
         current_app.cache.delete('upcoming_quizzes')
         current_app.cache.delete('open_quizzes')
 
@@ -442,7 +543,8 @@ class QuizResource(Resource):
                 'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
                 'time_duration': quiz.time_duration,
                 'is_scheduled': quiz.is_scheduled,
-                'remarks': quiz.remarks
+                'remarks': quiz.remarks,
+                'question_count': len(created_questions)
             }
         }, 201
 
@@ -450,43 +552,16 @@ class QuizResource(Resource):
 class QuizDetailResource(Resource):
     @jwt_required()
     @admin_required
-    def put(self, quiz_id):
-        """Update quiz"""
-        parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str, required=True)
-        parser.add_argument('date_of_quiz', type=str)
-        parser.add_argument('time_duration', type=str)
-        parser.add_argument('is_scheduled', type=bool, default=False)
-        parser.add_argument('remarks', type=str, default='')
-        args = parser.parse_args()
-
+    def get(self, quiz_id):
+        """Get quiz details with questions for editing"""
         quiz = Quiz.query.get(quiz_id)
         if not quiz:
             return {'message': 'Quiz not found'}, 404
 
-        # Parse date if provided
-        if args['date_of_quiz']:
-            try:
-                quiz.date_of_quiz = datetime.strptime(
-                    args['date_of_quiz'], '%Y-%m-%d %H:%M:%S')
-            except ValueError:
-                return {'message': 'Invalid date format. Use YYYY-MM-DD HH:MM:SS'}, 400
-
-        quiz.title = args['title']
-        quiz.time_duration = args['time_duration']
-        quiz.is_scheduled = args['is_scheduled']
-        quiz.remarks = args['remarks']
-
-        db.session.commit()
-
-        # Clear caches
-        current_app.cache.delete(f'chapter_{quiz.chapter_id}_quizzes')
-        current_app.cache.delete('upcoming_quizzes')
-        current_app.cache.delete('open_quizzes')
-        current_app.cache.delete(f'quiz_{quiz_id}_details')
+        # Get questions for this quiz
+        questions = Question.query.filter_by(quiz_id=quiz_id).all()
 
         return {
-            'message': 'Quiz updated successfully',
             'quiz': {
                 'id': quiz.id,
                 'chapter_id': quiz.chapter_id,
@@ -494,7 +569,121 @@ class QuizDetailResource(Resource):
                 'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
                 'time_duration': quiz.time_duration,
                 'is_scheduled': quiz.is_scheduled,
-                'remarks': quiz.remarks
+                'remarks': quiz.remarks,
+                'questions': [
+                    {
+                        'id': q.id,
+                        'question_statement': q.question_statement,
+                        'question_type': q.question_type,
+                        'options': q.options,
+                        'correct_answer': q.correct_answer,
+                        'marks': q.marks
+                    }
+                    for q in questions
+                ]
+            }
+        }
+
+    @jwt_required()
+    @admin_required
+    def put(self, quiz_id):
+        """Update quiz with questions"""
+        data = request.get_json()
+
+        if not data:
+            return {'message': 'No data provided'}, 400
+
+        quiz = Quiz.query.get(quiz_id)
+        if not quiz:
+            return {'message': 'Quiz not found'}, 404
+
+        # Parse date if provided
+        date_of_quiz = None
+        if data.get('date_of_quiz') and data.get('is_scheduled'):
+            try:
+                # Handle ISO format from frontend
+                date_str = data['date_of_quiz']
+                if 'T' in date_str:
+                    date_of_quiz = datetime.fromisoformat(
+                        date_str.replace('Z', '+00:00'))
+                else:
+                    date_of_quiz = datetime.strptime(
+                        date_str, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                return {'message': 'Invalid date format'}, 400
+
+        # Update quiz basic info
+        quiz.title = data.get('title', quiz.title)
+        quiz.date_of_quiz = date_of_quiz
+        quiz.time_duration = data.get('time_duration')
+        quiz.is_scheduled = data.get('is_scheduled', False)
+        quiz.remarks = data.get('remarks', '')
+
+        # Handle questions update
+        questions_data = data.get('questions', [])
+
+        # Check if this is a general quiz (not scheduled) and has existing submissions
+        needs_revaluation = False
+        if not quiz.is_scheduled:
+            existing_submissions = Submission.query.filter_by(
+                quiz_id=quiz_id).first()
+            if existing_submissions:
+                needs_revaluation = True
+
+        # Delete existing questions (simple approach - could be optimized)
+        Question.query.filter_by(quiz_id=quiz_id).delete()
+
+        # Create new questions
+        created_questions = []
+        for question_data in questions_data:
+            if not question_data.get('question_statement') or not question_data.get('question_type'):
+                continue
+
+            question = Question(
+                quiz_id=quiz.id,
+                question_statement=question_data['question_statement'],
+                question_type=question_data['question_type'],
+                options=question_data.get('options'),
+                correct_answer=question_data.get('correct_answer', []),
+                marks=question_data.get('marks', 1.0)
+            )
+
+            db.session.add(question)
+            created_questions.append(question)
+
+        db.session.commit()
+
+        # Perform revaluation if needed
+        if needs_revaluation:
+            try:
+                revaluate_quiz_submissions(quiz_id)
+                message = 'Quiz updated successfully and submissions revaluated'
+            except Exception as e:
+                current_app.logger.error(
+                    f"Revaluation failed for quiz {quiz_id}: {str(e)}")
+                message = 'Quiz updated successfully but revaluation failed'
+        else:
+            message = 'Quiz updated successfully'
+
+        # Clear caches
+        current_app.cache.delete(f'chapter_{quiz.chapter_id}_quizzes')
+        current_app.cache.delete(f'public_chapter_{quiz.chapter_id}_quizzes')
+        current_app.cache.delete('upcoming_quizzes')
+        current_app.cache.delete('open_quizzes')
+        current_app.cache.delete(f'quiz_{quiz_id}_details')
+        current_app.cache.delete(f'quiz_{quiz_id}_questions_user')
+
+        return {
+            'message': message,
+            'quiz': {
+                'id': quiz.id,
+                'chapter_id': quiz.chapter_id,
+                'title': quiz.title,
+                'date_of_quiz': quiz.date_of_quiz.isoformat() if quiz.date_of_quiz else None,
+                'time_duration': quiz.time_duration,
+                'is_scheduled': quiz.is_scheduled,
+                'remarks': quiz.remarks,
+                'question_count': len(created_questions)
             }
         }
 
