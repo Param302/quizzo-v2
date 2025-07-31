@@ -13,10 +13,19 @@
 						</router-link>
 					</div>
 					<div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-						<button class="btn btn-primary btn-lg modern-btn" @click="$router.push('/courses')">
-							<i class="bi bi-compass me-2"></i>
-							Explore Quizzes
-						</button>
+						<div
+							class="d-flex flex-column gap-3 justify-content-lg-end justify-content-center align-items-lg-end align-items-center">
+							<button class="btn btn-primary btn-lg modern-btn" @click="$router.push('/courses')">
+								<i class="bi bi-compass me-2"></i>
+								Explore Quizzes
+							</button>
+							<button class="btn btn-outline-primary btn-lg modern-btn" @click="exportUserData"
+								:disabled="loading.export">
+								<i class="bi bi-download me-2"></i>
+								<span v-if="loading.export">Exporting...</span>
+								<span v-else>Export Data</span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -411,7 +420,8 @@ const loading = reactive({
 	upcoming: false,
 	analytics: false,
 	subscriptions: false,
-	submissions: false
+	submissions: false,
+	export: false
 })
 
 const scoresChart = ref(null)
@@ -904,6 +914,38 @@ const unsubscribeFromChapter = async (subscriptionId) => {
 	}
 }
 
+const exportUserData = async () => {
+	try {
+		loading.export = true
+		const token = authStore.token
+		const response = await fetch(`http://localhost:5000/api/user/export-data`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		})
+
+		if (response.ok) {
+			const blob = await response.blob()
+			const url = window.URL.createObjectURL(blob)
+			const a = document.createElement('a')
+			a.href = url
+			a.download = `user_data_${authStore.userName}_${new Date().toISOString().split('T')[0]}.csv`
+			document.body.appendChild(a)
+			a.click()
+			window.URL.revokeObjectURL(url)
+			document.body.removeChild(a)
+		} else {
+			console.error('Failed to export user data')
+			alert('Failed to export data. Please try again.')
+		}
+	} catch (error) {
+		console.error('Error exporting user data:', error)
+		alert('Error exporting data. Please try again.')
+	} finally {
+		loading.export = false
+	}
+}
+
 // Load data based on active tab
 const loadTabData = async (tab) => {
 	switch (tab) {
@@ -1322,6 +1364,31 @@ onUnmounted(() => {
 
 .modern-btn:hover::before {
 	left: 100%;
+}
+
+.btn-outline-primary.modern-btn {
+	border: 2px solid #f57c00;
+	color: #f57c00;
+	background: transparent;
+}
+
+.btn-outline-primary.modern-btn:hover {
+	background: #f57c00;
+	color: white;
+	border-color: #f57c00;
+}
+
+.btn-outline-primary.modern-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	border-color: #ccc;
+	color: #ccc;
+}
+
+.btn-outline-primary.modern-btn:disabled:hover {
+	background: transparent;
+	color: #ccc;
+	border-color: #ccc;
 }
 
 .badge {

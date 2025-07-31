@@ -907,13 +907,22 @@ class DashboardStatsResource(Resource):
         total_chapters = Chapter.query.count()
         total_quizzes = Quiz.query.count()
         total_questions = Question.query.count()
-        total_submissions = Submission.query.count()
 
-        # Recent activity (last 7 days)
+        # Count unique quiz attempts (unique user-quiz combinations)
+        total_quiz_attempts = db.session.query(
+            Submission.user_id,
+            Submission.quiz_id
+        ).distinct().count()
+
+        # Recent activity (last 7 days) - also count unique attempts
         from datetime import datetime, timedelta
         week_ago = datetime.now() - timedelta(days=7)
-        recent_submissions = Submission.query.filter(
-            Submission.timestamp >= week_ago).count()
+        recent_quiz_attempts = db.session.query(
+            Submission.user_id,
+            Submission.quiz_id
+        ).filter(
+            Submission.timestamp >= week_ago
+        ).distinct().count()
 
         # User engagement stats
         subscribed_users = db.session.query(
@@ -936,8 +945,8 @@ class DashboardStatsResource(Resource):
                     'questions': total_questions
                 },
                 'activity': {
-                    'total_submissions': total_submissions,
-                    'recent_submissions': recent_submissions
+                    'total_submissions': total_quiz_attempts,
+                    'recent_submissions': recent_quiz_attempts
                 }
             }
         }
@@ -1115,15 +1124,35 @@ class UsersManagementResource(Resource):
         # Get user stats
         users_data = []
         for user in users:
-            # Get user's submission count and average score
-            submissions = Submission.query.filter_by(user_id=user.id).all()
-            submission_count = len(submissions)
+            # Get user's submission count (unique quizzes taken)
+            quiz_submissions = db.session.query(Submission.quiz_id).filter_by(
+                user_id=user.id).distinct().count()
 
-            if submissions:
-                total_marks = sum(s.obtained_marks for s in submissions)
-                total_possible = sum(s.total_marks for s in submissions)
-                avg_score = round(
-                    (total_marks / total_possible * 100), 2) if total_possible > 0 else 0
+            if quiz_submissions > 0:
+                # Get all submissions for the user
+                submissions = Submission.query.filter_by(user_id=user.id).all()
+
+                # Group submissions by quiz and calculate scores
+                quiz_scores = {}
+                for submission in submissions:
+                    quiz_id = submission.quiz_id
+                    if quiz_id not in quiz_scores:
+                        quiz_scores[quiz_id] = {
+                            'correct': 0,
+                            'total': 0
+                        }
+
+                    quiz_scores[quiz_id]['total'] += 1
+                    if submission.is_correct:
+                        quiz_scores[quiz_id]['correct'] += 1
+
+                # Calculate average score across all quizzes
+                if quiz_scores:
+                    total_score = sum(
+                        scores['correct'] / scores['total'] * 100 for scores in quiz_scores.values())
+                    avg_score = round(total_score / len(quiz_scores), 2)
+                else:
+                    avg_score = 0
             else:
                 avg_score = 0
 
@@ -1138,7 +1167,7 @@ class UsersManagementResource(Resource):
                 'email': user.email,
                 'created_at': user.created_at.isoformat() if user.created_at else None,
                 'stats': {
-                    'quiz_attempts': submission_count,
+                    'quiz_attempts': quiz_submissions,
                     'subscriptions': subscription_count,
                     'average_score': avg_score
                 }
@@ -1231,6 +1260,238 @@ class AdminExportResource(Resource):
             return {'message': 'Failed to start export'}, 500
 
 
+class AdminDataExportResource(Resource):
+    @jwt_required()
+    @admin_required
+    def get(self):
+        """Export all admin data as CSV"""
+        from flask import make_response
+        import csv
+        import io
+
+        try:
+            # Prepare CSV data
+            output = io.StringIO()
+            writer = csv.writer(output)
+
+            # Write header
+            writer.writerow(['Quizzo Admin Data Export'])
+            writer.writerow(
+                ['Generated on:', datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
+            writer.writerow([])  # Empty row
+
+            # Users data
+            writer.writerow(['USERS'])
+            writer.writerow(['ID', 'Name', 'Username',
+                            'Email', 'Role', 'Created At'])
+
+            users = User.query.order_by(User.created_at.desc()).all()
+            for user in users:
+                writer.writerow([
+                    user.id,
+                    user.name or '',
+                    user.username,
+                    user.email,
+                    user.role,
+                    user.created_at.strftime(
+                        '%Y-%m-%d %H:%M:%S') if user.created_at else ''
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Courses data
+            writer.writerow(['COURSES'])
+            writer.writerow(['ID', 'Name', 'Description', 'Chapters Count'])
+
+            courses = Course.query.all()
+            for course in courses:
+                chapters_count = Chapter.query.filter_by(
+                    course_id=course.id).count()
+                writer.writerow([
+                    course.id,
+                    course.name,
+                    course.description or '',
+                    chapters_count
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Chapters data
+            writer.writerow(['CHAPTERS'])
+            writer.writerow(['ID', 'Name', 'Course', 'Description',
+                            'Quizzes Count', 'Subscriptions Count'])
+
+            chapters = db.session.query(Chapter, Course).join(Course).all()
+            for chapter, course in chapters:
+                quizzes_count = Quiz.query.filter_by(
+                    chapter_id=chapter.id).count()
+                subscriptions_count = Subscription.query.filter_by(
+                    chapter_id=chapter.id).count()
+                writer.writerow([
+                    chapter.id,
+                    chapter.name,
+                    course.name,
+                    chapter.description or '',
+                    quizzes_count,
+                    subscriptions_count
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Quizzes data
+            writer.writerow(['QUIZZES'])
+            writer.writerow(['ID', 'Title', 'Chapter', 'Course', 'Date',
+                            'Time Duration', 'Questions Count', 'Submissions Count'])
+
+            quizzes = db.session.query(Quiz, Chapter, Course).join(
+                Chapter, Quiz.chapter_id == Chapter.id
+            ).join(
+                Course, Chapter.course_id == Course.id
+            ).all()
+
+            for quiz, chapter, course in quizzes:
+                questions_count = Question.query.filter_by(
+                    quiz_id=quiz.id).count()
+                submissions_count = db.session.query(Submission.user_id).filter_by(
+                    quiz_id=quiz.id).distinct().count()
+                writer.writerow([
+                    quiz.id,
+                    quiz.title,
+                    chapter.name,
+                    course.name,
+                    quiz.date_of_quiz.strftime(
+                        '%Y-%m-%d') if quiz.date_of_quiz else '',
+                    quiz.time_duration or '',
+                    questions_count,
+                    submissions_count
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Questions data
+            writer.writerow(['QUESTIONS'])
+            writer.writerow(
+                ['ID', 'Quiz', 'Chapter', 'Course', 'Type', 'Marks'])
+
+            questions = db.session.query(Question, Quiz, Chapter, Course).join(
+                Quiz, Question.quiz_id == Quiz.id
+            ).join(
+                Chapter, Quiz.chapter_id == Chapter.id
+            ).join(
+                Course, Chapter.course_id == Course.id
+            ).all()
+
+            for question, quiz, chapter, course in questions:
+                writer.writerow([
+                    question.id,
+                    quiz.title,
+                    chapter.name,
+                    course.name,
+                    question.question_type or '',
+                    question.marks or 0
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Subscriptions data
+            writer.writerow(['SUBSCRIPTIONS'])
+            writer.writerow(
+                ['ID', 'User', 'Chapter', 'Course', 'Subscribed On'])
+
+            subscriptions = db.session.query(Subscription, User, Chapter, Course).join(
+                User, Subscription.user_id == User.id
+            ).join(
+                Chapter, Subscription.chapter_id == Chapter.id
+            ).join(
+                Course, Chapter.course_id == Course.id
+            ).order_by(Subscription.subscribed_on.desc()).all()
+
+            for subscription, user, chapter, course in subscriptions:
+                writer.writerow([
+                    subscription.id,
+                    user.username,
+                    chapter.name,
+                    course.name,
+                    subscription.subscribed_on.strftime(
+                        '%Y-%m-%d %H:%M:%S') if subscription.subscribed_on else ''
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Submissions summary
+            writer.writerow(['SUBMISSIONS SUMMARY'])
+            writer.writerow(['User', 'Quiz', 'Chapter', 'Course', 'Score', 'Correct Answers',
+                            'Total Questions', 'Percentage', 'Time Taken', 'Attempted On'])
+
+            # Get quiz submissions grouped by user and quiz
+            submission_groups = db.session.query(
+                Submission.user_id,
+                Submission.quiz_id,
+                func.count(Submission.id).label('total_questions'),
+                func.sum(func.cast(Submission.is_correct, db.Integer)
+                         ).label('correct_answers'),
+                func.min(Submission.timestamp).label('first_submission'),
+                func.max(Submission.timestamp).label('last_submission')
+            ).group_by(
+                Submission.user_id,
+                Submission.quiz_id
+            ).order_by(func.max(Submission.timestamp).desc()).all()
+
+            for group in submission_groups:
+                # Get user, quiz, chapter, course info
+                user = User.query.get(group.user_id)
+                quiz = Quiz.query.get(group.quiz_id)
+                if not user or not quiz:
+                    continue
+
+                chapter = Chapter.query.get(quiz.chapter_id)
+                course = Course.query.get(
+                    chapter.course_id) if chapter else None
+
+                # Calculate time taken
+                time_taken = ''
+                if group.first_submission and group.last_submission:
+                    time_diff = group.last_submission - group.first_submission
+                    minutes = int(time_diff.total_seconds() // 60)
+                    seconds = int(time_diff.total_seconds() % 60)
+                    time_taken = f"{minutes}min {seconds}sec"
+
+                # Calculate percentage
+                percentage = 0
+                if group.total_questions > 0:
+                    percentage = round(
+                        (group.correct_answers / group.total_questions) * 100, 2)
+
+                writer.writerow([
+                    user.username if user else '',
+                    quiz.title if quiz else '',
+                    chapter.name if chapter else '',
+                    course.name if course else '',
+                    f"{group.correct_answers}/{group.total_questions}",
+                    group.correct_answers,
+                    group.total_questions,
+                    f"{percentage}%",
+                    time_taken,
+                    group.last_submission.strftime(
+                        '%Y-%m-%d %H:%M:%S') if group.last_submission else ''
+                ])
+
+            # Create the response
+            csv_data = output.getvalue()
+            output.close()
+
+            response = make_response(csv_data)
+            response.headers['Content-Type'] = 'text/csv'
+            response.headers[
+                'Content-Disposition'] = f'attachment; filename=admin_data_export_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv'
+
+            return response
+
+        except Exception as e:
+            current_app.logger.error(f"Admin data export failed: {str(e)}")
+            return {'message': 'Failed to export admin data'}, 500
+
+
 def register_admin_api(api):
     # Course management
     api.add_resource(CourseResource, '/admin/courses')
@@ -1258,3 +1519,4 @@ def register_admin_api(api):
                      '/admin/courses/<int:course_id>/analytics')
     api.add_resource(UsersManagementResource, '/admin/users')
     api.add_resource(AdminExportResource, '/admin/export/csv')
+    api.add_resource(AdminDataExportResource, '/admin/export-data')

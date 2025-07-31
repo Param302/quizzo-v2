@@ -340,6 +340,145 @@ class SubscriptionsResource(Resource):
         return {'message': 'Successfully unsubscribed from chapter'}
 
 
+class UserDataExportResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self):
+        """Export user data as CSV"""
+        from flask import make_response
+        import csv
+        import io
+
+        user = get_current_user()
+
+        try:
+            # Prepare CSV data
+            output = io.StringIO()
+            writer = csv.writer(output)
+
+            # Write user info header
+            writer.writerow(['User Information'])
+            writer.writerow(['Username', 'Email', 'Role', 'Created At'])
+            writer.writerow([user.username, user.email, user.role,
+                            user.created_at.strftime('%Y-%m-%d %H:%M:%S')])
+            writer.writerow([])  # Empty row
+
+            # Get user submissions
+            submissions = db.session.query(
+                Submission, Quiz, Chapter, Course
+            ).join(
+                Quiz, Submission.quiz_id == Quiz.id
+            ).join(
+                Chapter, Quiz.chapter_id == Chapter.id
+            ).join(
+                Course, Chapter.course_id == Course.id
+            ).filter(
+                Submission.user_id == user.id
+            ).order_by(Submission.timestamp.desc()).all()
+
+            # Group submissions by quiz to get unique quiz attempts
+            quiz_submissions = {}
+            for submission, quiz, chapter, course in submissions:
+                if quiz.id not in quiz_submissions:
+                    quiz_submissions[quiz.id] = {
+                        'quiz': quiz,
+                        'chapter': chapter,
+                        'course': course,
+                        'first_submission': submission.timestamp,
+                        'last_submission': submission.timestamp
+                    }
+                else:
+                    # Update the time range for this quiz
+                    if submission.timestamp < quiz_submissions[quiz.id]['first_submission']:
+                        quiz_submissions[quiz.id]['first_submission'] = submission.timestamp
+                    if submission.timestamp > quiz_submissions[quiz.id]['last_submission']:
+                        quiz_submissions[quiz.id]['last_submission'] = submission.timestamp
+
+            # Write submissions header
+            writer.writerow(['Quiz Submissions'])
+            writer.writerow([
+                'Quiz Title', 'Course', 'Chapter', 'Score', 'Correct Answers',
+                'Total Questions', 'Percentage', 'Time Taken', 'Attempted On'
+            ])
+
+            for quiz_id, quiz_info in quiz_submissions.items():
+                score_data = calculate_quiz_score(quiz_id, user.id)
+
+                # Calculate time taken (difference between first and last submission for this quiz)
+                time_diff = quiz_info['last_submission'] - \
+                    quiz_info['first_submission']
+                time_taken_minutes = int(time_diff.total_seconds() / 60)
+                time_taken = f"{time_taken_minutes} minutes" if time_taken_minutes > 0 else "< 1 minute"
+
+                writer.writerow([
+                    quiz_info['quiz'].title,
+                    quiz_info['course'].name,
+                    quiz_info['chapter'].name,
+                    f"{score_data['obtained_marks']}/{score_data['total_marks']}",
+                    score_data['obtained_marks'],
+                    score_data['total_marks'],
+                    f"{score_data['percentage']:.1f}%",
+                    time_taken,
+                    quiz_info['last_submission'].strftime('%Y-%m-%d %H:%M:%S')
+                ])
+
+            writer.writerow([])  # Empty row
+
+            # Get user subscriptions
+            subscriptions = db.session.query(
+                Subscription, Chapter, Course
+            ).join(
+                Chapter, Subscription.chapter_id == Chapter.id
+            ).join(
+                Course, Chapter.course_id == Course.id
+            ).filter(
+                Subscription.user_id == user.id,
+                Subscription.is_active == True
+            ).all()
+
+            # Write subscriptions header
+            writer.writerow(['Active Subscriptions'])
+            writer.writerow(['Course', 'Chapter', 'Subscribed On'])
+
+            for subscription, chapter, course in subscriptions:
+                writer.writerow([
+                    course.name,
+                    chapter.name,
+                    subscription.subscribed_on.strftime('%Y-%m-%d %H:%M:%S')
+                ])
+
+            # Get user statistics
+            stats = get_user_quiz_stats(user.id)
+
+            writer.writerow([])  # Empty row
+            writer.writerow(['Statistics'])
+            writer.writerow(['Metric', 'Value'])
+            writer.writerow(
+                ['Total Quizzes Taken', stats.get('total_quizzes_taken', 0)])
+            writer.writerow(
+                ['Overall Accuracy', f"{stats.get('overall_accuracy', 0):.1f}%"])
+            writer.writerow(
+                ['Average Score', f"{stats.get('average_score', 0):.1f}%"])
+            writer.writerow(['Total Time Spent (minutes)',
+                            stats.get('total_time_spent', 0)])
+
+            # Create response
+            output.seek(0)
+            csv_data = output.getvalue()
+            output.close()
+
+            response = make_response(csv_data)
+            response.headers['Content-Type'] = 'text/csv'
+            response.headers[
+                'Content-Disposition'] = f'attachment; filename=user_data_{user.username}_{datetime.now().strftime("%Y%m%d")}.csv'
+
+            return response
+
+        except Exception as e:
+            current_app.logger.error(f"Error exporting user data: {str(e)}")
+            return {'message': 'Failed to export user data'}, 500
+
+
 class UserExportResource(Resource):
     @jwt_required()
     @user_required
@@ -915,6 +1054,7 @@ def register_user_api(api):
     api.add_resource(SubscriptionsResource, '/user/subscriptions',
                      '/user/subscriptions/<int:chapter_id>')
     api.add_resource(CourseSubscriptionResource, '/user/course-subscription')
+    api.add_resource(UserDataExportResource, '/user/export-data')
     api.add_resource(UserExportResource, '/user/export/csv')
     api.add_resource(UserStatsResource, '/user/stats')
     api.add_resource(UserUpcomingQuizzesResource, '/user/upcoming-quizzes')

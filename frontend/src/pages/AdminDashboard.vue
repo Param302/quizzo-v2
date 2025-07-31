@@ -9,11 +9,19 @@
                         <p class="lead fw-medium mb-0">Welcome back, {{ authStore.userName }}</p>
                     </div>
                     <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                        <div class="dashboard-date">
-                            <span class="badge date-badge">
-                                <i class="bi bi-calendar-event me-2"></i>
-                                {{ currentDate }}
-                            </span>
+                        <div class="d-flex flex-column align-items-md-end align-items-center gap-3">
+                            <div class="dashboard-date">
+                                <span class="badge date-badge">
+                                    <i class="bi bi-calendar-event me-2"></i>
+                                    {{ currentDate }}
+                                </span>
+                            </div>
+                            <button class="btn btn-outline-primary btn-lg modern-btn" @click="exportAdminData"
+                                :disabled="loading.export">
+                                <i class="bi bi-download me-2"></i>
+                                <span v-if="loading.export">Exporting...</span>
+                                <span v-else>Export Data</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -26,7 +34,7 @@
                 <div class="row g-4 mb-4">
                     <div class="col-lg-4 col-md-6">
                         <StatsCard icon="bi bi-people-fill" :value="dashboardStats.users?.total || 0"
-                            label="Total Users" :trend="getUserTrend()" />
+                            label="Total Users" />
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <StatsCard icon="bi bi-question-circle-fill" :value="dashboardStats.content?.quizzes || 0"
@@ -34,8 +42,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <StatsCard icon="bi bi-clipboard-check-fill"
-                            :value="dashboardStats.activity?.total_submissions || 0" label="Quiz Attempts"
-                            :trend="getSubmissionTrend()" />
+                            :value="dashboardStats.activity?.total_submissions || 0" label="Quiz Attempts" />
                     </div>
                 </div>
 
@@ -336,6 +343,10 @@ export default {
         const loadingUsers = ref(false)
         const deletingUserId = ref(null)
 
+        const loading = ref({
+            export: false
+        })
+
         const toast = ref({
             show: false,
             message: '',
@@ -358,20 +369,6 @@ export default {
                 day: 'numeric'
             })
         })
-
-        const getUserTrend = () => {
-            if (dashboardStats.value.activity?.recent_submissions > 10) {
-                return '+12% this week'
-            }
-            return null
-        }
-
-        const getSubmissionTrend = () => {
-            if (dashboardStats.value.activity?.recent_submissions) {
-                return `${dashboardStats.value.activity.recent_submissions} this week`
-            }
-            return null
-        }
 
         const activeQuizzes = computed(() => {
             if (!quizzes.value || !activeQuizTab.value) return []
@@ -464,6 +461,35 @@ export default {
                 showToast('Failed to delete user', 'error')
             } finally {
                 deletingUserId.value = null
+            }
+        }
+
+        const exportAdminData = async () => {
+            try {
+                loading.value.export = true
+                const response = await axios.get('/admin/export-data', {
+                    responseType: 'blob'
+                })
+
+                if (response.status === 200) {
+                    const blob = new Blob([response.data], { type: 'text/csv' })
+                    const url = window.URL.createObjectURL(blob)
+                    const a = document.createElement('a')
+                    a.href = url
+                    a.download = `admin_data_export_${new Date().toISOString().split('T')[0]}.csv`
+                    document.body.appendChild(a)
+                    a.click()
+                    window.URL.revokeObjectURL(url)
+                    document.body.removeChild(a)
+                    showToast('Data exported successfully', 'success')
+                } else {
+                    showToast('Failed to export data', 'error')
+                }
+            } catch (error) {
+                console.error('Error exporting admin data:', error)
+                showToast('Error exporting data. Please try again.', 'error')
+            } finally {
+                loading.value.export = false
             }
         }
 
@@ -745,6 +771,7 @@ export default {
             showQuizzesManagement,
             loadingUsers,
             deletingUserId,
+            loading,
             currentDate,
             toast,
             userSignupsChart,
@@ -752,11 +779,10 @@ export default {
             coursePopularityChart,
             chapterAnalyticsChart,
             submissionHeatmapChart,
-            getUserTrend,
-            getSubmissionTrend,
             loadCourseAnalytics,
             loadQuizzes,
             confirmDeleteUser,
+            exportAdminData,
             formatTimeIST
         }
     }
@@ -941,6 +967,57 @@ export default {
 .bg-blur {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
+}
+
+/* Modern Button Styles */
+.modern-btn {
+    border-radius: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.modern-btn:hover::before {
+    left: 100%;
+}
+
+.btn-outline-primary.modern-btn {
+    border: 2px solid #f57c00;
+    color: #f57c00;
+    background: transparent;
+}
+
+.btn-outline-primary.modern-btn:hover {
+    background: #f57c00;
+    color: white;
+    border-color: #f57c00;
+}
+
+.btn-outline-primary.modern-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #ccc;
+}
+
+.btn-outline-primary.modern-btn:disabled:hover {
+    background: transparent;
+    color: #ccc;
+    border-color: #ccc;
 }
 
 /* Responsive adjustments */
