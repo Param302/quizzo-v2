@@ -473,6 +473,7 @@ class QuizResultResource(Resource):
             'correct_answers': correct_answers,
             'incorrect_answers': incorrect_answers,
             'unanswered': unanswered,
+            'submission_id': submissions[0].id if submissions else None,
             'submission_time': max(s.timestamp for s in submissions).isoformat() if submissions else None
         }
 

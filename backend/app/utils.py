@@ -114,13 +114,13 @@ def get_user_quiz_stats(user_id):
     }
 
     for quiz_id in quiz_ids:
-        score = calculate_quiz_score(quiz_id, user_id)
+        score_data = calculate_quiz_score(quiz_id, user_id)
         quiz = Quiz.query.get(quiz_id)
 
         stats['quiz_scores'].append({
             'quiz_id': quiz_id,
             'quiz_title': quiz.title,
-            'score': score
+            'score': score_data['percentage']  # Extract the percentage value
         })
 
         submissions = Submission.query.filter_by(

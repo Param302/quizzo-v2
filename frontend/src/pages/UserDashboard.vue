@@ -137,9 +137,9 @@
 										<div class="d-flex justify-content-between align-items-start mb-3">
 											<div class="flex-grow-1">
 												<h6 class="card-title fw-bold mb-2 quiz-title">{{ quiz.title }}</h6>
-												<p class="text-muted small mb-2">Chapter: {{ quiz.chapter }}</p>
+												<p class="fw-medium small mb-2">{{ quiz.chapter }}</p>
 												<div class="course-chip mb-2">
-													<span class="course-badge">{{ quiz.course }}</span>
+													<span>{{ quiz.course }}</span>
 												</div>
 											</div>
 											<div v-if="quiz.is_live" class="live-badge">
@@ -184,6 +184,18 @@
 						<div v-if="loading.analytics" class="text-center py-5">
 							<div class="spinner-border text-primary" role="status">
 								<span class="visually-hidden">Loading...</span>
+							</div>
+						</div>
+
+						<div v-else-if="!analyticsData.quiz_scores || analyticsData.quiz_scores.length === 0" class="empty-state-card glass-card">
+							<div class="text-center py-5">
+								<i class="bi bi-graph-up text-muted mb-3" style="font-size: 4rem; opacity: 0.5;"></i>
+								<h5 class="text-muted mb-3">No analytics data yet</h5>
+								<p class="text-muted mb-4">Take some quizzes to see your analytics here</p>
+								<button class="btn btn-outline-primary" @click="$router.push('/courses')">
+									<i class="bi bi-play-circle me-2"></i>
+									Take a Quiz
+								</button>
 							</div>
 						</div>
 
@@ -245,7 +257,7 @@
 												<h6 class="fw-bold mb-2 subscription-title">{{ subscription.chapter_name
 												}}</h6>
 												<div class="course-chip mb-2">
-													<span class="course-badge">{{ subscription.course_name }}</span>
+													<span>{{ subscription.course_name }}</span>
 												</div>
 												<div class="small mb-1 text-warning fw-semibold">{{
 													subscription.quiz_count }} quizzes
@@ -316,11 +328,20 @@
 												<h6 class="mb-0 fw-semibold">{{ submission.quiz_title }}</h6>
 											</td>
 											<td>
-												<div class="d-flex flex-wrap gap-1">
-													<span class="badge badge-secondary small">{{ submission.course_name
-													}}</span>
-													<span class="badge badge-outline small">{{ submission.chapter_name
-													}}</span>
+												<div class="course-chapter-info">
+													<div 
+														class="chapter-name mb-1"
+														@click="goToChapter(submission.course_id, submission.chapter_id)"
+														:title="submission.chapter_name"
+													>
+														{{ submission.chapter_name }}
+													</div>
+													<div class="course-info">
+														<span class="course-chip">
+															<i class="bi bi-book me-1"></i>
+															{{ submission.course_name }}
+														</span>
+													</div>
 												</div>
 											</td>
 											<td class="text-center">
@@ -336,7 +357,7 @@
 												<div class="date-display">
 													<div class="fw-semibold">{{ formatDate(submission.attempted_on) }}
 													</div>
-													<small class="text-muted">{{ submission.time_duration }}</small>
+													<small class="text-muted">{{ formatTimeDuration(submission.time_duration) }}</small>
 												</div>
 											</td>
 											<td class="text-center">
@@ -367,7 +388,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, computed, nextTick } from 'vue'
+import { ref, reactive, onMounted, computed, nextTick, onUnmounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { Chart, registerables } from 'chart.js'
@@ -451,13 +472,26 @@ const loadUpcomingQuizzes = async () => {
 const loadAnalyticsData = async () => {
 	try {
 		loading.analytics = true
+		console.log('Loading analytics data...')
 		const response = await apiService.get('/user/analytics')
+		console.log('Analytics response:', response)
 		analyticsData.value = response
 
+		// Wait for the DOM to be ready and charts to be available
 		await nextTick()
-		createCharts()
+		
+		// Add a small delay to ensure canvas elements are fully rendered
+		setTimeout(() => {
+			console.log('Creating charts with data:', analyticsData.value)
+			createCharts()
+		}, 100)
 	} catch (error) {
 		console.error('Error loading analytics data:', error)
+		// Set empty data to show the empty state
+		analyticsData.value = {
+			quiz_scores: [],
+			course_attempts: []
+		}
 	} finally {
 		loading.analytics = false
 	}
@@ -494,89 +528,125 @@ const loadSubmissions = async () => {
 
 // Create charts for analytics
 const createCharts = () => {
+	console.log('createCharts called')
+	console.log('scoresChart.value:', scoresChart.value)
+	console.log('courseChart.value:', courseChart.value)
+	console.log('analyticsData.value:', analyticsData.value)
+	
+	// Destroy existing charts
 	if (scoresChartInstance) {
 		scoresChartInstance.destroy()
+		scoresChartInstance = null
 	}
 	if (courseChartInstance) {
 		courseChartInstance.destroy()
+		courseChartInstance = null
+	}
+
+	// Check if we have data
+	if (!analyticsData.value) {
+		console.log('No analytics data available')
+		return
 	}
 
 	// Quiz Scores Bar Chart
-	if (scoresChart.value && analyticsData.value.quiz_scores) {
-		const ctx = scoresChart.value.getContext('2d')
-		scoresChartInstance = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: analyticsData.value.quiz_scores.map(q => q.quiz_title.length > 15 ?
-					q.quiz_title.substring(0, 15) + '...' : q.quiz_title),
-				datasets: [{
-					label: 'Score (%)',
-					data: analyticsData.value.quiz_scores.map(q => q.score),
-					backgroundColor: 'rgba(245, 124, 0, 0.7)',
-					borderColor: '#f57c00',
-					borderWidth: 2,
-					borderRadius: 8,
-					borderSkipped: false,
-				}]
-			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				plugins: {
-					legend: {
-						display: false
-					}
+	if (scoresChart.value && analyticsData.value.quiz_scores && analyticsData.value.quiz_scores.length > 0) {
+		console.log('Creating scores chart with data:', analyticsData.value.quiz_scores)
+		try {
+			const ctx = scoresChart.value.getContext('2d')
+			scoresChartInstance = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: analyticsData.value.quiz_scores.map(q => q.quiz_title && q.quiz_title.length > 15 ?
+						q.quiz_title.substring(0, 15) + '...' : q.quiz_title || 'Quiz'),
+					datasets: [{
+						label: 'Score (%)',
+						data: analyticsData.value.quiz_scores.map(q => q.score || 0),
+						backgroundColor: 'rgba(245, 124, 0, 0.7)',
+						borderColor: '#f57c00',
+						borderWidth: 2,
+						borderRadius: 8,
+						borderSkipped: false,
+					}]
 				},
-				scales: {
-					y: {
-						beginAtZero: true,
-						max: 100,
-						ticks: {
-							callback: function (value) {
-								return value + '%'
-							}
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: {
+							display: false
 						}
 					},
-					x: {
-						ticks: {
-							maxRotation: 45
+					scales: {
+						y: {
+							beginAtZero: true,
+							max: 100,
+							ticks: {
+								callback: function (value) {
+									return value + '%'
+								}
+							}
+						},
+						x: {
+							ticks: {
+								maxRotation: 45
+							}
 						}
 					}
 				}
-			}
-		})
+			})
+			console.log('Scores chart created successfully:', scoresChartInstance)
+		} catch (error) {
+			console.error('Error creating scores chart:', error)
+		}
+	} else {
+		console.log('Cannot create scores chart - missing elements or data')
+		console.log('scoresChart.value exists:', !!scoresChart.value)
+		console.log('quiz_scores exists:', !!analyticsData.value?.quiz_scores)
+		console.log('quiz_scores data:', analyticsData.value?.quiz_scores)
 	}
 
 	// Course Attempts Pie Chart
-	if (courseChart.value && analyticsData.value.course_attempts) {
-		const ctx = courseChart.value.getContext('2d')
-		const colors = ['#f57c00', '#ff9800', '#ffb74d', '#ffe0b2', '#fff3e0']
+	if (courseChart.value && analyticsData.value.course_attempts && analyticsData.value.course_attempts.length > 0) {
+		console.log('Creating course chart with data:', analyticsData.value.course_attempts)
+		try {
+			const ctx = courseChart.value.getContext('2d')
+			const colors = ['#f57c00', '#ff9800', '#ffb74d', '#ffe0b2', '#fff3e0']
 
-		courseChartInstance = new Chart(ctx, {
-			type: 'doughnut',
-			data: {
-				labels: analyticsData.value.course_attempts.map(c => c.course_name),
-				datasets: [{
-					data: analyticsData.value.course_attempts.map(c => c.attempts),
-					backgroundColor: colors.slice(0, analyticsData.value.course_attempts.length),
-					borderWidth: 2,
-					borderColor: '#ffffff'
-				}]
-			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				plugins: {
-					legend: {
-						position: 'bottom',
-						labels: {
-							padding: 20,
-							usePointStyle: true
+			courseChartInstance = new Chart(ctx, {
+				type: 'doughnut',
+				data: {
+					labels: analyticsData.value.course_attempts.map(c => c.course_name || 'Course'),
+					datasets: [{
+						data: analyticsData.value.course_attempts.map(c => c.attempts || 0),
+						backgroundColor: colors.slice(0, analyticsData.value.course_attempts.length),
+						borderWidth: 2,
+						borderColor: '#ffffff'
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: {
+								padding: 20,
+								usePointStyle: true
+							}
 						}
 					}
 				}
-			}
-		})
+			})
+			console.log('Course chart created successfully:', courseChartInstance)
+		} catch (error) {
+			console.error('Error creating course chart:', error)
+		}
+	} else {
+		console.log('Cannot create course chart - missing elements or data')
+		console.log('courseChart.value exists:', !!courseChart.value)
+		console.log('course_attempts exists:', !!analyticsData.value?.course_attempts)
+		console.log('course_attempts data:', analyticsData.value?.course_attempts)
 	}
 }
 
@@ -646,7 +716,8 @@ const getTimeUntil = (dateString) => {
 	const now = new Date()
 	const diff = quizTime - now
 
-	if (diff <= 0) return 'now'
+	// If the quiz time has passed, it shouldn't be in upcoming quizzes
+	if (diff <= 0) return 'started'
 
 	const days = Math.floor(diff / (1000 * 60 * 60 * 24))
 	const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -654,7 +725,8 @@ const getTimeUntil = (dateString) => {
 
 	if (days > 0) return `in ${days}d ${hours}h`
 	if (hours > 0) return `in ${hours}h ${minutes}m`
-	return `in ${minutes}m`
+	if (minutes > 0) return `in ${minutes}m`
+	return 'now'
 }
 
 // Actions
@@ -663,7 +735,59 @@ const startQuiz = (quizId) => {
 }
 
 const viewSubmission = (quizId) => {
-	router.push(`/quiz/${quizId}/result`)
+	router.push(`/quiz/${quizId}/submission`)
+}
+
+const goToChapter = (courseId, chapterId) => {
+	router.push(`/courses/${courseId}/chapters/${chapterId}`)
+}
+
+const formatTimeDuration = (durationString) => {
+	if (!durationString) return 'N/A'
+	
+	// If it's already in the format we want, return it
+	if (durationString.includes('min') || durationString.includes('sec')) {
+		return durationString
+	}
+	
+	// Try to parse different time formats
+	try {
+		// If it's in HH:MM:SS format
+		if (durationString.includes(':')) {
+			const parts = durationString.split(':')
+			if (parts.length === 3) {
+				const hours = parseInt(parts[0])
+				const minutes = parseInt(parts[1])
+				const seconds = parseInt(parts[2])
+				
+				const totalMinutes = hours * 60 + minutes
+				const totalSeconds = totalMinutes * 60 + seconds
+				
+				if (totalMinutes > 0) {
+					return `${totalMinutes}min ${seconds}sec`
+				} else {
+					return `${totalSeconds}sec`
+				}
+			}
+		}
+		
+		// If it's a number (assuming seconds)
+		const timeInSeconds = parseInt(durationString)
+		if (!isNaN(timeInSeconds)) {
+			const minutes = Math.floor(timeInSeconds / 60)
+			const seconds = timeInSeconds % 60
+			
+			if (minutes > 0) {
+				return `${minutes}min ${seconds}sec`
+			} else {
+				return `${timeInSeconds}sec`
+			}
+		}
+		
+		return durationString
+	} catch (error) {
+		return durationString
+	}
 }
 
 const downloadCertificate = async (quizId) => {
@@ -744,15 +868,37 @@ const loadTabData = async (tab) => {
 }
 
 // Watch for tab changes
-const handleTabChange = (tab) => {
+const handleTabChange = async (tab) => {
 	activeTab.value = tab
-	loadTabData(tab)
+	await nextTick() // Wait for DOM to update
+	await loadTabData(tab)
 }
 
 // Initialize dashboard
 onMounted(async () => {
 	await loadDashboardData()
 	await loadUpcomingQuizzes()
+	
+	// Add window resize handler for charts
+	window.addEventListener('resize', () => {
+		if (scoresChartInstance) {
+			scoresChartInstance.resize()
+		}
+		if (courseChartInstance) {
+			courseChartInstance.resize()
+		}
+	})
+})
+
+// Cleanup on unmount
+onUnmounted(() => {
+	if (scoresChartInstance) {
+		scoresChartInstance.destroy()
+	}
+	if (courseChartInstance) {
+		courseChartInstance.destroy()
+	}
+	window.removeEventListener('resize', () => {})
 })
 </script>
 
@@ -1144,6 +1290,39 @@ onMounted(async () => {
 	background: transparent;
 	border: 1px solid var(--primary);
 	color: var(--primary);
+}
+
+/* Course Chapter Info */
+.course-chapter-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.chapter-name {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #2c3e50;
+	cursor: pointer;
+	transition: color 0.3s ease;
+	line-height: 1.3;
+}
+
+.chapter-name:hover {
+	color: #f57c00;
+}
+
+.course-chip {
+	background: rgba(245, 124, 0, 0.1);
+	color: #f57c00;
+	border: 1px solid rgba(245, 124, 0, 0.2);
+	padding: 0.25rem 0.75rem;
+	border-radius: 20px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	display: inline-flex;
+	align-items: center;
+	max-width: fit-content;
 }
 
 /* Action Buttons */

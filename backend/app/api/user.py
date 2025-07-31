@@ -494,29 +494,56 @@ class UserUpcomingQuizzesResource(Resource):
         # Get upcoming quizzes from subscribed chapters
         from datetime import datetime, timedelta
         now = datetime.now()
-        today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        today_end = today_start + timedelta(days=1)
 
-        # Get quizzes happening today or in the future
-        upcoming_quizzes = Quiz.query.filter(
+        # Get all quizzes from subscribed chapters that are scheduled
+        all_quizzes = Quiz.query.filter(
             Quiz.chapter_id.in_(chapter_ids),
-            Quiz.is_scheduled == True,
-            Quiz.date_of_quiz >= today_start
+            Quiz.is_scheduled == True
         ).join(Chapter).join(Course).order_by(Quiz.date_of_quiz).all()
 
         quiz_list = []
-        for quiz in upcoming_quizzes:
-            quiz_data = {
-                'id': quiz.id,
-                'title': quiz.title,
-                'chapter': quiz.chapter.name,
-                'chapter_id': quiz.chapter_id,
-                'course': quiz.chapter.course.name,
-                'course_id': quiz.chapter.course.id,
-                'date_of_quiz': quiz.date_of_quiz.isoformat(),
-                'time_duration': quiz.time_duration
-            }
-            quiz_list.append(quiz_data)
+        for quiz in all_quizzes:
+            try:
+                # Parse the quiz start time
+                quiz_start = quiz.date_of_quiz
+
+                # Parse duration and calculate end time
+                if quiz.time_duration:
+                    try:
+                        duration_parts = quiz.time_duration.split(':')
+                        if len(duration_parts) >= 2:
+                            duration_minutes = int(duration_parts[0]) * 60 + int(duration_parts[1])
+                        else:
+                            # If duration is just a number, assume it's minutes
+                            duration_minutes = int(quiz.time_duration)
+                        quiz_end = quiz_start + timedelta(minutes=duration_minutes)
+                    except (ValueError, IndexError):
+                        # Default 60 minutes if duration parsing fails
+                        quiz_end = quiz_start + timedelta(minutes=60)
+                        print(f"Warning: Could not parse duration '{quiz.time_duration}' for quiz {quiz.id}, using 60 minutes default")
+                else:
+                    # Default 60 minutes if no duration specified
+                    quiz_end = quiz_start + timedelta(minutes=60)
+
+                # Debug logging
+                print(f"Quiz {quiz.id} ({quiz.title}): Start={quiz_start}, End={quiz_end}, Now={now}, Include={quiz_end > now}")
+
+                # Only include quizzes that haven't ended yet
+                if quiz_end > now:
+                    quiz_data = {
+                        'id': quiz.id,
+                        'title': quiz.title,
+                        'chapter': quiz.chapter.name,
+                        'chapter_id': quiz.chapter_id,
+                        'course': quiz.chapter.course.name,
+                        'course_id': quiz.chapter.course.id,
+                        'date_of_quiz': quiz.date_of_quiz.isoformat(),
+                        'time_duration': quiz.time_duration
+                    }
+                    quiz_list.append(quiz_data)
+            except Exception as e:
+                print(f"Error processing quiz {quiz.id}: {e}")
+                continue
 
         result = {'quizzes': quiz_list}
         # Cache for 5 minutes
@@ -754,6 +781,77 @@ class UserProfileResource(Resource):
         return result
 
 
+class QuizSubmissionDetailResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self, quiz_id):
+        """Get detailed submission for a specific quiz with question-wise breakdown"""
+        user = get_current_user()
+
+        # Check if user has submitted this quiz
+        submissions = Submission.query.filter_by(
+            user_id=user.id,
+            quiz_id=quiz_id
+        ).all()
+
+        if not submissions:
+            return {'message': 'No submission found for this quiz'}, 404
+
+        # Get quiz and questions
+        quiz = Quiz.query.get(quiz_id)
+        if not quiz:
+            return {'message': 'Quiz not found'}, 404
+
+        questions = Question.query.filter_by(quiz_id=quiz_id).all()
+        submissions_dict = {sub.question_id: sub for sub in submissions}
+
+        # Calculate total score
+        total_marks = sum(q.marks for q in questions)
+        obtained_marks = sum(
+            q.marks for q in questions
+            if q.id in submissions_dict and submissions_dict[q.id].is_correct
+        )
+        percentage = (obtained_marks / total_marks *
+                      100) if total_marks > 0 else 0
+
+        # Prepare question details
+        question_details = []
+        for question in questions:
+            submission = submissions_dict.get(question.id)
+
+            question_data = {
+                'question_id': question.id,
+                'question_statement': question.question_statement,
+                'question_type': question.question_type,
+                'marks': question.marks,
+                'correct_answer': question.correct_answer,
+                'options': question.options if question.question_type in ['MCQ', 'MSQ'] else None,
+                'user_answer': submission.answer if submission else None,
+                'is_correct': submission.is_correct if submission else False,
+                'is_answered': submission is not None,
+                'marks_obtained': question.marks if (submission and submission.is_correct) else 0
+            }
+            question_details.append(question_data)
+
+        result = {
+            'quiz_id': quiz.id,
+            'quiz_title': quiz.title,
+            'chapter': quiz.chapter.name,
+            'course': quiz.chapter.course.name,
+            'total_questions': len(questions),
+            'total_marks': total_marks,
+            'obtained_marks': obtained_marks,
+            'percentage': round(percentage, 2),
+            'correct_answers': len([s for s in submissions if s.is_correct]),
+            'incorrect_answers': len([s for s in submissions if not s.is_correct]),
+            'unanswered': len(questions) - len(submissions),
+            'submission_time': max(s.timestamp for s in submissions).isoformat() if submissions else None,
+            'questions': question_details
+        }
+
+        return result
+
+
 class QuizCertificateResource(Resource):
     @jwt_required()
     @user_required
@@ -806,6 +904,8 @@ def register_user_api(api):
     api.add_resource(DashboardResource, '/user/dashboard')
     api.add_resource(QuizMetadataResource, '/user/quiz/<int:quiz_id>')
     api.add_resource(QuizSubmissionResource, '/user/quiz/<int:quiz_id>')
+    api.add_resource(QuizSubmissionDetailResource,
+                     '/user/quiz/<int:quiz_id>/submission')
     api.add_resource(QuizCertificateResource,
                      '/user/quiz/<int:quiz_id>/certificate')
     api.add_resource(SubscriptionsResource, '/user/subscriptions',

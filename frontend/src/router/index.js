@@ -19,6 +19,7 @@ import AdminUsers from '@/pages/AdminUsers.vue'
 import AdminQuizzes from '@/pages/AdminQuizzes.vue'
 import AdminCourses from '@/pages/AdminCourses.vue'
 import AdminChapterPage from '@/pages/AdminChapterPage.vue'
+import QuizSubmission from '@/pages/QuizSubmission.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +53,12 @@ const router = createRouter({
           path: '/quiz/:id',
           name: 'quiz',
           component: Quiz,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/quiz/:quizId/submission',
+          name: 'quiz-submission',
+          component: QuizSubmission,
           meta: { requiresAuth: true }
         },
         {
