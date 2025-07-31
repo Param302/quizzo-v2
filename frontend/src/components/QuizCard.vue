@@ -88,7 +88,7 @@
                             <button class="btn btn-primary w-100" @click="$emit('start-quiz', quiz.id)"
                                 :disabled="quiz.is_completed">
                                 <i class="bi bi-play-circle me-2"></i>
-                                {{ quiz.is_completed ? 'Already Completed' : 'Start Quiz' }}
+                                {{ getGeneralQuizButtonText() }}
                             </button>
                         </template>
 
@@ -110,6 +110,13 @@
 
                         <!-- Completed Quiz Actions -->
                         <template v-else-if="tabType === 'completed'">
+                            <!-- For non-scheduled quizzes, show retake option -->
+                            <div v-if="!quiz.is_scheduled" class="d-flex gap-2 mb-2">
+                                <button class="btn btn-primary w-100" @click="$emit('start-quiz', quiz.id)">
+                                    <i class="bi bi-arrow-repeat me-2"></i>
+                                    Retake Quiz
+                                </button>
+                            </div>
                             <div class="d-flex gap-2">
                                 <button class="btn btn-outline-primary flex-fill"
                                     @click="$emit('view-details', quiz.id)">
@@ -214,6 +221,16 @@ export default {
                 return `Ended ${days} days ago`
             }
             return 'Quiz Ended'
+        },
+
+        getGeneralQuizButtonText() {
+            if (this.quiz.is_completed) {
+                return 'Already Completed'
+            } else if (this.quiz.user_score) {
+                return 'Retake Quiz'
+            } else {
+                return 'Start Quiz'
+            }
         }
     }
 }

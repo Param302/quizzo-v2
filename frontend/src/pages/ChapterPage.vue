@@ -272,9 +272,17 @@ export default {
             }
 
             try {
+                console.log('Downloading certificate for quiz:', quizId)
                 const response = await axios.get(`/user/quiz/${quizId}/certificate`, {
                     responseType: 'blob'
                 })
+
+                console.log('Certificate response:', response)
+
+                // Check if response is actually a PDF
+                if (response.headers['content-type'] !== 'application/pdf') {
+                    throw new Error('Invalid response format - expected PDF')
+                }
 
                 const url = window.URL.createObjectURL(new Blob([response.data]))
                 const link = document.createElement('a')
@@ -287,7 +295,8 @@ export default {
 
                 showToast('Certificate downloaded successfully!', 'success')
             } catch (error) {
-                const message = error.response?.data?.message || 'Failed to download certificate'
+                console.error('Certificate download error:', error)
+                const message = error.response?.data?.message || error.message || 'Failed to download certificate'
                 showToast(message, 'error')
             }
         }

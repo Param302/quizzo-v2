@@ -151,21 +151,40 @@ class QuizSubmissionResource(Resource):
         if not can_access:
             return {'message': message}, 403
 
+        # Get quiz to check if it's scheduled
+        quiz = Quiz.query.get(quiz_id)
+        if not quiz:
+            return {'message': 'Quiz not found'}, 404
+
         parser = reqparse.RequestParser()
         parser.add_argument('answers', type=list, location='json', required=True,
                             help='List of answers in format [{"question_id": 1, "answer": [0]}, ...]')
         args = parser.parse_args()
 
-        # Check if user has already submitted this quiz
-        existing_submission = Submission.query.filter_by(
-            user_id=user.id,
-            quiz_id=quiz_id
-        ).first()
+        # Check if user has already submitted this quiz (only for scheduled quizzes)
+        existing_submission = None
+        if quiz.is_scheduled:
+            existing_submission = Submission.query.filter_by(
+                user_id=user.id,
+                quiz_id=quiz_id
+            ).first()
 
-        if existing_submission:
-            return {'message': 'Quiz already submitted'}, 400
+            if existing_submission:
+                return {'message': 'Quiz already submitted'}, 400
 
-        submissions = []
+        # For non-scheduled quizzes, handle existing submissions by updating them
+        existing_submissions_dict = {}
+        if not quiz.is_scheduled:
+            existing_submissions = Submission.query.filter_by(
+                user_id=user.id,
+                quiz_id=quiz_id
+            ).all()
+            existing_submissions_dict = {
+                sub.question_id: sub for sub in existing_submissions}
+
+        submissions_to_add = []
+        submissions_to_update = []
+
         for answer_data in args['answers']:
             question_id = answer_data.get('question_id')
             answer = answer_data.get('answer')
@@ -176,27 +195,38 @@ class QuizSubmissionResource(Resource):
 
             is_correct = answer == question.correct_answer
 
-            submission = Submission(
-                user_id=user.id,
-                quiz_id=quiz_id,
-                question_id=question_id,
-                answer=answer,
-                is_correct=is_correct,
-                timestamp=datetime.now()
-            )
+            # For non-scheduled quizzes, update existing submissions or create new ones
+            if not quiz.is_scheduled and question_id in existing_submissions_dict:
+                existing_sub = existing_submissions_dict[question_id]
+                existing_sub.answer = answer
+                existing_sub.is_correct = is_correct
+                existing_sub.timestamp = datetime.now()
+                submissions_to_update.append(existing_sub)
+            else:
+                submission = Submission(
+                    user_id=user.id,
+                    quiz_id=quiz_id,
+                    question_id=question_id,
+                    answer=answer,
+                    is_correct=is_correct,
+                    timestamp=datetime.now()
+                )
+                submissions_to_add.append(submission)
 
-            submissions.append(submission)
-
-        db.session.add_all(submissions)
+        # Save all submissions
+        if submissions_to_add:
+            db.session.add_all(submissions_to_add)
         db.session.commit()
 
         invalidate_user_cache(user.id)
         score = calculate_quiz_score(quiz_id, user.id)
 
+        total_submissions = len(submissions_to_add) + \
+            len(submissions_to_update)
         return {
             'message': 'Quiz submitted successfully',
             'score': score,
-            'total_questions': len(submissions)
+            'total_questions': total_submissions
         }
 
 
@@ -724,10 +754,60 @@ class UserProfileResource(Resource):
         return result
 
 
+class QuizCertificateResource(Resource):
+    @jwt_required()
+    @user_required
+    def get(self, quiz_id):
+        """Download certificate for a completed quiz"""
+        from flask import send_file, make_response
+        import io
+
+        user = get_current_user()
+
+        # Check if user has submitted this quiz
+        submission_exists = Submission.query.filter_by(
+            user_id=user.id,
+            quiz_id=quiz_id
+        ).first()
+
+        if not submission_exists:
+            return {'message': 'Quiz not submitted yet'}, 400
+
+        # Get certificate generator
+        cert_generator = get_certificate_generator()
+        if not cert_generator:
+            return {'message': 'Certificate service unavailable'}, 503
+
+        # Check if certificate can be generated
+        can_generate, message = cert_generator.can_generate_certificate(
+            user.id, quiz_id)
+        if not can_generate:
+            return {'message': message}, 400
+
+        try:
+            # Generate certificate PDF
+            certificate_pdf = cert_generator.generate_certificate_pdf(
+                user.id, quiz_id)
+
+            # Create response with PDF
+            response = make_response(certificate_pdf)
+            response.headers['Content-Type'] = 'application/pdf'
+            response.headers[
+                'Content-Disposition'] = f'attachment; filename="quiz_{quiz_id}_certificate.pdf"'
+
+            return response
+
+        except Exception as e:
+            current_app.logger.error(f"Error generating certificate: {str(e)}")
+            return {'message': 'Failed to generate certificate'}, 500
+
+
 def register_user_api(api):
     api.add_resource(DashboardResource, '/user/dashboard')
     api.add_resource(QuizMetadataResource, '/user/quiz/<int:quiz_id>')
     api.add_resource(QuizSubmissionResource, '/user/quiz/<int:quiz_id>')
+    api.add_resource(QuizCertificateResource,
+                     '/user/quiz/<int:quiz_id>/certificate')
     api.add_resource(SubscriptionsResource, '/user/subscriptions',
                      '/user/subscriptions/<int:chapter_id>')
     api.add_resource(CourseSubscriptionResource, '/user/course-subscription')

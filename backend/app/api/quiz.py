@@ -87,14 +87,19 @@ class OpenQuizzesResource(Resource):
             )
         ).join(Chapter).join(Course).all()
 
-        # Filter out already submitted quizzes
+        # Filter out already submitted quizzes (only for scheduled quizzes)
         submitted_quiz_ids = db.session.query(Submission.quiz_id).filter_by(
             user_id=user.id
         ).distinct().all()
         submitted_quiz_ids = {q[0] for q in submitted_quiz_ids}
 
-        available_quizzes = [
-            quiz for quiz in open_quizzes if quiz.id not in submitted_quiz_ids]
+        # For scheduled quizzes, exclude if already submitted
+        # For non-scheduled quizzes, always include (allow multiple submissions)
+        available_quizzes = []
+        for quiz in open_quizzes:
+            if quiz.is_scheduled and quiz.id in submitted_quiz_ids:
+                continue  # Skip scheduled quizzes that are already submitted
+            available_quizzes.append(quiz)
 
         result = {
             'open_quizzes': [
@@ -130,14 +135,20 @@ class QuizQuestionsResource(Resource):
         if not can_access:
             return {'message': message}, 403
 
-        # Check if already submitted
-        existing_submission = Submission.query.filter_by(
-            user_id=user.id,
-            quiz_id=quiz_id
-        ).first()
+        # Get quiz to check if it's scheduled
+        quiz = Quiz.query.get(quiz_id)
+        if not quiz:
+            return {'message': 'Quiz not found'}, 404
 
-        if existing_submission:
-            return {'message': 'Quiz already submitted'}, 400
+        # Check if already submitted (only for scheduled quizzes)
+        if quiz.is_scheduled:
+            existing_submission = Submission.query.filter_by(
+                user_id=user.id,
+                quiz_id=quiz_id
+            ).first()
+
+            if existing_submission:
+                return {'message': 'Quiz already submitted'}, 400
 
         cache_key_name = f'quiz_{quiz_id}_questions_user'
         cached_result = current_app.cache.get(cache_key_name)
@@ -145,7 +156,6 @@ class QuizQuestionsResource(Resource):
         if cached_result:
             return cached_result
 
-        quiz = Quiz.query.get(quiz_id)
         questions = Question.query.filter_by(
             quiz_id=quiz_id).order_by(Question.id).all()
 
@@ -182,22 +192,13 @@ class QuizSubmitResource(Resource):
     @jwt_required()
     @user_required
     def post(self, quiz_id):
-        """Submit quiz answers"""
+        """Submit quiz answers (handles both new submissions and updates to existing ones)"""
         user = get_current_user()
 
         # Validate access
         can_access, message = validate_quiz_access(quiz_id, user.id)
         if not can_access:
             return {'message': message}, 403
-
-        # Check if already submitted
-        existing_submission = Submission.query.filter_by(
-            user_id=user.id,
-            quiz_id=quiz_id
-        ).first()
-
-        if existing_submission:
-            return {'message': 'Quiz already submitted'}, 400
 
         parser = reqparse.RequestParser()
         parser.add_argument('answers', type=list, location='json', required=True,
@@ -208,8 +209,18 @@ class QuizSubmitResource(Resource):
         questions = Question.query.filter_by(quiz_id=quiz_id).all()
         question_dict = {q.id: q for q in questions}
 
+        # Get existing submissions for this user and quiz
+        existing_submissions = Submission.query.filter_by(
+            user_id=user.id,
+            quiz_id=quiz_id
+        ).all()
+        existing_by_question = {
+            sub.question_id: sub for sub in existing_submissions}
+
         # Process answers
-        submissions = []
+        submissions_to_add = []
+        submissions_to_update = []
+
         for answer_data in args['answers']:
             question_id = answer_data.get('question_id')
             answer = answer_data.get('answer')
@@ -232,34 +243,41 @@ class QuizSubmitResource(Resource):
             # Check if answer is correct
             is_correct = answer == question.correct_answer
 
-            submission = Submission(
-                user_id=user.id,
-                quiz_id=quiz_id,
-                question_id=question_id,
-                answer=answer,
-                is_correct=is_correct,
-                timestamp=datetime.now()
-            )
-
-            submissions.append(submission)
+            # Update existing submission or create new one
+            if question_id in existing_by_question:
+                submission = existing_by_question[question_id]
+                submission.answer = answer
+                submission.is_correct = is_correct
+                submission.timestamp = datetime.now()
+                submissions_to_update.append(submission)
+            else:
+                submission = Submission(
+                    user_id=user.id,
+                    quiz_id=quiz_id,
+                    question_id=question_id,
+                    answer=answer,
+                    is_correct=is_correct,
+                    timestamp=datetime.now()
+                )
+                submissions_to_add.append(submission)
 
         # Save all submissions
-        db.session.add_all(submissions)
+        if submissions_to_add:
+            db.session.add_all(submissions_to_add)
         db.session.commit()
 
         # Clear relevant caches
         invalidate_user_cache(user.id)
         invalidate_quiz_cache(quiz_id)
 
-        # Try to generate certificate information (but don't fail if it doesn't work)
+        # Always generate certificate and send completion email
         certificate_info = None
         try:
             from app.services.certificate_generator import get_certificate_generator
             cert_generator = get_certificate_generator()
 
-            can_generate, _ = cert_generator.can_generate_certificate(
-                user.id, quiz_id)
-            if can_generate:
+            if cert_generator:
+                # Always generate certificate data
                 certificate_data = cert_generator.get_certificate_data(
                     user.id, quiz_id)
                 certificate_info = {
@@ -268,38 +286,51 @@ class QuizSubmitResource(Resource):
                     'download_url': f'/certificate/{quiz_id}/download'
                 }
 
-                # Try to send certificate email asynchronously
+                # Always send completion email with certificate attachment
                 try:
                     from app.services.email_service import get_email_service
                     email_service = get_email_service()
 
-                    # Send email in background (don't wait for completion)
+                    # Send email in background with application context
                     import threading
+                    from flask import current_app
+
+                    # Capture the Flask app instance before threading
+                    app = current_app._get_current_object()
+
+                    def send_completion_email_with_context():
+                        with app.app_context():
+                            email_service.send_certificate_email(
+                                user.id, quiz_id)
+
                     email_thread = threading.Thread(
-                        target=email_service.send_certificate_email,
-                        args=(user.id, quiz_id)
-                    )
+                        target=send_completion_email_with_context)
                     email_thread.daemon = True
                     email_thread.start()
 
                     current_app.logger.info(
-                        f"Certificate email queued for user {user.id}, quiz {quiz_id}")
+                        f"Quiz completion email with certificate queued for user {user.id}, quiz {quiz_id}")
 
                 except Exception as e:
                     current_app.logger.error(
-                        f"Failed to queue certificate email: {e}")
+                        f"Failed to queue completion email: {e}")
+            else:
+                current_app.logger.warning(
+                    "Certificate generator not available")
 
         except ImportError:
             current_app.logger.info(
                 "Certificate generator not available - WeasyPrint not installed")
         except Exception as e:
             current_app.logger.error(
-                f"Certificate generation check failed: {e}")
+                f"Certificate generation failed: {e}")
 
+        total_submissions = len(submissions_to_add) + \
+            len(submissions_to_update)
         response_data = {
             'message': 'Quiz submitted successfully',
             'quiz_id': quiz_id,
-            'submitted_answers': len(submissions),
+            'submitted_answers': total_submissions,
             'total_questions': len(questions)
         }
 
@@ -310,11 +341,83 @@ class QuizSubmitResource(Resource):
         return response_data
 
 
+class QuizQuestionSubmitResource(Resource):
+    @jwt_required()
+    @user_required
+    def post(self, quiz_id):
+        """Submit individual question answer"""
+        user = get_current_user()
+
+        # Validate access
+        can_access, message = validate_quiz_access(quiz_id, user.id)
+        if not can_access:
+            return {'message': message}, 403
+
+        parser = reqparse.RequestParser()
+        parser.add_argument('question_id', type=int, required=True,
+                            help='Question ID is required')
+        parser.add_argument('answer', type=list, location='json', required=True,
+                            help='Answer is required')
+        args = parser.parse_args()
+
+        question_id = args['question_id']
+        answer = args['answer']
+
+        # Check if question belongs to this quiz
+        question = Question.query.filter_by(
+            id=question_id, quiz_id=quiz_id).first()
+        if not question:
+            return {'message': 'Question not found'}, 404
+
+        # Validate answer format based on question type
+        if question.question_type in ['MCQ', 'MSQ']:
+            if not isinstance(answer, list):
+                return {'message': 'Answer must be a list for MCQ/MSQ'}, 400
+        elif question.question_type == 'NAT':
+            if not isinstance(answer, list) or len(answer) != 1:
+                return {'message': 'NAT answer must be a single-item list'}, 400
+
+        # Check if answer is correct
+        is_correct = answer == question.correct_answer
+
+        # Check if submission already exists for this question
+        existing_submission = Submission.query.filter_by(
+            user_id=user.id,
+            quiz_id=quiz_id,
+            question_id=question_id
+        ).first()
+
+        if existing_submission:
+            # Update existing submission
+            existing_submission.answer = answer
+            existing_submission.is_correct = is_correct
+            existing_submission.timestamp = datetime.now()
+        else:
+            # Create new submission
+            submission = Submission(
+                user_id=user.id,
+                quiz_id=quiz_id,
+                question_id=question_id,
+                answer=answer,
+                is_correct=is_correct,
+                timestamp=datetime.now()
+            )
+            db.session.add(submission)
+
+        db.session.commit()
+
+        return {
+            'message': 'Answer saved successfully',
+            'question_id': question_id,
+            'is_correct': is_correct
+        }
+
+
 class QuizResultResource(Resource):
     @jwt_required()
     @user_required
     def get(self, quiz_id):
-        """Get result + analytics"""
+        """Get detailed quiz result + analytics"""
         user = get_current_user()
 
         # Check if user has submitted this quiz
@@ -332,7 +435,46 @@ class QuizResultResource(Resource):
         if cached_result:
             return cached_result
 
-        result = format_quiz_result(quiz_id, user.id)
+        # Get quiz and questions
+        quiz = Quiz.query.get(quiz_id)
+        if not quiz:
+            return {'message': 'Quiz not found'}, 404
+
+        questions = Question.query.filter_by(quiz_id=quiz_id).all()
+        total_questions = len(questions)
+        total_marks = sum(q.marks for q in questions)
+
+        # Get user submissions for this quiz
+        submissions = Submission.query.filter_by(
+            user_id=user.id,
+            quiz_id=quiz_id
+        ).all()
+
+        # Calculate results
+        correct_answers = sum(1 for s in submissions if s.is_correct)
+        incorrect_answers = len(submissions) - correct_answers
+        unanswered = total_questions - len(submissions)
+
+        obtained_marks = sum(q.marks for s in submissions if s.is_correct
+                             for q in questions if q.id == s.question_id)
+
+        percentage = (obtained_marks / total_marks *
+                      100) if total_marks > 0 else 0
+
+        result = {
+            'quiz_id': quiz_id,
+            'quiz_title': quiz.title,
+            'chapter': quiz.chapter.name,
+            'course': quiz.chapter.course.name,
+            'total_questions': total_questions,
+            'total_marks': total_marks,
+            'obtained_marks': obtained_marks,
+            'percentage': round(percentage, 2),
+            'correct_answers': correct_answers,
+            'incorrect_answers': incorrect_answers,
+            'unanswered': unanswered,
+            'submission_time': max(s.timestamp for s in submissions).isoformat() if submissions else None
+        }
 
         # Cache for 30 minutes
         current_app.cache.set(cache_key_name, result, timeout=1800)
@@ -397,12 +539,16 @@ class ChapterQuizzesResource(Resource):
                     from app.utils import calculate_quiz_score
                     score = calculate_quiz_score(quiz.id, user.id)
                     quiz_data['user_score'] = score
-                    quiz_data['is_completed'] = True
-                    categorized_quizzes['completed'].append(quiz_data.copy())
-                else:
-                    quiz_data['is_completed'] = False
 
-                # Add additional time information for specific categories
+                    # ALL submitted quizzes (both scheduled and non-scheduled) go to completed section
+                    categorized_quizzes['completed'].append(quiz_data.copy())
+
+                    # For scheduled quizzes, mark as completed (prevents retaking)
+                    # For non-scheduled quizzes, don't mark as completed (allows retaking)
+                    quiz_data['is_completed'] = quiz.is_scheduled
+                else:
+                    # Add additional time information for specific categories
+                    quiz_data['is_completed'] = False
                 if category == 'upcoming' and quiz.date_of_quiz:
                     from datetime import datetime
                     now = datetime.now()
@@ -432,22 +578,6 @@ class ChapterQuizzesResource(Resource):
 
         # Cache for 5 minutes
         current_app.cache.set(cache_key_name, result, timeout=300)
-        return result
-
-        result = {
-            'course': {
-                'id': chapter.course.id,
-                'name': chapter.course.name,
-                'description': chapter.course.description
-            },
-            'chapter': {
-                'id': chapter.id,
-                'name': chapter.name,
-                'description': chapter.description
-            },
-            'quizzes': categorized_quizzes
-        }
-
         # Cache for 5 minutes
         current_app.cache.set(cache_key_name, result, timeout=300)
         return result
@@ -505,7 +635,8 @@ class CourseQuizzesResource(Resource):
                 'remarks': quiz.remarks,
                 'question_count': len(quiz.questions),
                 'total_marks': sum(q.marks for q in quiz.questions),
-                'is_completed': quiz.id in submitted_quiz_ids
+                # Only mark scheduled quizzes as completed when submitted
+                'is_completed': quiz.is_scheduled and quiz.id in submitted_quiz_ids
             }
 
             # Add submission status and score if completed
@@ -556,6 +687,8 @@ def register_quiz_api(api):
     api.add_resource(UpcomingQuizzesResource, '/quiz/upcoming')
     api.add_resource(OpenQuizzesResource, '/quiz/open')
     api.add_resource(QuizQuestionsResource, '/quiz/<int:quiz_id>/questions')
+    api.add_resource(QuizQuestionSubmitResource,
+                     '/quiz/<int:quiz_id>/submit-answer')
     api.add_resource(QuizSubmitResource, '/quiz/<int:quiz_id>/submit')
     api.add_resource(QuizResultResource, '/quiz/<int:quiz_id>/result')
     api.add_resource(ChapterQuizzesResource,
