@@ -187,7 +187,8 @@
 							</div>
 						</div>
 
-						<div v-else-if="!analyticsData.quiz_scores || analyticsData.quiz_scores.length === 0" class="empty-state-card glass-card">
+						<div v-else-if="!analyticsData.quiz_scores || analyticsData.quiz_scores.length === 0"
+							class="empty-state-card glass-card">
 							<div class="text-center py-5">
 								<i class="bi bi-graph-up text-muted mb-3" style="font-size: 4rem; opacity: 0.5;"></i>
 								<h5 class="text-muted mb-3">No analytics data yet</h5>
@@ -329,11 +330,9 @@
 											</td>
 											<td>
 												<div class="course-chapter-info">
-													<div 
-														class="chapter-name mb-1"
+													<div class="chapter-name mb-1"
 														@click="goToChapter(submission.course_id, submission.chapter_id)"
-														:title="submission.chapter_name"
-													>
+														:title="submission.chapter_name">
 														{{ submission.chapter_name }}
 													</div>
 													<div class="course-info">
@@ -357,7 +356,8 @@
 												<div class="date-display">
 													<div class="fw-semibold">{{ formatDate(submission.attempted_on) }}
 													</div>
-													<small class="text-muted">{{ formatTimeDuration(submission.time_duration) }}</small>
+													<small class="text-muted">{{
+														formatTimeDuration(submission.time_duration) }}</small>
 												</div>
 											</td>
 											<td class="text-center">
@@ -456,10 +456,17 @@ const loadUpcomingQuizzes = async () => {
 	try {
 		loading.upcoming = true
 		const response = await apiService.get('/user/upcoming-quizzes')
-		upcomingQuizzes.value = response.quizzes.map(quiz => ({
-			...quiz,
-			is_live: isQuizLive(quiz.date_of_quiz, quiz.time_duration)
-		}))
+
+		// Filter out quizzes that have already ended
+		upcomingQuizzes.value = response.quizzes
+			.filter(quiz => {
+				// Check if quiz is still upcoming (hasn't ended)
+				return isQuizUpcoming(quiz.date_of_quiz, quiz.time_duration)
+			})
+			.map(quiz => ({
+				...quiz,
+				is_live: isQuizLive(quiz.date_of_quiz, quiz.time_duration)
+			}))
 	} catch (error) {
 		console.error('Error loading upcoming quizzes:', error)
 		upcomingQuizzes.value = []
@@ -479,7 +486,7 @@ const loadAnalyticsData = async () => {
 
 		// Wait for the DOM to be ready and charts to be available
 		await nextTick()
-		
+
 		// Add a small delay to ensure canvas elements are fully rendered
 		setTimeout(() => {
 			console.log('Creating charts with data:', analyticsData.value)
@@ -532,7 +539,7 @@ const createCharts = () => {
 	console.log('scoresChart.value:', scoresChart.value)
 	console.log('courseChart.value:', courseChart.value)
 	console.log('analyticsData.value:', analyticsData.value)
-	
+
 	// Destroy existing charts
 	if (scoresChartInstance) {
 		scoresChartInstance.destroy()
@@ -702,31 +709,79 @@ const formatDuration = (timeString) => {
 }
 
 const isQuizLive = (dateString, duration) => {
-	const quizStart = new Date(dateString)
-	const now = new Date()
-	const durationParts = duration.split(':')
-	const durationMinutes = parseInt(durationParts[0]) * 60 + parseInt(durationParts[1])
-	const quizEnd = new Date(quizStart.getTime() + durationMinutes * 60000)
+	try {
+		const quizStart = new Date(dateString)
+		const now = new Date()
 
-	return now >= quizStart && now <= quizEnd
+		// Parse duration properly
+		let durationMinutes = 60 // Default 60 minutes
+		if (duration) {
+			const durationParts = duration.split(':')
+			if (durationParts.length >= 2) {
+				durationMinutes = parseInt(durationParts[0]) * 60 + parseInt(durationParts[1])
+			} else {
+				// If it's just a number, assume minutes
+				durationMinutes = parseInt(duration) || 60
+			}
+		}
+
+		const quizEnd = new Date(quizStart.getTime() + durationMinutes * 60000)
+
+		return now >= quizStart && now <= quizEnd
+	} catch (error) {
+		console.error('Error checking if quiz is live:', error)
+		return false
+	}
+}
+
+const isQuizUpcoming = (dateString, duration) => {
+	try {
+		const quizStart = new Date(dateString)
+		const now = new Date()
+
+		// Parse duration properly
+		let durationMinutes = 60 // Default 60 minutes
+		if (duration) {
+			const durationParts = duration.split(':')
+			if (durationParts.length >= 2) {
+				durationMinutes = parseInt(durationParts[0]) * 60 + parseInt(durationParts[1])
+			} else {
+				// If it's just a number, assume minutes
+				durationMinutes = parseInt(duration) || 60
+			}
+		}
+
+		const quizEnd = new Date(quizStart.getTime() + durationMinutes * 60000)
+
+		// Quiz is upcoming if it hasn't ended yet
+		return quizEnd > now
+	} catch (error) {
+		console.error('Error checking if quiz is upcoming:', error)
+		return false
+	}
 }
 
 const getTimeUntil = (dateString) => {
-	const quizTime = new Date(dateString)
-	const now = new Date()
-	const diff = quizTime - now
+	try {
+		const quizTime = new Date(dateString)
+		const now = new Date()
+		const diff = quizTime - now
 
-	// If the quiz time has passed, it shouldn't be in upcoming quizzes
-	if (diff <= 0) return 'started'
+		// If the quiz time has passed, it has started
+		if (diff <= 0) return 'started'
 
-	const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-	const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-	const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+		const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+		const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+		const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
 
-	if (days > 0) return `in ${days}d ${hours}h`
-	if (hours > 0) return `in ${hours}h ${minutes}m`
-	if (minutes > 0) return `in ${minutes}m`
-	return 'now'
+		if (days > 0) return `in ${days}d ${hours}h`
+		if (hours > 0) return `in ${hours}h ${minutes}m`
+		if (minutes > 0) return `in ${minutes}m`
+		return 'now'
+	} catch (error) {
+		console.error('Error calculating time until quiz:', error)
+		return 'unknown'
+	}
 }
 
 // Actions
@@ -744,12 +799,12 @@ const goToChapter = (courseId, chapterId) => {
 
 const formatTimeDuration = (durationString) => {
 	if (!durationString) return 'N/A'
-	
+
 	// If it's already in the format we want, return it
 	if (durationString.includes('min') || durationString.includes('sec')) {
 		return durationString
 	}
-	
+
 	// Try to parse different time formats
 	try {
 		// If it's in HH:MM:SS format
@@ -759,10 +814,10 @@ const formatTimeDuration = (durationString) => {
 				const hours = parseInt(parts[0])
 				const minutes = parseInt(parts[1])
 				const seconds = parseInt(parts[2])
-				
+
 				const totalMinutes = hours * 60 + minutes
 				const totalSeconds = totalMinutes * 60 + seconds
-				
+
 				if (totalMinutes > 0) {
 					return `${totalMinutes}min ${seconds}sec`
 				} else {
@@ -770,20 +825,20 @@ const formatTimeDuration = (durationString) => {
 				}
 			}
 		}
-		
+
 		// If it's a number (assuming seconds)
 		const timeInSeconds = parseInt(durationString)
 		if (!isNaN(timeInSeconds)) {
 			const minutes = Math.floor(timeInSeconds / 60)
 			const seconds = timeInSeconds % 60
-			
+
 			if (minutes > 0) {
 				return `${minutes}min ${seconds}sec`
 			} else {
 				return `${timeInSeconds}sec`
 			}
 		}
-		
+
 		return durationString
 	} catch (error) {
 		return durationString
@@ -878,7 +933,7 @@ const handleTabChange = async (tab) => {
 onMounted(async () => {
 	await loadDashboardData()
 	await loadUpcomingQuizzes()
-	
+
 	// Add window resize handler for charts
 	window.addEventListener('resize', () => {
 		if (scoresChartInstance) {
@@ -898,7 +953,7 @@ onUnmounted(() => {
 	if (courseChartInstance) {
 		courseChartInstance.destroy()
 	}
-	window.removeEventListener('resize', () => {})
+	window.removeEventListener('resize', () => { })
 })
 </script>
 

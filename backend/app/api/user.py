@@ -512,21 +512,25 @@ class UserUpcomingQuizzesResource(Resource):
                     try:
                         duration_parts = quiz.time_duration.split(':')
                         if len(duration_parts) >= 2:
-                            duration_minutes = int(duration_parts[0]) * 60 + int(duration_parts[1])
+                            duration_minutes = int(
+                                duration_parts[0]) * 60 + int(duration_parts[1])
                         else:
                             # If duration is just a number, assume it's minutes
                             duration_minutes = int(quiz.time_duration)
-                        quiz_end = quiz_start + timedelta(minutes=duration_minutes)
+                        quiz_end = quiz_start + \
+                            timedelta(minutes=duration_minutes)
                     except (ValueError, IndexError):
                         # Default 60 minutes if duration parsing fails
                         quiz_end = quiz_start + timedelta(minutes=60)
-                        print(f"Warning: Could not parse duration '{quiz.time_duration}' for quiz {quiz.id}, using 60 minutes default")
+                        print(
+                            f"Warning: Could not parse duration '{quiz.time_duration}' for quiz {quiz.id}, using 60 minutes default")
                 else:
                     # Default 60 minutes if no duration specified
                     quiz_end = quiz_start + timedelta(minutes=60)
 
                 # Debug logging
-                print(f"Quiz {quiz.id} ({quiz.title}): Start={quiz_start}, End={quiz_end}, Now={now}, Include={quiz_end > now}")
+                print(
+                    f"Quiz {quiz.id} ({quiz.title}): Start={quiz_start}, End={quiz_end}, Now={now}, Include={quiz_end > now}")
 
                 # Only include quizzes that haven't ended yet
                 if quiz_end > now:
