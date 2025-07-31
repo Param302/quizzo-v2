@@ -45,7 +45,6 @@ class EmailTestSuite:
         self.test_subscriptions = []
 
     def setup_database_path(self):
-        """Ensure the database path is absolute and the directory exists"""
         current_dir = os.path.dirname(os.path.abspath(__file__))
         instance_dir = os.path.join(current_dir, 'instance')
 
@@ -269,11 +268,9 @@ class EmailTestSuite:
         print(f"✅ Created {len(self.test_questions)} questions")
 
     def simulate_quiz_attempts(self):
-        """Simulate quiz attempts by both users"""
         print("🎮 Simulating quiz attempts...")
 
         with self.app.app_context():
-            # Re-fetch objects from database to ensure they're bound to current session
             users = User.query.filter(User.email.in_([
                 'mrintrovert.730@gmail.com',
                 'connectwithparam.30@gmail.com'

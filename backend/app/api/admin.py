@@ -797,7 +797,6 @@ class SearchUsersResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Search users"""
         query_text = request.args.get('query', '')
         role = request.args.get('role')
         limit = int(request.args.get('limit', 50))
@@ -835,7 +834,6 @@ class SearchQuizzesResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Search quizzes"""
         from flask import request
 
         query_text = request.args.get('query', '')
@@ -1069,7 +1067,6 @@ class UsersManagementResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Get all users with their stats and search functionality"""
         search_query = request.args.get('search', '').strip()
         page = request.args.get('page', 1, type=int)
         per_page = min(request.args.get('per_page', 20, type=int), 100)
@@ -1223,7 +1220,6 @@ class AdminExportResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Trigger admin export (async)"""
         try:
             report_gen = ReportGenerator()
             job_id = report_gen.export_admin_data()
@@ -1243,7 +1239,6 @@ class AdminDataExportResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Export all admin data as CSV"""
         from flask import make_response
         import csv
         import io

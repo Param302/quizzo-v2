@@ -9,9 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 def get_app_context():
-    """Get Flask app context for tasks"""
-    from app import create_app
-    return create_app()
+    from run import app
+    return app
 
 
 @celery_app.task(bind=True)
@@ -39,9 +38,6 @@ def send_daily_reminders_task(self):
 
 @celery_app.task(bind=True)
 def send_monthly_reports_task(self):
-    """
-    Celery task to send monthly progress reports to all users.
-    """
     app = get_app_context()
     with app.app_context():
         try:
@@ -65,10 +61,6 @@ def send_monthly_reports_task(self):
 
 @celery_app.task(bind=True)
 def schedule_user_emails_task(self, user_id):
-    """
-    Celery task to schedule daily reminders and monthly reports for a new user.
-    This task is called when a user registers.
-    """
     app = get_app_context()
     with app.app_context():
         try:
@@ -103,9 +95,6 @@ def schedule_user_emails_task(self, user_id):
 
 @celery_app.task(bind=True)
 def send_individual_daily_reminder_task(self, user_id):
-    """
-    Celery task to send daily reminder email to a specific user.
-    """
     app = get_app_context()
     with app.app_context():
         try:
@@ -137,9 +126,6 @@ def send_individual_daily_reminder_task(self, user_id):
 
 @celery_app.task(bind=True)
 def send_individual_monthly_report_task(self, user_id):
-    """
-    Celery task to send monthly report email to a specific user.
-    """
     app = get_app_context()
     with app.app_context():
         try:

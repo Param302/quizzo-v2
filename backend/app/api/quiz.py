@@ -11,7 +11,6 @@ class UpcomingQuizzesResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """List upcoming/scheduled quizzes"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_upcoming_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
@@ -59,7 +58,6 @@ class OpenQuizzesResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """List available quizzes now"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_open_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
@@ -127,7 +125,6 @@ class QuizQuestionsResource(Resource):
     @jwt_required()
     @user_required
     def get(self, quiz_id):
-        """Get questions with metadata"""
         user = get_current_user()
 
         # Validate access
@@ -192,7 +189,6 @@ class QuizSubmitResource(Resource):
     @jwt_required()
     @user_required
     def post(self, quiz_id):
-        """Submit quiz answers (handles both new submissions and updates to existing ones)"""
         user = get_current_user()
 
         # Validate access
@@ -345,7 +341,6 @@ class QuizQuestionSubmitResource(Resource):
     @jwt_required()
     @user_required
     def post(self, quiz_id):
-        """Submit individual question answer"""
         user = get_current_user()
 
         # Validate access
@@ -417,7 +412,6 @@ class QuizResultResource(Resource):
     @jwt_required()
     @user_required
     def get(self, quiz_id):
-        """Get detailed quiz result + analytics"""
         user = get_current_user()
 
         # Check if user has submitted this quiz
@@ -486,7 +480,6 @@ class ChapterQuizzesResource(Resource):
     @jwt_required()
     @user_required
     def get(self, course_id, chapter_id):
-        """Get categorized quizzes for a chapter with user submission status"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_chapter_{chapter_id}_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
@@ -588,7 +581,6 @@ class CourseQuizzesResource(Resource):
     @jwt_required()
     @user_required
     def get(self, course_id):
-        """Get categorized quizzes for all chapters in a course"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_course_{course_id}_quizzes'
         cached_result = current_app.cache.get(cache_key_name)

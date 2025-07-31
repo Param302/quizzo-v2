@@ -187,7 +187,6 @@ EMAIL_TEMPLATES = {
 
 
 class EmailService:
-    """Email service for sending certificates and notifications"""
 
     def __init__(self):
         self._initialized = False
@@ -198,9 +197,8 @@ class EmailService:
         self.smtp_use_tls = None
         self.sender_name = None
 
-    def _ensure_initialized(self):
-        """Initialize configuration when first needed"""
-        if not self._initialized:
+    def _init_config(self):
+        if self._initialized:
             from flask import current_app
             self.smtp_server = current_app.config.get(
                 'MAIL_SERVER', 'localhost')
@@ -213,7 +211,7 @@ class EmailService:
             self._initialized = True
 
     def send_email(self, recipient_email: str, subject: str, html_body: str, attachments: list = None):
-        """Send an email with optional attachments"""
+
         self._ensure_initialized()
 
         try:
@@ -270,7 +268,6 @@ class EmailService:
             return False
 
     def send_certificate_email(self, user_id: int, quiz_id: int):
-        """Send certificate email to user after quiz completion"""
         self._ensure_initialized()
 
         try:
@@ -356,7 +353,6 @@ class EmailService:
             return False
 
     def send_daily_reminder_email(self, user_id: int):
-        """Send daily reminder email to user"""
         self._ensure_initialized()
 
         try:
@@ -437,7 +433,6 @@ class EmailService:
             return False
 
     def send_monthly_report_email(self, user_id: int):
-        """Send monthly report email to user"""
         self._ensure_initialized()
 
         try:
@@ -517,7 +512,6 @@ class EmailService:
             return False
 
     def send_bulk_daily_reminders(self):
-        """Send daily reminder emails to all users with upcoming quizzes"""
         self._ensure_initialized()
 
         try:
@@ -570,7 +564,6 @@ class EmailService:
             return {'sent': 0, 'failed': 1}
 
     def send_bulk_monthly_reports(self):
-        """Send monthly report emails to all active users"""
         self._ensure_initialized()
 
         try:
@@ -608,5 +601,4 @@ email_service = EmailService()
 
 
 def get_email_service() -> EmailService:
-    """Get the global email service instance"""
     return email_service

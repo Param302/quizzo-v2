@@ -144,7 +144,6 @@ class QuizSubmissionResource(Resource):
     @jwt_required()
     @user_required
     def post(self, quiz_id):
-        """Submit quiz answers"""
         user = get_current_user()
 
         can_access, message = validate_quiz_access(quiz_id, user.id)
@@ -268,7 +267,6 @@ class SubscriptionsResource(Resource):
     @jwt_required()
     @user_required
     def post(self):
-        """Subscribe to chapter"""
         user = get_current_user()
 
         parser = reqparse.RequestParser()
@@ -314,7 +312,6 @@ class SubscriptionsResource(Resource):
     @jwt_required()
     @user_required
     def delete(self, chapter_id=None):
-        """Unsubscribe from chapter - supports both URL parameter and request body"""
         user = get_current_user()
 
         if chapter_id is None:
@@ -344,7 +341,6 @@ class UserDataExportResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """Export user data as CSV"""
         from flask import make_response
         import csv
         import io
@@ -483,7 +479,6 @@ class UserExportResource(Resource):
     @jwt_required()
     @user_required
     def post(self):
-        """Trigger user quiz export (async)"""
         user = get_current_user()
 
         try:
@@ -505,7 +500,6 @@ class UserStatsResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """Detailed quiz stats"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_detailed_stats'
         cached_result = current_app.cache.get(cache_key_name)
@@ -558,7 +552,6 @@ class CourseSubscriptionResource(Resource):
     @jwt_required()
     @user_required
     def post(self):
-        """Subscribe to all chapters of a course"""
         user = get_current_user()
 
         parser = reqparse.RequestParser()
@@ -614,7 +607,6 @@ class UserUpcomingQuizzesResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """Get upcoming quizzes from subscribed chapters"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_upcoming_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
@@ -698,7 +690,6 @@ class UserAnalyticsResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """Get user analytics data for charts"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_analytics'
         cached_result = current_app.cache.get(cache_key_name)
@@ -738,7 +729,6 @@ class UserSubmissionsResource(Resource):
     @jwt_required()
     @user_required
     def get(self):
-        """Get user's quiz submissions with details"""
         user = get_current_user()
         cache_key_name = f'user_{user.id}_detailed_submissions'
         cached_result = current_app.cache.get(cache_key_name)
@@ -822,7 +812,6 @@ class UnsubscribeResource(Resource):
     @jwt_required()
     @user_required
     def delete(self, subscription_id):
-        """Unsubscribe from a chapter"""
         user = get_current_user()
 
         try:
@@ -854,7 +843,6 @@ class UserProfileResource(Resource):
     @jwt_required()
     @user_required
     def get(self, username=None):
-        """Get user profile - own profile includes email, others don't"""
         current_user = get_current_user()
 
         # If no username provided, get current user's profile
@@ -928,7 +916,6 @@ class QuizSubmissionDetailResource(Resource):
     @jwt_required()
     @user_required
     def get(self, quiz_id):
-        """Get detailed submission for a specific quiz with question-wise breakdown"""
         user = get_current_user()
 
         # Check if user has submitted this quiz
@@ -999,7 +986,6 @@ class QuizCertificateResource(Resource):
     @jwt_required()
     @user_required
     def get(self, quiz_id):
-        """Download certificate for a completed quiz"""
         from flask import send_file, make_response
         import io
 

@@ -10,7 +10,6 @@ from app.utils import user_required, admin_required, get_current_user
 class ExportStatusResource(Resource):
     @jwt_required()
     def get(self, job_id):
-        """Poll job completion status"""
         cache_key_name = f'job_status_{job_id}'
         cached_status = current_app.cache.get(cache_key_name)
 
@@ -33,7 +32,6 @@ certificate_bp = Blueprint('certificate', __name__)
 @jwt_required()
 @user_required
 def download_certificate(quiz_id):
-    """Download certificate as PDF file"""
     user = get_current_user()
 
     try:

@@ -9,7 +9,6 @@ class SendCertificateEmailResource(Resource):
     @jwt_required()
     @user_required
     def post(self, quiz_id):
-        """Send certificate email for a specific quiz"""
         user = get_current_user()
 
         try:
@@ -44,7 +43,6 @@ class BulkCertificateEmailResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Send certificate emails to all users who completed specific quiz"""
         parser = reqparse.RequestParser()
         parser.add_argument('quiz_id', type=int,
                             required=True, help='Quiz ID is required')
@@ -107,7 +105,6 @@ class EmailTestResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Test email configuration"""
         parser = reqparse.RequestParser()
         parser.add_argument('recipient_email', type=str,
                             required=True, help='Recipient email is required')
@@ -158,7 +155,6 @@ class DailyReminderEmailResource(Resource):
     @jwt_required()
     @user_required
     def post(self):
-        """Send daily reminder email to current user"""
         user = get_current_user()
 
         try:
@@ -188,7 +184,6 @@ class MonthlyReportEmailResource(Resource):
     @jwt_required()
     @user_required
     def post(self):
-        """Send monthly report email to current user"""
         user = get_current_user()
 
         try:
@@ -218,7 +213,6 @@ class BulkDailyRemindersResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Send daily reminders to all users with upcoming quizzes (Admin only)"""
         try:
             from app.services.email_service import get_email_service
             email_service = get_email_service()
@@ -242,7 +236,6 @@ class BulkMonthlyReportsResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Send monthly reports to all active users (Admin only)"""
         try:
             from app.services.email_service import get_email_service
             email_service = get_email_service()
@@ -263,7 +256,6 @@ class BulkMonthlyReportsResource(Resource):
 
 
 def register_email_api(api):
-    """Register email-related API endpoints"""
     api.add_resource(SendCertificateEmailResource,
                      '/certificate/<int:quiz_id>/email')
     api.add_resource(BulkCertificateEmailResource,

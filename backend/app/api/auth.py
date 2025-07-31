@@ -20,7 +20,6 @@ class RegisterResource(Resource):
             'role', type=str, default='user', choices=['user', 'admin'])
 
     def post(self):
-        """User registration"""
         args = self.parser.parse_args()
 
         print(
@@ -88,7 +87,6 @@ class LoginResource(Resource):
                                  required=True, help='Password is required')
 
     def post(self):
-        """User login - returns JWT token"""
         args = self.parser.parse_args()
 
         print(f"Login attempt with email: {args['email']}")
@@ -127,7 +125,6 @@ class LoginResource(Resource):
 class MeResource(Resource):
     @jwt_required()
     def get(self):
-        """Get logged-in user's profile"""
         try:
             print("Getting current user info...")
             user_identity = get_jwt_identity()

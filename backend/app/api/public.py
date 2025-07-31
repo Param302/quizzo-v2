@@ -7,8 +7,6 @@ from app.models import User, Submission, Quiz, Question, Course, Chapter, db
 
 class PublicProfileResource(Resource):
     def get(self, username):
-        """Public stats & quiz performance"""
-        # Remove @ from username if present
         if username.startswith('@'):
             username = username[1:]
 
@@ -18,23 +16,19 @@ class PublicProfileResource(Resource):
         if cached_result:
             return cached_result
 
-        # Find user by username
         user = User.query.filter_by(username=username).first()
         if not user:
             return {'message': 'User not found'}, 404
 
-        # Get public stats (only basic information)
         stats = get_user_quiz_stats(user.id)
 
-        # Get top quiz performances (best scores)
         quiz_scores = stats.get('quiz_scores', [])
         top_performances = sorted(
             quiz_scores,
             key=lambda x: x['score']['percentage'],
             reverse=True
-        )[:5]  # Top 5 performances
+        )[:5]
 
-        # Calculate some aggregate stats
         total_marks_obtained = sum(
             score['score']['obtained_marks'] for score in quiz_scores)
         total_marks_possible = sum(
@@ -90,7 +84,6 @@ class PublicProfileResource(Resource):
 
 class PublicCoursesResource(Resource):
     def get(self):
-        """List all courses with chapters for public access"""
         cache_key_name = 'public_courses_list'
         cached_result = current_app.cache.get(cache_key_name)
 
@@ -160,7 +153,6 @@ class PublicCoursesResource(Resource):
 
 class PublicChapterQuizzesResource(Resource):
     def get(self, course_id, chapter_id):
-        """Get quizzes for a specific chapter"""
         cache_key_name = f'public_chapter_{chapter_id}_quizzes'
         cached_result = current_app.cache.get(cache_key_name)
 

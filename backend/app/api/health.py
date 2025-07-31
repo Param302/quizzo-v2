@@ -5,7 +5,6 @@ from flask_restful import Resource
 
 class HealthCheckResource(Resource):
     def get(self):
-        """Health check endpoint"""
         health_status = {
             "status": "healthy",
             "service": "Quizzo API",

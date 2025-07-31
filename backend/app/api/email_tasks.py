@@ -15,7 +15,6 @@ class EmailTasksResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Manually trigger email tasks"""
         parser = reqparse.RequestParser()
         parser.add_argument('task_type', type=str, required=True,
                             choices=['daily_reminders', 'monthly_reports',
@@ -89,23 +88,14 @@ class CeleryStatusResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Get Celery worker status"""
         try:
-            # Check if we can access Celery
             from app import create_app
             app = create_app()
             celery = app.celery
 
-            # Get worker status
             inspect = celery.control.inspect()
-
-            # Active tasks
             active_tasks = inspect.active()
-
-            # Scheduled tasks
             scheduled_tasks = inspect.scheduled()
-
-            # Worker stats
             stats = inspect.stats()
 
             return {

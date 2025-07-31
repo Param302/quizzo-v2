@@ -9,7 +9,6 @@ class CacheStatsResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Get cache statistics"""
         stats = current_app.cache.get_cache_stats()
         return {"cache_stats": stats}
 
@@ -18,7 +17,6 @@ class CacheClearResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Clear cache entries"""
         parser = reqparse.RequestParser()
         parser.add_argument('type', type=str, required=True, 
                           choices=['all', 'user', 'quiz', 'admin'],
