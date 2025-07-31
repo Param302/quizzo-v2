@@ -7,11 +7,15 @@ from app.config import Config
 from app.models import db
 from app.cache import RedisCache
 from app.rate_limiter import create_limiter, apply_rate_limits
+from app.celery_app import make_celery
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    # Initialize Celery
+    app.celery = make_celery(app)
 
     db.init_app(app)
     CORS(app, origins=['http://localhost:5173', 'http://localhost:3000'],
@@ -39,6 +43,7 @@ def create_app():
     from app.api.health import register_health_api
     from app.api.cache_admin import register_cache_api
     from app.api.email import register_email_api
+    from app.api.email_tasks import register_email_tasks_api
     from app.error_handlers import register_error_handlers
 
     register_auth_api(api)
@@ -50,6 +55,7 @@ def create_app():
     register_cache_api(api)
     register_health_api(api)
     register_email_api(api)
+    register_email_tasks_api(api)
     register_error_handlers(app)
 
     # Register certificate routes (Flask routes, not API resources)

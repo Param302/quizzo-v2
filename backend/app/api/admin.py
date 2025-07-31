@@ -10,7 +10,6 @@ from sqlalchemy import func, extract
 
 
 def revaluate_quiz_submissions(quiz_id):
-    """Revaluate all submissions for a quiz after questions have been updated"""
 
     # Get all questions for the quiz
     questions = Question.query.filter_by(quiz_id=quiz_id).all()
@@ -82,7 +81,6 @@ class CourseResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Create new course"""
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True,
                             help='Course name is required')
@@ -112,7 +110,6 @@ class CourseResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """List all courses with detailed info"""
         from flask import request
 
         # Check if detailed view is requested
@@ -208,7 +205,6 @@ class CourseDetailResource(Resource):
     @jwt_required()
     @admin_required
     def get(self, course_id):
-        """Get detailed course info with chapters"""
         course = Course.query.get(course_id)
         if not course:
             return {'message': 'Course not found'}, 404
@@ -247,7 +243,6 @@ class CourseDetailResource(Resource):
     @jwt_required()
     @admin_required
     def put(self, course_id):
-        """Update course and chapters"""
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, default='')
@@ -313,7 +308,6 @@ class CourseDetailResource(Resource):
     @jwt_required()
     @admin_required
     def put_old(self, course_id):
-        """Update course"""
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, default='')
@@ -343,7 +337,6 @@ class CourseDetailResource(Resource):
     @jwt_required()
     @admin_required
     def delete(self, course_id):
-        """Delete course"""
         course = Course.query.get(course_id)
         if not course:
             return {'message': 'Course not found'}, 404
@@ -361,7 +354,6 @@ class ChapterResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Create new chapter"""
         parser = reqparse.RequestParser()
         parser.add_argument('course_id', type=int, required=True)
         parser.add_argument('name', type=str, required=True)
@@ -400,7 +392,6 @@ class ChapterDetailResource(Resource):
     @jwt_required()
     @admin_required
     def put(self, chapter_id):
-        """Update chapter"""
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, default='')
@@ -432,7 +423,6 @@ class ChapterDetailResource(Resource):
     @jwt_required()
     @admin_required
     def delete(self, chapter_id):
-        """Delete chapter"""
         chapter = Chapter.query.get(chapter_id)
         if not chapter:
             return {'message': 'Chapter not found'}, 404
@@ -452,7 +442,6 @@ class QuizResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Create quiz with questions"""
         data = request.get_json()
 
         if not data:
@@ -544,7 +533,6 @@ class QuizDetailResource(Resource):
     @jwt_required()
     @admin_required
     def get(self, quiz_id):
-        """Get quiz details with questions for editing"""
         quiz = Quiz.query.get(quiz_id)
         if not quiz:
             return {'message': 'Quiz not found'}, 404
@@ -578,7 +566,6 @@ class QuizDetailResource(Resource):
     @jwt_required()
     @admin_required
     def put(self, quiz_id):
-        """Update quiz with questions"""
         data = request.get_json()
 
         if not data:
@@ -681,7 +668,6 @@ class QuizDetailResource(Resource):
     @jwt_required()
     @admin_required
     def delete(self, quiz_id):
-        """Delete quiz"""
         quiz = Quiz.query.get(quiz_id)
         if not quiz:
             return {'message': 'Quiz not found'}, 404
@@ -703,7 +689,6 @@ class QuestionResource(Resource):
     @jwt_required()
     @admin_required
     def post(self):
-        """Create question"""
         parser = reqparse.RequestParser()
         parser.add_argument('quiz_id', type=int, required=True)
         parser.add_argument('question_statement', type=str, required=True)
@@ -752,7 +737,6 @@ class QuestionDetailResource(Resource):
     @jwt_required()
     @admin_required
     def put(self, question_id):
-        """Edit question"""
         parser = reqparse.RequestParser()
         parser.add_argument('question_statement', type=str, required=True)
         parser.add_argument('question_type', type=str,
@@ -794,7 +778,6 @@ class QuestionDetailResource(Resource):
     @jwt_required()
     @admin_required
     def delete(self, question_id):
-        """Delete question"""
         question = Question.query.get(question_id)
         if not question:
             return {'message': 'Question not found'}, 404
@@ -893,7 +876,6 @@ class DashboardStatsResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Admin dashboard statistics"""
         cache_key_name = 'admin_dashboard_stats'
         cached_result = current_app.cache.get(cache_key_name)
 
@@ -960,7 +942,6 @@ class DashboardChartsResource(Resource):
     @jwt_required()
     @admin_required
     def get(self):
-        """Dashboard charts data"""
         cache_key_name = 'admin_dashboard_charts'
         cached_result = current_app.cache.get(cache_key_name)
 
@@ -1027,7 +1008,6 @@ class CourseAnalyticsResource(Resource):
     @jwt_required()
     @admin_required
     def get(self, course_id):
-        """Course-specific analytics"""
         cache_key_name = f'admin_course_analytics_{course_id}'
         cached_result = current_app.cache.get(cache_key_name)
 
@@ -1189,7 +1169,6 @@ class UsersManagementResource(Resource):
     @jwt_required()
     @admin_required
     def delete(self):
-        """Delete a user and all associated data"""
         parser = reqparse.RequestParser()
         parser.add_argument('user_id', type=int,
                             required=True, help='User ID is required')

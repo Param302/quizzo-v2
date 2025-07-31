@@ -8,22 +8,19 @@ from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity, get_jwt
 
 
 def hash_password(password):
-    """Hash password using werkzeug security"""
     return generate_password_hash(password)
 
 
 def verify_password(password, password_hash):
-    """Verify password against hash"""
     return check_password_hash(password_hash, password)
 
 
 def admin_required(f):
-    """Decorator to ensure user is admin"""
     @wraps(f)
     def decorated_function(*args, **kwargs):
         verify_jwt_in_request()
         try:
-            user_id = int(get_jwt_identity())  # Convert string back to int
+            user_id = int(get_jwt_identity())
         except (ValueError, TypeError):
             return {'message': 'Invalid token format'}, 401
 
@@ -37,12 +34,11 @@ def admin_required(f):
 
 
 def user_required(f):
-    """Decorator to ensure user is authenticated"""
     @wraps(f)
     def decorated_function(*args, **kwargs):
         verify_jwt_in_request()
         try:
-            user_id = int(get_jwt_identity())  # Convert string back to int
+            user_id = int(get_jwt_identity())
         except (ValueError, TypeError):
             return {'message': 'Invalid token format'}, 401
 
@@ -56,16 +52,14 @@ def user_required(f):
 
 
 def get_current_user():
-    """Get current authenticated user"""
     try:
-        user_id = int(get_jwt_identity())  # Convert string back to int
+        user_id = int(get_jwt_identity())
         return User.query.get(user_id)
     except (ValueError, TypeError):
         return None
 
 
 def cache_key(*args, **kwargs):
-    """Generate cache key from arguments"""
     key_parts = [str(arg) for arg in args]
     key_parts.extend([f"{k}:{v}" for k, v in sorted(kwargs.items())])
     key_string = "_".join(key_parts)
@@ -73,7 +67,6 @@ def cache_key(*args, **kwargs):
 
 
 def calculate_quiz_score(quiz_id, user_id):
-    """Calculate quiz score for a user"""
     from app.models import Submission, Question
 
     submissions = Submission.query.filter_by(
@@ -98,10 +91,8 @@ def calculate_quiz_score(quiz_id, user_id):
 
 
 def get_user_quiz_stats(user_id):
-    """Get comprehensive quiz statistics for a user"""
     from app.models import Submission, Quiz
 
-    # Get all quizzes user has participated in
     quiz_ids = db.session.query(Submission.quiz_id).filter_by(
         user_id=user_id).distinct().all()
     quiz_ids = [q[0] for q in quiz_ids]
@@ -141,7 +132,6 @@ def get_user_quiz_stats(user_id):
 
 
 def validate_quiz_access(quiz_id, user_id):
-    """Validate if user can access a quiz"""
     from app.models import Quiz, Subscription
     from datetime import datetime
 
@@ -149,7 +139,6 @@ def validate_quiz_access(quiz_id, user_id):
     if not quiz:
         return False, "Quiz not found"
 
-    # Check if user is subscribed to the chapter
     subscription = Subscription.query.filter_by(
         user_id=user_id,
         chapter_id=quiz.chapter_id,
@@ -159,7 +148,6 @@ def validate_quiz_access(quiz_id, user_id):
     if not subscription:
         return False, "Not subscribed to this chapter"
 
-    # Check if quiz is scheduled and time is valid
     if quiz.is_scheduled and quiz.date_of_quiz:
         if datetime.now() < quiz.date_of_quiz:
             return False, "Quiz not yet started"
@@ -168,13 +156,11 @@ def validate_quiz_access(quiz_id, user_id):
 
 
 def format_quiz_result(quiz_id, user_id):
-    """Format quiz result with analytics"""
     from app.models import Quiz, Question, Submission
 
     quiz = Quiz.query.get(quiz_id)
     score = calculate_quiz_score(quiz_id, user_id)
 
-    # Get question-wise performance
     questions = Question.query.filter_by(quiz_id=quiz_id).all()
     question_performance = []
 
@@ -210,40 +196,25 @@ def format_quiz_result(quiz_id, user_id):
 
 
 def get_quiz_status(quiz, current_time=None):
-    """
-    Categorize quiz based on current time and quiz schedule.
-
-    Args:
-        quiz: Quiz object
-        current_time: datetime object (defaults to now)
-
-    Returns:
-        str: 'live', 'upcoming', 'ended', or 'general'
-    """
     from datetime import datetime, timedelta
 
     if current_time is None:
         current_time = datetime.now()
 
-    # If quiz is not scheduled, it's always general
     if not quiz.is_scheduled or not quiz.date_of_quiz:
         return 'general'
 
     quiz_start_time = quiz.date_of_quiz
 
-    # Calculate quiz end time if duration is provided
     quiz_end_time = None
     if quiz.time_duration:
         try:
-            # Parse duration in HH:MM format
             hours, minutes = map(int, quiz.time_duration.split(':'))
             duration = timedelta(hours=hours, minutes=minutes)
             quiz_end_time = quiz_start_time + duration
         except (ValueError, AttributeError):
-            # If duration parsing fails, assume 2 hours default
             quiz_end_time = quiz_start_time + timedelta(hours=2)
     else:
-        # Default duration if not specified
         quiz_end_time = quiz_start_time + timedelta(hours=2)
 
     if current_time < quiz_start_time:
@@ -255,16 +226,6 @@ def get_quiz_status(quiz, current_time=None):
 
 
 def categorize_quizzes(quizzes, current_time=None):
-    """
-    Categorize a list of quizzes into live, upcoming, general, and ended.
-
-    Args:
-        quizzes: List of Quiz objects
-        current_time: datetime object (defaults to now)
-
-    Returns:
-        dict: Dictionary with categorized quizzes
-    """
     categorized = {
         'live': [],
         'upcoming': [],

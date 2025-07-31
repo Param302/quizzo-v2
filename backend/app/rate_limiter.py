@@ -8,7 +8,6 @@ def get_rate_limit_key():
     try:
         user_id = get_jwt_identity()
         if user_id:
-            # Check if user is admin for higher limits
             from app.models import User
             user = User.query.get(user_id)
             if user and user.role == 'admin':
@@ -21,7 +20,6 @@ def get_rate_limit_key():
 
 
 def create_limiter(app):
-    """Create and configure the Flask-Limiter."""
     limiter = Limiter(
         app=app,
         key_func=get_rate_limit_key,

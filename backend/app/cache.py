@@ -7,7 +7,6 @@ from typing import Any, Optional, Union
 
 
 class RedisCache:
-    """Redis cache wrapper for Quizzo application"""
     
     def __init__(self, app=None):
         self.redis_client = None
@@ -15,12 +14,11 @@ class RedisCache:
             self.init_app(app)
     
     def init_app(self, app):
-        """Initialize Redis connection"""
         redis_url = app.config.get('CACHE_REDIS_URL', 'redis://localhost:6379/1')
         try:
             self.redis_client = redis.from_url(
                 redis_url,
-                decode_responses=False,  # We'll handle encoding ourselves
+                decode_responses=False,
                 socket_timeout=5,
                 socket_connect_timeout=5,
                 retry_on_timeout=True
@@ -31,16 +29,12 @@ class RedisCache:
             raise Exception(f"Redis connection failed: {e}")
     
     def _serialize(self, value: Any) -> bytes:
-        """Serialize value for storage"""
         try:
-            # Try JSON first for simple types
             return json.dumps(value).encode('utf-8')
         except (TypeError, ValueError):
-            # Fall back to pickle for complex objects
             return pickle.dumps(value)
     
     def _deserialize(self, value: bytes) -> Any:
-        """Deserialize value from storage"""
         try:
             # Try JSON first
             return json.loads(value.decode('utf-8'))
@@ -49,12 +43,10 @@ class RedisCache:
             return pickle.loads(value)
     
     def _make_key(self, key: str) -> str:
-        """Create a prefixed cache key"""
         prefix = current_app.config.get('CACHE_KEY_PREFIX', 'quizzo:')
         return f"{prefix}{key}"
     
     def get(self, key: str) -> Optional[Any]:
-        """Get value from cache"""
         if not self.redis_client:
             return None
         
@@ -68,7 +60,6 @@ class RedisCache:
             return None
     
     def set(self, key: str, value: Any, timeout: Optional[int] = None) -> bool:
-        """Set value in cache with optional timeout"""
         if not self.redis_client:
             return False
         
@@ -84,7 +75,6 @@ class RedisCache:
             return False
     
     def delete(self, key: str) -> bool:
-        """Delete key from cache"""
         if not self.redis_client:
             return False
         
@@ -95,7 +85,6 @@ class RedisCache:
             return False
     
     def delete_pattern(self, pattern: str) -> int:
-        """Delete all keys matching pattern"""
         if not self.redis_client:
             return 0
         
@@ -109,15 +98,12 @@ class RedisCache:
             return 0
     
     def clear_user_cache(self, user_id: int) -> int:
-        """Clear all cache entries for a specific user"""
         return self.delete_pattern(f"user_{user_id}_*")
     
     def clear_quiz_cache(self, quiz_id: int) -> int:
-        """Clear all cache entries for a specific quiz"""
         return self.delete_pattern(f"quiz_{quiz_id}_*")
     
     def clear_admin_cache(self) -> int:
-        """Clear all admin-related cache entries"""
         deleted = 0
         deleted += self.delete_pattern("admin_*")
         deleted += self.delete_pattern("course_*")
@@ -125,7 +111,6 @@ class RedisCache:
         return deleted
     
     def get_cache_stats(self) -> dict:
-        """Get Redis cache statistics"""
         if not self.redis_client:
             return {"status": "disconnected"}
         
@@ -145,7 +130,6 @@ class RedisCache:
 
 
 def cache_result(key_func=None, timeout=None):
-    """Decorator for caching function results"""
     def decorator(func):
         def wrapper(*args, **kwargs):
             # Generate cache key
@@ -170,13 +154,11 @@ def cache_result(key_func=None, timeout=None):
 
 
 def invalidate_user_cache(user_id: int):
-    """Helper function to invalidate user-specific cache"""
     if hasattr(current_app, 'cache'):
         current_app.cache.clear_user_cache(user_id)
 
 
 def invalidate_quiz_cache(quiz_id: int, chapter_id: int = None):
-    """Helper function to invalidate quiz-specific cache"""
     if hasattr(current_app, 'cache'):
         current_app.cache.clear_quiz_cache(quiz_id)
         if chapter_id:

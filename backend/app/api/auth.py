@@ -52,6 +52,21 @@ class RegisterResource(Resource):
 
         print(f"User {user.email} registered successfully with ID: {user.id}")
 
+        # Schedule email tasks for the new user (daily reminders and monthly reports)
+        try:
+            # Only schedule for regular users, not admins
+            if user.role == 'user':
+                # Import here to avoid circular imports
+                from app.services.celery_tasks import schedule_user_emails_task
+                schedule_user_emails_task.delay(user.id)
+                print(f"Email tasks scheduled for user {user.id}")
+        except Exception as e:
+            # Don't fail registration if email scheduling fails
+            print(
+                f"Failed to schedule email tasks for user {user.id}: {str(e)}")
+            current_app.logger.warning(
+                f"Email scheduling failed for user {user.id}: {str(e)}")
+
         return {
             'message': 'User registered successfully',
             'user': {
